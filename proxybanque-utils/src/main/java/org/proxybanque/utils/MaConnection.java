@@ -2,6 +2,8 @@ package org.proxybanque.utils;
 
 
 
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -23,15 +25,15 @@ public class MaConnection {
 	 * url pour acceder à ala base de donnees
 	 */
 	
-	private static String url = "jdbc:mysql://localhost/gestionScolaire?useSSL=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	private static String url = "jdbc:mysql://localhost/proxibanque?useSSL=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	/**
 	 * Le nom d'utilisateur de la base de donnees
 	 */
-	private static String userDb = "diack";
+	private static String userDb = "proxibanque";
 	/**
 	 * Le mot de passe de la base de donnees
 	 */
-	private static String pwdDb = "passer";
+	private static String pwdDb = "proxibanque";
 	/**
 	 * l'unique instance de connexion à la base
 	 */
