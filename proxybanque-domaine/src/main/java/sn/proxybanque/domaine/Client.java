@@ -1,5 +1,7 @@
 package sn.proxybanque.domaine;
 
+ 
+
 import java.util.Date;
 
 public class Client extends Personne{
