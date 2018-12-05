@@ -2,6 +2,10 @@ package sn.proxybanque.domaine;
 
 import java.util.Date;
 
+/**
+ * @author Mamadou
+ *
+ */
 public class Compte {
    private String numeroCompte;
    private double soldeCompte;
