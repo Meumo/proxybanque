@@ -9,8 +9,8 @@ public class Transaction {
 	private double montantTransaction;
 	private Date dateTransaction;
 	private String typeTransaction;
-	private int  idcompte;
-	private int idconseiller;
+	private int  idCompte;
+	private int idConseiller;
 	
 	public Transaction() {
 		
@@ -23,8 +23,8 @@ public class Transaction {
 		this.montantTransaction = montantTransaction;
 		this.dateTransaction = dateTransaction;
 		this.typeTransaction = typeTransaction;
-		this.idcompte = idcompte;
-		this.idconseiller = idconseiller;
+		this.idCompte = idcompte;
+		this.idConseiller = idconseiller;
 	}
 	
 	
@@ -41,10 +41,10 @@ public class Transaction {
 		return typeTransaction;
 	}
 	public int getIdcompte() {
-		return idcompte;
+		return idCompte;
 	}
 	public int getIdconseiller() {
-		return idconseiller;
+		return idConseiller;
 	}
 	public void setNumeroTransaction(String numeroTransaction) {
 		this.numeroTransaction = numeroTransaction;
@@ -59,10 +59,10 @@ public class Transaction {
 		this.typeTransaction = typeTransaction;
 	}
 	public void setIdcompte(int idcompte) {
-		this.idcompte = idcompte;
+		this.idCompte = idcompte;
 	}
 	public void setIdconseiller(int idconseiller) {
-		this.idconseiller = idconseiller;
+		this.idConseiller = idconseiller;
 	}
 	
 	

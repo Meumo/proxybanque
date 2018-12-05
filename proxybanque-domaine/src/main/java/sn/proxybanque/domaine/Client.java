@@ -1,14 +1,13 @@
 package sn.proxybanque.domaine;
 
 import java.util.Date;
-import java.util.List;
 
 public class Client extends Personne{
 	private String numeroClient;
 	private String codePostalClient;
-	private String vileClient;
-	private String professionClient;
-	private List<Employer>conseillerClientel;
+	private String villeClient;
+	private String proffessionClient;
+	private Employer conseillerClientel;
 	
 	
 	
@@ -20,12 +19,12 @@ public class Client extends Personne{
 
 	public Client(String nom, String prenom, String adresse, String telephone, Date dateDenaissonce, String email,
 			char sexe, String numeroClient, String codePostalClient, String vileClient, String professionClient,
-			List<Employer> conseillerClientel) {
+			Employer conseillerClientel) {
 		super(nom, prenom, adresse, telephone, dateDenaissonce, email, sexe);
 		this.numeroClient = numeroClient;
 		this.codePostalClient = codePostalClient;
-		this.vileClient = vileClient;
-		this.professionClient = professionClient;
+		this.villeClient = vileClient;
+		this.proffessionClient = professionClient;
 		this.conseillerClientel = conseillerClientel;
 	}
 
@@ -44,18 +43,18 @@ public class Client extends Personne{
 
 
 	public String getVileClient() {
-		return vileClient;
+		return villeClient;
 	}
 
 
 
 	public String getProfessionClient() {
-		return professionClient;
+		return proffessionClient;
 	}
 
 
 
-	public List<Employer> getConseillerClientel() {
+	public Employer getConseillerClientel() {
 		return conseillerClientel;
 	}
 
@@ -74,18 +73,18 @@ public class Client extends Personne{
 
 
 	public void setVileClient(String vileClient) {
-		this.vileClient = vileClient;
+		this.villeClient = vileClient;
 	}
 
 
 
 	public void setProfessionClient(String professionClient) {
-		this.professionClient = professionClient;
+		this.proffessionClient = professionClient;
 	}
 
 
 
-	public void setConseillerClientel(List<Employer> conseillerClientel) {
+	public void setConseillerClientel(Employer conseillerClientel) {
 		this.conseillerClientel = conseillerClientel;
 	}
 	

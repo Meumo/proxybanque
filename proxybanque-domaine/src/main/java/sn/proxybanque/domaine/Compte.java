@@ -6,7 +6,7 @@ public class Compte {
    private String numeroCompte;
    private double soldeCompte;
    private String typeDeCompte;
-   private Date dateOuvetureCompte;
+   private Date dateOuvertureCompte;
    private int idClient;
    
    public Compte() {
@@ -17,7 +17,7 @@ public Compte(String numeroCompte, double soldeCompte, String typeDeCompte, Date
 	this.numeroCompte = numeroCompte;
 	this.soldeCompte = soldeCompte;
 	this.typeDeCompte = typeDeCompte;
-	this.dateOuvetureCompte = dateOuvetureCompte;
+	this.dateOuvertureCompte = dateOuvetureCompte;
 	this.idClient = idClient;
 }
 
@@ -34,7 +34,7 @@ public String getTypeDeCompte() {
 }
 
 public Date getDateOuvetureCompte() {
-	return dateOuvetureCompte;
+	return dateOuvertureCompte;
 }
 
 public int getIdClient() {
@@ -54,7 +54,7 @@ public void setTypeDeCompte(String typeDeCompte) {
 }
 
 public void setDateOuvetureCompte(Date dateOuvetureCompte) {
-	this.dateOuvetureCompte = dateOuvetureCompte;
+	this.dateOuvertureCompte = dateOuvetureCompte;
 }
 
 public void setIdClient(int idClient) {

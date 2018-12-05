@@ -8,7 +8,7 @@ public class Personne {
 	protected String prenom;
 	protected String adresse;
 	protected String telephone;
-	protected Date dateDenaissonce;
+	protected Date dateDenaissance;
 	protected String email;
 	protected char sexe;
 	public Personne() {	
@@ -19,7 +19,7 @@ public class Personne {
 		this.prenom = prenom;
 		this.adresse = adresse;
 		this.telephone = telephone;
-		this.dateDenaissonce = dateDenaissonce;
+		this.dateDenaissance = dateDenaissonce;
 		this.email=email;
 		this.sexe = sexe;
 	}
@@ -42,7 +42,7 @@ public class Personne {
 		return email;
 	}
 	public Date getDateDenaissonce() {
-		return dateDenaissonce;
+		return dateDenaissance;
 	}
 	public char getSexe() {
 		return sexe;
@@ -63,7 +63,7 @@ public class Personne {
 		this.telephone = telephone;
 	}
 	public void setDateDenaissonce(Date dateDenaissonce) {
-		this.dateDenaissonce = dateDenaissonce;
+		this.dateDenaissance = dateDenaissonce;
 	}
 	public void setSexe(char sexe) {
 		this.sexe = sexe;

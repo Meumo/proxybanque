@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Agence {
    private String numeroAgence;
-   private Date ateDeCreationAgence;
+   private Date dateDeCreationAgence;
    
    public Agence() {
 		
@@ -13,7 +13,7 @@ public class Agence {
 public Agence(String numeroAgence, Date ateDeCreationAgence) {
 	super();
 	this.numeroAgence = numeroAgence;
-	this.ateDeCreationAgence = ateDeCreationAgence;
+	this.dateDeCreationAgence = ateDeCreationAgence;
 }
 
 
@@ -22,7 +22,7 @@ public String getNumeroAgence() {
 }
 
 public Date getAteDeCreationAgence() {
-	return ateDeCreationAgence;
+	return dateDeCreationAgence;
 }
 
 public void setNumeroAgence(String numeroAgence) {
@@ -30,7 +30,7 @@ public void setNumeroAgence(String numeroAgence) {
 }
 
 public void setAteDeCreationAgence(Date ateDeCreationAgence) {
-	this.ateDeCreationAgence = ateDeCreationAgence;
+	this.dateDeCreationAgence = ateDeCreationAgence;
 }
    
 
