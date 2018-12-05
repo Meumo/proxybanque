@@ -39,5 +39,6 @@
     <module>proxybanque-service</module>
     <module>proxybanque-presentation</module>
     <module>proxybanque-utils</module>
+    <module>proxybanque-gui</module>
   </modules>
 </project>
