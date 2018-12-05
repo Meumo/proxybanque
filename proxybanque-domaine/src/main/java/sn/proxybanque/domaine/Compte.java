@@ -2,68 +2,92 @@ package sn.proxybanque.domaine;
 
 import java.util.Date;
 
-
+/**
+ * Date Decembre 05-2018 # la classe Compte gere les etats d'un Compte dans
+ * notre application.
+ * 
+ * @author DIOUF Mamadou & DIACK Mamadou
+ * @since 2018
+ * @version 1.0-SNAPSHOT
+ */
 public class Compte {
-   private String numeroCompte;
-   private double soldeCompte;
-   private String typeDeCompte;
-   private Date dateOuvertureCompte;
-   private int idClient;
-   
-   public Compte() {
+	/**
+	 * Numero d'un compte
+	 */
+	private String numeroCompte;
+	/**
+	 * Solde d'un compte
+	 */
+	private double soldeCompte;
+	/**
+	 * Type de compte
+	 */
+	private String typeDeCompte;
+	/**
+	 * Date ouverture d'un compte
+	 */
+	private Date dateOuvertureCompte;
+	/**
+	 * Identifiant d'un Client dans la classe compte
+	 */
+	private int idClient;
+
+	/**
+	 * Constructeur sans arguments
+	 */
+	public Compte() {
 	}
-   
-public Compte(String numeroCompte, double soldeCompte, String typeDeCompte, Date dateOuvetureCompte, int idClient) {
-	super();
-	this.numeroCompte = numeroCompte;
-	this.soldeCompte = soldeCompte;
-	this.typeDeCompte = typeDeCompte;
-	this.dateOuvertureCompte = dateOuvetureCompte;
-	this.idClient = idClient;
-}
 
-public String getNumeroCompte() {
-	return numeroCompte;
-}
+	/**
+	 * Constructeur avec arguments
+	 */
+	public Compte(String numeroCompte, double soldeCompte, String typeDeCompte, Date dateOuvetureCompte, int idClient) {
+		super();
+		this.numeroCompte = numeroCompte;
+		this.soldeCompte = soldeCompte;
+		this.typeDeCompte = typeDeCompte;
+		this.dateOuvertureCompte = dateOuvetureCompte;
+		this.idClient = idClient;
+	}
 
-public double getSoldeCompte() {
-	return soldeCompte;
-}
+	public String getNumeroCompte() {
+		return numeroCompte;
+	}
 
-public String getTypeDeCompte() {
-	return typeDeCompte;
-}
+	public double getSoldeCompte() {
+		return soldeCompte;
+	}
 
-public Date getDateOuvetureCompte() {
-	return dateOuvertureCompte;
-}
+	public String getTypeDeCompte() {
+		return typeDeCompte;
+	}
 
-public int getIdClient() {
-	return idClient;
-}
+	public Date getDateOuvetureCompte() {
+		return dateOuvertureCompte;
+	}
 
-public void setNumeroCompte(String numeroCompte) {
-	this.numeroCompte = numeroCompte;
-}
+	public int getIdClient() {
+		return idClient;
+	}
 
-public void setSoldeCompte(double soldeCompte) {
-	this.soldeCompte = soldeCompte;
-}
+	public void setNumeroCompte(String numeroCompte) {
+		this.numeroCompte = numeroCompte;
+	}
 
-public void setTypeDeCompte(String typeDeCompte) {
-	this.typeDeCompte = typeDeCompte;
-}
+	public void setSoldeCompte(double soldeCompte) {
+		this.soldeCompte = soldeCompte;
+	}
 
-public void setDateOuvetureCompte(Date dateOuvetureCompte) {
-	this.dateOuvertureCompte = dateOuvetureCompte;
-}
+	public void setTypeDeCompte(String typeDeCompte) {
+		this.typeDeCompte = typeDeCompte;
+	}
 
-public void setIdClient(int idClient) {
-	this.idClient = idClient;
-}
+	public void setDateOuvetureCompte(Date dateOuvetureCompte) {
+		this.dateOuvertureCompte = dateOuvetureCompte;
+	}
 
+	public void setIdClient(int idClient) {
+		this.idClient = idClient;
+	}
 
-
-   
-   
 }

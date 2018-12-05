@@ -2,17 +2,46 @@ package sn.proxybanque.domaine;
 
 import java.util.Date;
 
+/**
+ * Date Decembre 05-2018 # la classe Carte gere les etats d'une carte dans notre
+ * application.
+ * 
+ * @author DIOUF Mamadou & DIACK Mamadou
+ * @since 2018
+ * @version 1.0-SNAPSHOT
+ */
 public class Carte {
-    private String numeroCarte;
-    private String typeCarte;
-    private String codeSecretCarte;
-    private Date  dateExpirationCarte;
-    private int idClient;
-    
-    public Carte() {
-		 
+	/**
+	 * Numero carte banquaire
+	 */
+	private String numeroCarte;
+	/**
+	 * Type de carte banquaire
+	 */
+	private String typeCarte;
+	/**
+	 * Code secret carte banquaire
+	 */
+	private String codeSecretCarte;
+	/**
+	 * Date expiration carte banquaire
+	 */
+	private Date dateExpirationCarte;
+	/**
+	 * Identifiant d'un client dans la classe carte
+	 */
+	private int idClient;
+
+	/**
+	 * Constructeur sans atgument
+	 */
+	public Carte() {
+
 	}
-    
+
+	/**
+	 * Constructeur avec arguments
+	 */
 	public Carte(String numeroCarte, String typeCarte, String codeSecretCarte, Date dateExpirationCarte, int idClient) {
 		super();
 		this.numeroCarte = numeroCarte;
@@ -61,7 +90,5 @@ public class Carte {
 	public void setIdClient(int idClient) {
 		this.idClient = idClient;
 	}
-    
-	
-    
+
 }
