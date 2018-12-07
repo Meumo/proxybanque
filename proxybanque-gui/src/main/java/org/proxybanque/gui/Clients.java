@@ -28,7 +28,7 @@ public class Clients extends JPanel {
 		panelFormulaire.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\clie.gif"));
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\image\\clie.gif"));
 		panelFormulaire.add(lblNewLabel_1, BorderLayout.WEST);
 		
 		JButton buttonCreerUnClient = new JButton("Creer un Client");
@@ -44,30 +44,30 @@ public class Clients extends JPanel {
 			}
 		});
 		buttonCreerUnClient.setFont(new Font("Tahoma", Font.BOLD, 15));
-		buttonCreerUnClient.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\hire-me.png"));
+		buttonCreerUnClient.setIcon(new ImageIcon("C:\\Users\\image\\hire-me.png"));
 		buttonCreerUnClient.setBounds(0, 0, 209, 70);
 		add(buttonCreerUnClient);
 		
 		JButton buttonModifierUnClient = new JButton("Modifier un Client");
 		buttonModifierUnClient.setFont(new Font("Tahoma", Font.BOLD, 15));
-		buttonModifierUnClient.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\téléchargement (2).jpg"));
+		buttonModifierUnClient.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (2).jpg"));
 		buttonModifierUnClient.setBounds(0, 71, 209, 70);
 		add(buttonModifierUnClient);
 		
 		JButton buttonSupprimerUnClient = new JButton("Supprimer un Client");
 		buttonSupprimerUnClient.setFont(new Font("Tahoma", Font.BOLD, 15));
-		buttonSupprimerUnClient.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\téléchargement (3).jpg"));
+		buttonSupprimerUnClient.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (3).jpg"));
 		buttonSupprimerUnClient.setBounds(0, 140, 209, 70);
 		add(buttonSupprimerUnClient);
 		
 		JButton buttonListerLesClients = new JButton("lister les Clients");
 		buttonListerLesClients.setFont(new Font("Tahoma", Font.BOLD, 15));
-		buttonListerLesClients.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\customers.png"));
+		buttonListerLesClients.setIcon(new ImageIcon("C:\\Users\\image\\customers.png"));
 		buttonListerLesClients.setBounds(0, 209, 209, 70);
 		add(buttonListerLesClients);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\images (4).jpg"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\image\\images (4).jpg"));
 		lblNewLabel.setBounds(0, 278, 209, 175);
 		add(lblNewLabel);
 

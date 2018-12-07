@@ -28,7 +28,7 @@ public class Conseiller extends JPanel {
 		panelFormulaire.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\clie.gif"));
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\image\\co.gif"));
 		panelFormulaire.add(lblNewLabel_1, BorderLayout.WEST);
 		
 		JButton buttonCreerUnConseiller = new JButton("Creer un Conseiller");
@@ -44,30 +44,30 @@ public class Conseiller extends JPanel {
 			}
 		});
 		buttonCreerUnConseiller.setFont(new Font("Tahoma", Font.BOLD, 15));
-		buttonCreerUnConseiller.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\hire-me.png"));
+		buttonCreerUnConseiller.setIcon(new ImageIcon("C:\\Users\\image\\hire-me.png"));
 		buttonCreerUnConseiller.setBounds(0, 0, 209, 70);
 		add(buttonCreerUnConseiller);
 		
 		JButton buttonModifierUnConseiller = new JButton("Modifier un Conseiller");
 		buttonModifierUnConseiller.setFont(new Font("Tahoma", Font.BOLD, 15));
-		buttonModifierUnConseiller.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\téléchargement (2).jpg"));
+		buttonModifierUnConseiller.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (2).jpg"));
 		buttonModifierUnConseiller.setBounds(0, 71, 209, 70);
 		add(buttonModifierUnConseiller);
 		
 		JButton buttonSupprimerUnConseiller = new JButton("Supprimer un Conseiller");
 		buttonSupprimerUnConseiller.setFont(new Font("Tahoma", Font.BOLD, 15));
-		buttonSupprimerUnConseiller.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\téléchargement (3).jpg"));
+		buttonSupprimerUnConseiller.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (3).jpg"));
 		buttonSupprimerUnConseiller.setBounds(0, 140, 209, 70);
 		add(buttonSupprimerUnConseiller);
 		
 		JButton buttonListerLesConseillers = new JButton("lister les Conseillers");
 		buttonListerLesConseillers.setFont(new Font("Tahoma", Font.BOLD, 15));
-		buttonListerLesConseillers.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\customers.png"));
+		buttonListerLesConseillers.setIcon(new ImageIcon("C:\\Users\\image\\customers.png"));
 		buttonListerLesConseillers.setBounds(0, 209, 209, 70);
 		add(buttonListerLesConseillers);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\images (4).jpg"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\image\\images (4).jpg"));
 		lblNewLabel.setBounds(0, 278, 209, 175);
 		add(lblNewLabel);
 
