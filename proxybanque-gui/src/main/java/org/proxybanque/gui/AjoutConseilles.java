@@ -43,7 +43,7 @@ public class AjoutConseilles extends JPanel {
 		add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Numero Client");
+		JLabel lblNewLabel = new JLabel("Numero Conseiller");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblNewLabel.setBounds(55, 18, 188, 30);
 		panel.add(lblNewLabel);
@@ -168,14 +168,14 @@ public class AjoutConseilles extends JPanel {
 		panel.add(list);
 		
 		JButton btnNewButton = new JButton("Valider");
-		btnNewButton.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\check.png"));
+		btnNewButton.setIcon(new ImageIcon("C:\\Users\\image\\check.png"));
 		btnNewButton.setBackground(new Color(51, 204, 51));
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setBounds(279, 401, 124, 30);
 		panel.add(btnNewButton);
 		
 		JButton btnAnnuler = new JButton("Annuler");
-		btnAnnuler.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\busy.png"));
+		btnAnnuler.setIcon(new ImageIcon("C:\\Users\\image\\busy.png"));
 		btnAnnuler.setBackground(new Color(255, 102, 0));
 		btnAnnuler.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnAnnuler.setBounds(413, 401, 128, 30);
