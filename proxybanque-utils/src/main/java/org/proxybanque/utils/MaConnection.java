@@ -1,13 +1,14 @@
 package org.proxybanque.utils;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.logging.Logger;
+import java.util.Properties;
 
 /**
  * * Cette classe met en oeuvre le design pattern singleton elle permet de
- *   restreindre les accés a la base en une et une seule instance de connection
+ * restreindre les accés a la base en une et une seule instance de connection
  * 
  * @author jack
  * @since 05.08.2018
@@ -15,49 +16,38 @@ import java.util.logging.Logger;
  */
 
 public class MaConnection {
+	private static Connection connection;
 
-	/**
-	 * url pour acceder a la base de donnees
-	 */
+	public static Connection getConnectionDB() {
+		if (connection == null) {
 
-	private static String url = "jdbc:mysql://localhost/proxibanque?useSSL=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-	/**
-	 * Le nom d'utilisateur de la base de donnees
-	 */
-	private static String userDb = "proxibanque";
-	/**
-	 * Le mot de passe de la base de donnees
-	 */
-	private static String pwdDb = "proxibanque";
-	/**
-	 * l'unique instance de connexion a la base
-	 */
-	private static Connection conn = null;
+			try {
+				// Création d'une instance de la classe Properties
+				Properties prop = new Properties();
+				// Etablissement de la communication entre le programme et le fichier
 
-	/**
-	 * Constructeur prive pour bloquer la creation d'instance de la classe
-	 */
-	private MaConnection() {
-		super();
-	}
+				InputStream input = new FileInputStream("config.properties");
+				// Chargement du fichier dans l'objet prop
+				prop.load(input);
+				// Propriétés du fichier et récupération des valeurs des clés
+				String driver = prop.getProperty("driver");
+				String url = prop.getProperty("url");
+				String login = prop.getProperty("user");
+				String pwd = prop.getProperty("password");
+				// Chargement du driver
+				Class.forName(driver).newInstance();
+				// Création de la connection avec la base de données
+				connection = DriverManager.getConnection(url, login, pwd);
 
-	/**
-	 * Cette methode retourne l'unique instance de connection avec la base
-	 * 
-	 * @return conn retourne un objet de type connection
-	 */
-	public static Connection getInstanceConnection() {
-		Logger logger = Logger.getLogger("InfoLogging");
-		try {
-			if (conn == null) {
-				conn = DriverManager.getConnection(url, userDb, pwdDb);
-				logger.info("Connexion etablie avec la base");
+				System.out.println("Connection Etabli");
+			} catch (Exception e) {
+				System.out.println("Erreur execution Mysql!");
+			} finally {
+
 			}
-		} catch (SQLException e) {
-			logger.info("Probleme de connexion");
-
 		}
-		return conn;
+
+		return connection;
 	}
 
 }
