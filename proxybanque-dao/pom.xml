@@ -29,12 +29,12 @@
 			</dependency>
 		<dependency>
 			<groupId>sn.objis</groupId>
-			<artifactId>livraison4-domaine</artifactId>
+			<artifactId>proxybanque-domaine</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>sn.objis</groupId>
-			<artifactId>livraison4-utils</artifactId>
+			<artifactId>proxybanque-utils</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

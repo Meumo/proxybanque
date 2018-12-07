@@ -34,7 +34,7 @@ public class Clients extends JPanel {
 		JButton buttonCreerUnClient = new JButton("Creer un Client");
 		buttonCreerUnClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Ajoutclient ajoutclient=new Ajoutclient();
+				AjoutConseilles ajoutclient=new AjoutConseilles();
 				panelFormulaire.removeAll();
 				ajoutclient.setBounds(209, 0, 745, 453);
 				panelFormulaire.add(ajoutclient);

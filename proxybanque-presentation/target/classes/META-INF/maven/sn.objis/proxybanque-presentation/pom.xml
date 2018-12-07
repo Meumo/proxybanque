@@ -31,7 +31,7 @@
 		</dependency>
 		<dependency>
 			<groupId>sn.objis</groupId>
-			<artifactId>livraison4-service</artifactId>
+			<artifactId>proxybanque-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>

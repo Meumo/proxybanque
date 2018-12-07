@@ -2,13 +2,39 @@ package sn.proxybanque.domaine;
 
 import java.util.Date;
 
+/**
+ * Date Decembre 05-2018 # la classe Employer gere les etats d'un Employer dans
+ * notre application.
+ * 
+ * @author DIOUF Mamadou & DIACK Mamadou
+ * @since 2018
+ * @version 1.0-SNAPSHOT
+ */
 public class Employer extends Personne {
+	/**
+	 * Numero de l'employe
+	 */
 	private String numeroEmploye;
+	/**
+	 * Type de l'employe
+	 */
 	private String typeEmploye;
+	/**
+	 * Login de l'employe
+	 */
 	private String loginEmploye;
+	/**
+	 * Mot de passe de l'employe
+	 */
 	private String passwordEmploye;
+	/**
+	 * Identfiant de l'agence dans la classe l'Employe
+	 */
 	private int idAgence;
 
+	/**
+	 * Constructeur avec arguments
+	 */
 	public Employer(String nom, String prenom, String adresse, String telephone, Date dateDenaissonce, String email,
 			char sexe, String numeroEmploye, String typeEmploye, String loginEmploye, String passwordEmploye,
 			int idAgence) {
@@ -20,6 +46,9 @@ public class Employer extends Personne {
 		this.idAgence = idAgence;
 	}
 
+	/**
+	 * Constructeurs sans argument
+	 */
 	public Employer() {
 		super();
 	}
