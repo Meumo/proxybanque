@@ -79,7 +79,7 @@ public class AjoutConseilles extends JPanel {
 		lblTelephone.setBounds(55, 197, 188, 30);
 		panel.add(lblTelephone);
 		
-		JLabel lblCodePostal = new JLabel("Password");
+		JLabel lblCodePostal = new JLabel("Login");
 		lblCodePostal.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblCodePostal.setBounds(55, 238, 188, 30);
 		panel.add(lblCodePostal);
@@ -89,7 +89,7 @@ public class AjoutConseilles extends JPanel {
 		lblProfession.setBounds(55, 319, 188, 30);
 		panel.add(lblProfession);
 		
-		JLabel lblVille = new JLabel("Login");
+		JLabel lblVille = new JLabel("Password");
 		lblVille.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblVille.setBounds(55, 279, 188, 30);
 		panel.add(lblVille);
