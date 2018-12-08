@@ -85,7 +85,11 @@ public class EspaceGerant extends JFrame {
 			}
 		});
 		btnAccueille.setFont(new Font("Tahoma", Font.BOLD, 11));
+<<<<<<< HEAD
+		btnAccueille.setIcon(new ImageIcon("C:\\developpement\\workpace2\\proxybanque\\proxybanque-gui\\image\\home.png"));
+=======
 		btnAccueille.setIcon(new ImageIcon("C:\\Users\\image\\home.png"));
+>>>>>>> 5b307cd238778d183ab8222bf216ebfa0ec398e4
 		toolBar.add(btnAccueille);
 		
 		JButton buttonConseillers = new JButton("Conseillers  ");
@@ -100,7 +104,11 @@ public class EspaceGerant extends JFrame {
 			
 		});
 		buttonConseillers.setFont(new Font("Tahoma", Font.BOLD, 11));
+<<<<<<< HEAD
+		buttonConseillers.setIcon(new ImageIcon("C:\\developpement\\workpace2\\proxybanque\\proxybanque-gui\\image\\special-offer.png"));
+=======
 		buttonConseillers.setIcon(new ImageIcon("C:\\Users\\image\\special-offer.png"));
+>>>>>>> 5b307cd238778d183ab8222bf216ebfa0ec398e4
 		buttonConseillers.setToolTipText("Gestion des conseillers clientelle");
 		toolBar.add(buttonConseillers);
 		
@@ -115,43 +123,74 @@ public class EspaceGerant extends JFrame {
 			}
 		});
 		buttonClients.setFont(new Font("Tahoma", Font.BOLD, 11));
+<<<<<<< HEAD
+		buttonClients.setIcon(new ImageIcon("C:\\developpement\\workpace2\\proxybanque\\proxybanque-gui\\image\\user.png"));
+		buttonClients.setToolTipText("Gestion des clients");
+=======
 		buttonClients.setIcon(new ImageIcon("C:\\Users\\image\\user.png"));
 		buttonClients.setToolTipText("Gestion des ");
+>>>>>>> 5b307cd238778d183ab8222bf216ebfa0ec398e4
 		toolBar.add(buttonClients);
 		
 		JButton buttonComptes = new JButton("Comptes");
 		buttonComptes.setFont(new Font("Tahoma", Font.BOLD, 11));
+<<<<<<< HEAD
+		buttonComptes.setIcon(new ImageIcon("C:\\developpement\\workpace2\\proxybanque\\proxybanque-gui\\image\\téléchargement (1).jpg"));
+		buttonComptes.setToolTipText("Gestion des comptes");
+=======
 		buttonComptes.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (1).jpg"));
 		buttonComptes.setToolTipText("Gestion des ");
+>>>>>>> 5b307cd238778d183ab8222bf216ebfa0ec398e4
 		toolBar.add(buttonComptes);
 		
 		JButton buttonCartesBancaires = new JButton("Cartes  ");
 		buttonCartesBancaires.setFont(new Font("Tahoma", Font.BOLD, 11));
+<<<<<<< HEAD
+		buttonCartesBancaires.setIcon(new ImageIcon("C:\\developpement\\workpace2\\proxybanque\\proxybanque-gui\\image\\carte.jpg"));
+		buttonCartesBancaires.setToolTipText("Gestion des cartes");
+=======
 		buttonCartesBancaires.setIcon(new ImageIcon("C:\\Users\\image\\carte.jpg"));
 		buttonCartesBancaires.setToolTipText("Gestion des ");
+>>>>>>> 5b307cd238778d183ab8222bf216ebfa0ec398e4
 		toolBar.add(buttonCartesBancaires);
 		
 		JButton buttonSimulationCredit = new JButton("Simulation ");
 		buttonSimulationCredit.setFont(new Font("Tahoma", Font.BOLD, 11));
+<<<<<<< HEAD
+		buttonSimulationCredit.setIcon(new ImageIcon("C:\\developpement\\workpace2\\proxybanque\\proxybanque-gui\\image\\simitation.jpg"));
+=======
 		buttonSimulationCredit.setIcon(new ImageIcon("C:\\Users\\image\\simitation.jpg"));
+>>>>>>> 5b307cd238778d183ab8222bf216ebfa0ec398e4
 		buttonSimulationCredit.setToolTipText("Gestion de la simulation de credit ");
 		toolBar.add(buttonSimulationCredit);
 		
 		JButton buttonAuditer = new JButton("Auditer");
 		buttonAuditer.setFont(new Font("Tahoma", Font.BOLD, 11));
+<<<<<<< HEAD
+		buttonAuditer.setIcon(new ImageIcon("C:\\developpement\\workpace2\\proxybanque\\proxybanque-gui\\image\\images.jpg"));
+=======
 		buttonAuditer.setIcon(new ImageIcon("C:\\Users\\image\\images.jpg"));
+>>>>>>> 5b307cd238778d183ab8222bf216ebfa0ec398e4
 		buttonAuditer.setToolTipText("Gestion de l'audit");
 		toolBar.add(buttonAuditer);
 		
 		JButton buttonJournalisation = new JButton("Journalisation");
 		buttonJournalisation.setFont(new Font("Tahoma", Font.BOLD, 11));
+<<<<<<< HEAD
+		buttonJournalisation.setIcon(new ImageIcon("C:\\developpement\\workpace2\\proxybanque\\proxybanque-gui\\image\\images (1).jpg"));
+=======
 		buttonJournalisation.setIcon(new ImageIcon("C:\\Users\\image\\images (1).jpg"));
+>>>>>>> 5b307cd238778d183ab8222bf216ebfa0ec398e4
 		buttonJournalisation.setToolTipText("Gestion de la journalisation des transactions ");
 		toolBar.add(buttonJournalisation);
 		
 		JButton buttonPatrimoinePlacement = new JButton("Patrimoine et Placement");
 		buttonPatrimoinePlacement.setFont(new Font("Tahoma", Font.BOLD, 11));
+<<<<<<< HEAD
+		buttonPatrimoinePlacement.setIcon(new ImageIcon("C:\\developpement\\workpace2\\proxybanque\\proxybanque-gui\\image\\images (2).jpg"));
+=======
 		buttonPatrimoinePlacement.setIcon(new ImageIcon("C:\\Users\\image\\images (2).jpg"));
+>>>>>>> 5b307cd238778d183ab8222bf216ebfa0ec398e4
 		buttonPatrimoinePlacement.setToolTipText("Gestion du patrimoine et du placement");
 		toolBar.add(buttonPatrimoinePlacement);
 		panelBody.setBackground(new Color(255, 255, 255));

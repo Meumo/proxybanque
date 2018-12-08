@@ -35,7 +35,7 @@ public class MaConnection {
 				String login = prop.getProperty("user");
 				String pwd = prop.getProperty("password");
 				// Chargement du driver
-				Class.forName(driver).newInstance();
+				//Class.forName(driver).newInstance();
 				// Création de la connection avec la base de données
 				connection = DriverManager.getConnection(url, login, pwd);
 
