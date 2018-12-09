@@ -1,4 +1,4 @@
-package org.proxybanque.dao;
+package sn.proxybanque.dao;
 
 import java.util.List;
 
