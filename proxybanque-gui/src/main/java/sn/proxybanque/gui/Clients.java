@@ -1,4 +1,4 @@
-package org.proxybanque.gui;
+package sn.proxybanque.gui;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;

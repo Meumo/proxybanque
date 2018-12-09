@@ -1,4 +1,4 @@
-package org.proxybanque.gui;
+package sn.proxybanque.gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
