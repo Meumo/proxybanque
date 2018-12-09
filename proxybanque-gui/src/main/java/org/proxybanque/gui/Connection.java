@@ -59,7 +59,11 @@ public class Connection extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblBienvenue = new JLabel("");
+
 		lblBienvenue.setIcon(new ImageIcon("C:\\Users\\image\\pp.gif"));
+
+		lblBienvenue.setIcon(new ImageIcon("C:\\users\\image\\pp.gif"));
+
 		lblBienvenue.setFont(new Font("Bernard MT Condensed", Font.BOLD | Font.ITALIC, 56));
 		lblBienvenue.setBounds(0, 5, 661, 57);
 		panel.add(lblBienvenue);
