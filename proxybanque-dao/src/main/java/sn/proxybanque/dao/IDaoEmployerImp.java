@@ -41,8 +41,8 @@ public class IDaoEmployerImp implements IDaoEmployer {
 	}
 
 	public void update(Employer t) {
-		// TODO Auto-generated method stub
-
+		String sql="UPDATE employe SET nomEmploye=?,prenomEmploye=?,dateDenaissanceEmploye=?,TelephoneEmploye=?,EmailEmploye=?,loginEmploye=?,passwordEmploye=?,adresseEmploye=?,sexeEmploye=?,typeEmploye=?,idAgence=? WHERE numeroEmploye=?";
+		creaUp(t, sql);
 	}
 
 	public List<Employer> read() {
@@ -65,8 +65,6 @@ public class IDaoEmployerImp implements IDaoEmployer {
 
 	public Employer authentification(String login, String password) {
 		Employer employerRecup = null;
-		// boolean confirm = false;
-		// Connection con = null;
 
 		try {
 			String sql = "SELECT * FROM employe WHERE loginEmploye=? AND passwordEmploye=?";
