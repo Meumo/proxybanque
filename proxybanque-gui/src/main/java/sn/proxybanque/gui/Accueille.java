@@ -14,7 +14,7 @@ public class Accueille extends JPanel {
 		setBackground(new Color(245, 245, 245));
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\developpement\\workpace2\\proxybanque\\proxybanque-gui\\image\\acc.gif"));
+		label.setIcon(new ImageIcon("C:\\Users\\image\\acc.gif"));
 		add(label);
 
 	}

@@ -35,16 +35,25 @@ public class Employer extends Personne {
 	/**
 	 * Constructeur avec arguments
 	 */
-	public Employer(String nom, String prenom, String adresse, String telephone, Date dateDenaissonce, String email,
-			char sexe, String numeroEmploye, String typeEmploye, String loginEmploye, String passwordEmploye,
+	public Employer(int id,String nom, String prenom, String adresse, String telephone, Date dateDenaissonce, String email,
+			String sexe, String numeroEmploye, String typeEmploye, String loginEmploye, String passwordEmploye,
 			int idAgence) {
-		super(nom, prenom, adresse, telephone, dateDenaissonce, email, sexe);
+		super(id,nom, prenom, adresse, telephone, dateDenaissonce, email, sexe);
 		this.numeroEmploye = numeroEmploye;
 		this.typeEmploye = typeEmploye;
 		this.loginEmploye = loginEmploye;
 		this.passwordEmploye = passwordEmploye;
 		this.idAgence = idAgence;
 	}
+	
+	
+
+	public Employer(String nom, String prenom, String typeEmploye,int id) {
+		super(id,nom, prenom);
+		this.typeEmploye = typeEmploye;
+	}
+
+
 
 	/**
 	 * Constructeurs sans argument
