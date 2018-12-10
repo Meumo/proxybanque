@@ -12,7 +12,7 @@ public class ServiceEmployerImp implements IServiceEmployer {
     		
     		
 	public void ajouter(Employer t) {
-		// TODO Auto-generated method stub
+		iDaoEmployerImp.create(t);
 		
 	}
 

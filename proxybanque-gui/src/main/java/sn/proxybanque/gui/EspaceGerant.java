@@ -190,12 +190,11 @@ public class EspaceGerant extends JFrame {
 		//Accueille accueille=new Accueille();
 		
 		
-		panelBody.setBounds(10, 111, 964, 409);
+		panelBody.setBounds(10, 55, 964, 465);
 		contentPane.add(panelBody);
-		panelBody.setLayout(null);
+		panelBody.setLayout(new BorderLayout(0, 0));
 		
 		JLabel label = new JLabel("");
-		label.setBounds(0, 0, 964, 453);
 		label.setIcon(new ImageIcon("C:\\Users\\image\\acc.gif"));
 		panelBody.add(label);
 		
@@ -221,23 +220,23 @@ public class EspaceGerant extends JFrame {
 			
 		});
 		panelBas.add(buttonDeconne);
-		
-		JLabel Profil = new JLabel("En ligne");
-		Profil.setFont(new Font("Tahoma", Font.BOLD, 17));
-		Profil.setBounds(10, 67, 116, 33);
-		contentPane.add(Profil);
-		
-		JLabel nomEmployer = new JLabel("nomEmployer");
-		nomEmployer.setBounds(156, 79, 46, 14);
-		nomEmployer.setText(employer.getNom());
-		contentPane.add(nomEmployer);
-		
-		JLabel prenomEmployer = new JLabel("New label");
-		prenomEmployer.setBounds(267, 79, 46, 14);
-		prenomEmployer.setText(employer.getPrenom());
-		contentPane.add(prenomEmployer);
 
 		panelBas.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JLabel Profil = new JLabel("En ligne");
+		panelBas.add(Profil);
+		Profil.setForeground(Color.GREEN);
+		Profil.setFont(new Font("Tahoma", Font.BOLD, 17));
+		
+		JLabel nomEmployer = new JLabel("nomEmployer");
+		panelBas.add(nomEmployer);
+		nomEmployer.setFont(new Font("Tahoma", Font.ITALIC, 16));
+		nomEmployer.setText(employer.getNom());
+		
+		JLabel prenomEmployer = new JLabel("New label");
+		panelBas.add(prenomEmployer);
+		prenomEmployer.setFont(new Font("Tahoma", Font.ITALIC, 16));
+		prenomEmployer.setText(employer.getPrenom());
 
 	}
 }
