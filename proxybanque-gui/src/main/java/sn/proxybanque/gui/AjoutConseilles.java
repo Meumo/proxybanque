@@ -1,24 +1,30 @@
 package sn.proxybanque.gui;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
+
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.JRadioButton;
+import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
+
 import com.toedter.calendar.JDateChooser;
 
+import sn.proxybanque.domaine.Employer;
 import sn.proxybanque.service.Numero;
-
-import javax.swing.JList;
-import javax.swing.JButton;
-import javax.swing.border.TitledBorder;
-import java.awt.Color;
-import javax.swing.UIManager;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JPasswordField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import sn.proxybanque.service.ServiceEmployerImp;
 
 public class AjoutConseilles extends JPanel {
 	private JTextField numeroConseiller;
@@ -26,18 +32,18 @@ public class AjoutConseilles extends JPanel {
 	private JTextField prenomConseiller;
 	private JTextField adresseConseiller;
 	private JTextField typeConseiller;
-	private JTextField passwordConseiller;
+	private JTextField loginConseiller;
 	private JTextField telConseiller;
 	private JTextField emailConseiller;
-	private JPasswordField loginConseiller;
-	private ButtonGroup buttonGroup;
+	private JPasswordField passwordConseiller;
+	//private ButtonGroup buttonGroup;
 
 	/**
 	 * Create the panel.
 	 */
 	public AjoutConseilles() {
 		setLayout(null);
-		
+		Employer employer;
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(176, 196, 222));
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Ajout Conseiller", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(102, 102, 204)));
@@ -67,7 +73,7 @@ public class AjoutConseilles extends JPanel {
 		
 		JLabel lblSexe = new JLabel("Sexe");
 		lblSexe.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		lblSexe.setBounds(638, 120, 188, 30);
+		lblSexe.setBounds(574, 156, 36, 30);
 		panel.add(lblSexe);
 		
 		
@@ -125,22 +131,13 @@ public class AjoutConseilles extends JPanel {
 		panel.add(adresseConseiller);
 		adresseConseiller.setColumns(30);
 		
-		JRadioButton buttonSexeConseillerFemme = new JRadioButton("Femme");
-		buttonSexeConseillerFemme.setBounds(547, 161, 106, 23);
-		
-		
-		JRadioButton buttonSexeconseillerHomme = new JRadioButton("Homme");
-		buttonSexeconseillerHomme.setBounds(661, 161, 106, 23);
-		
 		
 		//buttonGroup.add(buttonSexeConseillerFemme);
 		//buttonGroup.add(buttonSexeconseillerHomme);
 		
-		JDateChooser dateNaissanceConseiller = new JDateChooser();
+		final JDateChooser dateNaissanceConseiller = new JDateChooser();
+		dateNaissanceConseiller.setDateFormatString("yyyy-M-d ");
 		dateNaissanceConseiller.setBounds(313, 360, 228, 30);
-		
-		panel.add(buttonSexeconseillerHomme);
-		panel.add(buttonSexeConseillerFemme);
 		panel.add(dateNaissanceConseiller);
 		
 		typeConseiller = new JTextField();
@@ -150,10 +147,10 @@ public class AjoutConseilles extends JPanel {
 		panel.add(typeConseiller);
 		typeConseiller.setColumns(30);
 		
-		passwordConseiller = new JTextField();
-		passwordConseiller.setBounds(313, 239, 228, 30);
-		panel.add(passwordConseiller);
-		passwordConseiller.setColumns(30);
+		loginConseiller = new JTextField();
+		loginConseiller.setBounds(313, 239, 228, 30);
+		panel.add(loginConseiller);
+		loginConseiller.setColumns(30);
 		
 		telConseiller = new JTextField();
 		telConseiller.setBounds(313, 198, 228, 30);
@@ -169,9 +166,41 @@ public class AjoutConseilles extends JPanel {
 		list.setBounds(388, 26, 1, 1);
 		panel.add(list);
 		
+		final JComboBox comboBoxSexe = new JComboBox();
+		comboBoxSexe.setModel(new DefaultComboBoxModel(new String[] {"Femme", "Homme"}));
+		//comboBoxSexe.setModel(new DefaultComboBoxModel(new String[] {"Homme"}));
+		comboBoxSexe.addItem("Femme");
+		comboBoxSexe.addItem("Hommee");
+		comboBoxSexe.setMaximumRowCount(2);
+		comboBoxSexe.setBounds(627, 156, 94, 30);
+		panel.add(comboBoxSexe);
+
+		
 		JButton btnNewButton = new JButton("Valider");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int idAgence=1;
+				String nom=nomConseiller.getText();
+				String prenom=prenomConseiller.getText();
+				String adresse=adresseConseiller.getText();
+				String email=emailConseiller.getText();
+				String login =loginConseiller.getText();
+				String passWord=passwordConseiller.getText();
+				String telephone=telConseiller.getText();
+				String type=typeConseiller.getText();
+				Date date=dateNaissanceConseiller.getDate();
+				String numero=numeroConseiller.getText();
+				String sexeChoise=(String) comboBoxSexe.getSelectedItem();
+				ServiceEmployerImp serviceEmployerImp=new ServiceEmployerImp();
+				if(nom.length()==0 || prenom.length()==0 ||adresse.length()==0 || email.length()==0 ||login.length()==0 || passWord.length()==0 ||telephone.length()==0 ||type.length()==0 ||sexeChoise.length()==0 ||numero.length()==0 ||date==null )
+				{
+					JOptionPane.showMessageDialog(null,"veuillez remplire tout les champs");
+				}else {
+					Employer employerCree=new Employer(nom, prenom, adresse, telephone, date, email, sexeChoise, numero,type, login, passWord, idAgence);
+					serviceEmployerImp.ajouter(employerCree);
+				}
+					
+			    
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon("C:\\Users\\image\\check.png"));
@@ -187,9 +216,10 @@ public class AjoutConseilles extends JPanel {
 		btnAnnuler.setBounds(413, 401, 128, 30);
 		panel.add(btnAnnuler);
 		
-		loginConseiller = new JPasswordField();
-		loginConseiller.setBounds(313, 279, 228, 30);
-		panel.add(loginConseiller);
-
+		passwordConseiller = new JPasswordField();
+		passwordConseiller.setBounds(313, 279, 228, 30);
+		panel.add(passwordConseiller);
+		
+		
 	}
 }
