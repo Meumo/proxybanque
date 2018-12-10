@@ -1,20 +1,25 @@
 package sn.proxybanque.gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.Font;
-import javax.swing.border.TitledBorder;
 import java.awt.Color;
-import javax.swing.UIManager;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+
+import sn.proxybanque.dao.IDaoEmployerImp;
+import sn.proxybanque.domaine.Employer;
 
 public class Connection extends JFrame {
 
@@ -43,7 +48,6 @@ public class Connection extends JFrame {
 	 */
 	public Connection() {
 		setResizable(false);
-		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 685, 320);
 		contentPane = new JPanel();
@@ -93,6 +97,31 @@ public class Connection extends JFrame {
 		textField.setColumns(10);
 		
 		JButton btnValider = new JButton("Valider");
+		btnValider.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				IDaoEmployerImp employerImp = new IDaoEmployerImp();
+				if (textField.getText().length() != 0 && passwordField.getText().length() != 0) {
+					Employer employe = employerImp.authentification(textField.getText(), passwordField.getText());
+					if (employe!=null && employe.getTypeEmploye().equals("conseiller")) {
+						EspaceConseiller espaceConseiller=new EspaceConseiller();
+						dispose();
+						espaceConseiller.setVisible(true);
+					}
+					else if (employe!=null && employe.getTypeEmploye().equals("gerant")) {
+						EspaceGerant espaceGerant=new EspaceGerant();
+						dispose();
+						espaceGerant.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Login ou mot de passe incorect");
+					}
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "Entrer le login ou mot de passe");
+				}
+				
+			}
+		});
 		btnValider.setBackground(new Color(102, 255, 0));
 		btnValider.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnValider.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\check.png"));

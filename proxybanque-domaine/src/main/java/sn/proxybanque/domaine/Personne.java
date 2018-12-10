@@ -11,6 +11,7 @@ import java.util.Date;
  * @version 1.0-SNAPSHOT
  */
 public class Personne {
+	protected int id;
 
 	/**
 	 * Nom
@@ -39,29 +40,35 @@ public class Personne {
 	/**
 	 * Sexe
 	 */
-	protected char sexe;
+	protected String sexe;
 
 	/**
 	 * Constructeur sans argument
 	 */
 	public Personne() {
 	}
+	
+	public Personne(int id,String nom, String prenom) {
+		super();
+		this.id=id;
+		this.nom = nom;
+		this.prenom = prenom;
+	}
+
 
 	/**
 	 * Contructeur avec arguments
 	 */
-	public Personne(String nom, String prenom, String adresse, String telephone, Date dateDenaissonce, String email,
-			char sexe) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
+	public Personne(int id,String nom, String prenom, String adresse, String telephone, Date dateDenaissonce, String email,
+			String sexe) {
+		this(id,nom,prenom);
 		this.adresse = adresse;
 		this.telephone = telephone;
 		this.dateDenaissance = dateDenaissonce;
 		this.email = email;
 		this.sexe = sexe;
 	}
-
+	
 	public String getNom() {
 		return nom;
 	}
@@ -86,7 +93,7 @@ public class Personne {
 		return dateDenaissance;
 	}
 
-	public char getSexe() {
+	public String getSexe() {
 		return sexe;
 	}
 
@@ -110,7 +117,7 @@ public class Personne {
 		this.dateDenaissance = dateDenaissonce;
 	}
 
-	public void setSexe(char sexe) {
+	public void setSexe(String sexe) {
 		this.sexe = sexe;
 	}
 

@@ -18,6 +18,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import java.awt.FlowLayout;
 
 public class EspaceGerant extends JFrame {
 
@@ -197,5 +198,6 @@ public class EspaceGerant extends JFrame {
 		panelBas.setBackground(new Color(102, 102, 153));
 		panelBas.setBounds(10, 531, 964, 46);
 		contentPane.add(panelBas);
+		panelBas.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 	}
 }
