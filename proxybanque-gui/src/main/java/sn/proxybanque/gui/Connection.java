@@ -11,6 +11,22 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Font;
+import javax.swing.border.TitledBorder;
+
+import sn.proxybanque.domaine.Employer;
+import sn.proxybanque.service.ServiceEmployerImp;
+
+import java.awt.Color;
+import javax.swing.UIManager;
+import javax.swing.ImageIcon;
+import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -21,11 +37,13 @@ import javax.swing.border.TitledBorder;
 import sn.proxybanque.dao.IDaoEmployerImp;
 import sn.proxybanque.domaine.Employer;
 
+
 public class Connection extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField login;
 	private JPasswordField passwordField;
+	public Employer employerConnecter;
 
 	/**
 	 * Launch the application.
@@ -91,35 +109,42 @@ public class Connection extends JFrame {
 		lblNewLabel_1.setBounds(222, 62, 155, 30);
 		panel_1.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setBounds(399, 23, 211, 30);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		login = new JTextField();
+		login.setBounds(399, 23, 211, 30);
+		panel_1.add(login);
+		login.setColumns(10);
 		
 		JButton btnValider = new JButton("Valider");
 		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				IDaoEmployerImp employerImp = new IDaoEmployerImp();
-				if (textField.getText().length() != 0 && passwordField.getText().length() != 0) {
-					Employer employe = employerImp.authentification(textField.getText(), passwordField.getText());
-					if (employe!=null && employe.getTypeEmploye().equals("conseiller")) {
-						EspaceConseiller espaceConseiller=new EspaceConseiller();
+
+				String loginSaisie=login.getText();
+				String passWordSaisie=passwordField.getText();
+				if(loginSaisie.length()==0 || passWordSaisie.length()==0) {
+					JOptionPane.showMessageDialog(null,"Entre le login ou le mot de passe");
+				}else {
+					ServiceEmployerImp serviceEmployerImp=new ServiceEmployerImp();
+					employerConnecter=serviceEmployerImp.authentification(loginSaisie, passWordSaisie);
+					if(employerConnecter!=null)
+					{
+						String type=employerConnecter.getTypeEmploye();
 						dispose();
-						espaceConseiller.setVisible(true);
+						if(type.equals("gerant"))
+						{
+							EspaceGerant espaceGerant=new EspaceGerant(employerConnecter);
+							
+							espaceGerant.setVisible(true);
+						}else {
+							EspaceConseiller espaceConseiller=new EspaceConseiller();
+						
+							espaceConseiller.setVisible(true);
+						}
+					}else {
+						JOptionPane.showMessageDialog(null,"login ou mots de passe incorrecte");
 					}
-					else if (employe!=null && employe.getTypeEmploye().equals("gerant")) {
-						EspaceGerant espaceGerant=new EspaceGerant();
-						dispose();
-						espaceGerant.setVisible(true);
-					}
-					else {
-						JOptionPane.showMessageDialog(null, "Login ou mot de passe incorect");
-					}
-					
-				} else {
-					JOptionPane.showMessageDialog(null, "Entrer le login ou mot de passe");
 				}
-				
+					
+
 			}
 		});
 		btnValider.setBackground(new Color(102, 255, 0));
@@ -129,6 +154,13 @@ public class Connection extends JFrame {
 		panel_1.add(btnValider);
 		
 		JButton btnAnnuler = new JButton("Annuler");
+		btnAnnuler.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				login.setText("");
+				passwordField.setText("");
+				
+			}
+		});
 		btnAnnuler.setBackground(new Color(255, 0, 0));
 		btnAnnuler.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnAnnuler.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\81927424-annuler-isolé-sur-orange-vitreux-rond-illustration-abstraite-de-bouton.jpg"));
@@ -151,6 +183,12 @@ public class Connection extends JFrame {
 		panel_2.setLayout(null);
 		
 		JButton btnNewButton = new JButton("Quitter");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+			
+		});
 		btnNewButton.setBackground(new Color(255, 0, 51));
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\logout.png"));

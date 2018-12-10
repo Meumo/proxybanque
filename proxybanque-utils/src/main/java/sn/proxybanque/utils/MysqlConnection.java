@@ -25,15 +25,15 @@ public class MysqlConnection {
 	/**
 	 * url pour acceder a la base de donnees
 	 */
-	private static String url = "jdbc:mysql://localhost/proxibanque";
+	private static String url ="jdbc:mysql://localhost:3306/proxibanque";
 	/**
 	 * Le nom d'utilisateur de la base de donnees
 	 */
-	private static String userDb = "proxibanque";
+	private static String userDb = "objis";
 	/**
 	 * Le mot de passe de la base de donnees
 	 */
-	private static String passworddDb = "proxibanque";
+	private static String passworddDb = "objis";
 	/**
 	 * l'unique instance de connexion a la base
 	 */

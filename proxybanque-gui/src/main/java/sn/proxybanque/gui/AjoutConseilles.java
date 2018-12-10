@@ -17,6 +17,8 @@ import javax.swing.UIManager;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AjoutConseilles extends JPanel {
 	private JTextField numeroConseiller;
@@ -168,6 +170,10 @@ public class AjoutConseilles extends JPanel {
 		panel.add(list);
 		
 		JButton btnNewButton = new JButton("Valider");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton.setIcon(new ImageIcon("C:\\Users\\image\\check.png"));
 		btnNewButton.setBackground(new Color(51, 204, 51));
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));

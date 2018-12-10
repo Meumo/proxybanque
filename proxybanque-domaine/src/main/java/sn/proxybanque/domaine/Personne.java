@@ -30,7 +30,7 @@ public class Personne {
 	 */
 	protected String telephone;
 	/**
-	 * Date de naissance
+	 * Date dete naissance
 	 */
 	protected Date dateDenaissance;
 	/**

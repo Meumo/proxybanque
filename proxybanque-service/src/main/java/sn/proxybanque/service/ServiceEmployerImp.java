@@ -2,38 +2,39 @@ package sn.proxybanque.service;
 
 import java.util.List;
 
+import sn.proxybanque.dao.IDaoEmployerImp;
 import sn.proxybanque.domaine.Employer;
 
 public class ServiceEmployerImp implements IServiceEmployer {
+	IDaoEmployerImp iDaoEmployerImp = new IDaoEmployerImp();
 
 	public void ajouter(Employer t) {
-		// TODO Auto-generated method stub
-		
+		iDaoEmployerImp.create(t);
+
 	}
 
 	public void misAJour(Employer t) {
-		// TODO Auto-generated method stub
-		
+		iDaoEmployerImp.update(t);
 	}
 
 	public List<Employer> lister() {
-		// TODO Auto-generated method stub
-		return null;
+		return iDaoEmployerImp.read();
 	}
 
 	public void supprimer(Employer t) {
-		// TODO Auto-generated method stub
-		
+		iDaoEmployerImp.delete(t);
 	}
 
 	public void Consulter(Employer t) {
-		// TODO Auto-generated method stub
-		
+		iDaoEmployerImp.display(t);
 	}
 
 	public Employer rechercherParNumeroEmployer(String numeroEmployer) {
-		// TODO Auto-generated method stub
-		return null;
+		return iDaoEmployerImp.findByNumberEmployer(numeroEmployer);
+	}
+
+	public Employer authentification(String login, String password) {
+		return iDaoEmployerImp.authentification(login, password);
 	}
 
 }

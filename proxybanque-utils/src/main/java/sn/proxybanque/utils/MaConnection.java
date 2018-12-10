@@ -5,8 +5,6 @@
 //import java.sql.Connection;
 //import java.sql.DriverManager;
 //import java.util.Properties;
-//
-///**
 // * * Cette classe met en oeuvre le design pattern singleton elle permet de
 // * restreindre les accés a la base en une et une seule instance de connection
 // * 
