@@ -25,7 +25,7 @@ public class MysqlConnection {
 	/**
 	 * url pour acceder a la base de donnees
 	 */
-	private static String url = "jdbc:mysql://localhost/proxibanque";
+	private static String url = "jdbc:mysql://localhost/proxibanque?useSSL=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	/**
 	 * Le nom d'utilisateur de la base de donnees
 	 */

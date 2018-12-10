@@ -124,6 +124,7 @@ public class Connection extends JFrame {
 					JOptionPane.showMessageDialog(null,"Entre le login ou le mot de passe");
 				}else {
 					ServiceEmployerImp serviceEmployerImp=new ServiceEmployerImp();
+					employerConnecter=serviceEmployerImp.authentification(loginSaisie, passWordSaisie);
 					if(employerConnecter!=null)
 					{
 						String type=employerConnecter.getTypeEmploye();
@@ -144,28 +145,6 @@ public class Connection extends JFrame {
 				}
 					
 
-				IDaoEmployerImp employerImp = new IDaoEmployerImp();
-				//if (textField.getText().length() != 0 && passwordField.getText().length() != 0) {
-				//	Employer employe = employerImp.authentification(textField.getText(), passwordField.getText());
-				//	if (employe!=null && employe.getTypeEmploye().equals("conseiller")) {
-				//		EspaceConseiller espaceConseiller=new EspaceConseiller();
-				//		dispose();
-				//		espaceConseiller.setVisible(true);
-					//}
-				//	else if (employe!=null && employe.getTypeEmploye().equals("gerant")) {
-					//	EspaceGerant espaceGerant=new EspaceGerant();
-					//	dispose();
-					//	espaceGerant.setVisible(true);
-					//}
-					//else {
-					//	JOptionPane.showMessageDialog(null, "Login ou mot de passe incorect");
-					//}
-					
-			//	} else {
-				//JOptionPane.showMessageDialog(null, "Entrer le login ou mot de passe");
-				//}
-
-				
 			}
 		});
 		btnValider.setBackground(new Color(102, 255, 0));
