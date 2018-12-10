@@ -25,6 +25,7 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import com.toedter.components.JLocaleChooser;
 
 public class AjoutConseilles extends JPanel {
 	private JTextField numeroConseiller;
@@ -73,7 +74,7 @@ public class AjoutConseilles extends JPanel {
 		
 		JLabel lblSexe = new JLabel("Sexe");
 		lblSexe.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		lblSexe.setBounds(575, 120, 188, 30);
+		lblSexe.setBounds(574, 156, 36, 30);
 		panel.add(lblSexe);
 		
 		
@@ -136,6 +137,7 @@ public class AjoutConseilles extends JPanel {
 		//buttonGroup.add(buttonSexeconseillerHomme);
 		
 		final JDateChooser dateNaissanceConseiller = new JDateChooser();
+		dateNaissanceConseiller.setDateFormatString("yyyy-M-d ");
 		dateNaissanceConseiller.setBounds(313, 360, 228, 30);
 		panel.add(dateNaissanceConseiller);
 		
@@ -166,11 +168,12 @@ public class AjoutConseilles extends JPanel {
 		panel.add(list);
 		
 		final JComboBox comboBoxSexe = new JComboBox();
+		comboBoxSexe.setModel(new DefaultComboBoxModel(new String[] {"Femme", "Homme"}));
 		//comboBoxSexe.setModel(new DefaultComboBoxModel(new String[] {"Homme"}));
 		comboBoxSexe.addItem("Femme");
 		comboBoxSexe.addItem("Hommee");
 		comboBoxSexe.setMaximumRowCount(2);
-		comboBoxSexe.setBounds(627, 162, 94, 20);
+		comboBoxSexe.setBounds(627, 156, 94, 30);
 		panel.add(comboBoxSexe);
 
 		
@@ -190,7 +193,7 @@ public class AjoutConseilles extends JPanel {
 				String numero=numeroConseiller.getText();
 				String sexeChoise=(String) comboBoxSexe.getSelectedItem();
 				ServiceEmployerImp serviceEmployerImp=new ServiceEmployerImp();
-				if(nom.length()==0 || prenom.length()==0 ||adresse.length()==0 || email.length()==0 ||login.length()==0 || passWord.length()==0 ||telephone.length()==0 ||type.length()==0 ||sexeChoise.length()==0 ||numero.length()==0 ||date!=null )
+				if(nom.length()==0 || prenom.length()==0 ||adresse.length()==0 || email.length()==0 ||login.length()==0 || passWord.length()==0 ||telephone.length()==0 ||type.length()==0 ||sexeChoise.length()==0 ||numero.length()==0 ||date==null )
 				{
 					JOptionPane.showMessageDialog(null,"veuillez remplire tout les champs");
 				}else {
