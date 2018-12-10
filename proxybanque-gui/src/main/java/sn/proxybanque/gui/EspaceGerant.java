@@ -6,9 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import sn.proxybanque.domaine.Employer;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -30,7 +34,8 @@ public class EspaceGerant extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EspaceGerant frame = new EspaceGerant();
+					Employer employer =new Employer();
+					EspaceGerant frame = new EspaceGerant(employer);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,8 +47,7 @@ public class EspaceGerant extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EspaceGerant() {
-		setAlwaysOnTop(true);
+	public EspaceGerant(Employer employer) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 650);
 		
@@ -185,17 +189,50 @@ public class EspaceGerant extends JFrame {
 		//Accueille accueille=new Accueille();
 		
 		
-		panelBody.setBounds(10, 67, 964, 453);
+		panelBody.setBounds(10, 111, 964, 409);
 		contentPane.add(panelBody);
-		panelBody.setLayout(new BorderLayout(0, 0));
+		panelBody.setLayout(null);
 		
 		JLabel label = new JLabel("");
+		label.setBounds(0, 0, 964, 453);
 		label.setIcon(new ImageIcon("C:\\Users\\image\\acc.gif"));
-		panelBody.add(label, BorderLayout.NORTH);
+		panelBody.add(label);
 		
 		JPanel panelBas = new JPanel();
 		panelBas.setBackground(new Color(102, 102, 153));
 		panelBas.setBounds(10, 531, 964, 46);
 		contentPane.add(panelBas);
+		
+		JButton buttonDeconne = new JButton("Deconnexion");
+		buttonDeconne.setIcon(new ImageIcon("C:\\Users\\image\\logout.png"));
+		buttonDeconne.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer la deconnexion", "Confirmation",
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+					Connection connection=new Connection();
+					dispose();
+					connection.setVisible(true);
+				}
+				
+			}
+			
+			
+		});
+		panelBas.add(buttonDeconne);
+		
+		JLabel Profil = new JLabel("En ligne");
+		Profil.setFont(new Font("Tahoma", Font.BOLD, 17));
+		Profil.setBounds(10, 67, 116, 33);
+		contentPane.add(Profil);
+		
+		JLabel nomEmployer = new JLabel("nomEmployer");
+		nomEmployer.setBounds(156, 79, 46, 14);
+		nomEmployer.setText(employer.getNom());
+		contentPane.add(nomEmployer);
+		
+		JLabel prenomEmployer = new JLabel("New label");
+		prenomEmployer.setBounds(267, 79, 46, 14);
+		prenomEmployer.setText(employer.getPrenom());
+		contentPane.add(prenomEmployer);
 	}
 }
