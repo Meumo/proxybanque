@@ -98,7 +98,7 @@ public class Personne {
 		return email;
 	}
 
-	public Date getDateDenaissonce() {
+	public Date getDateDenaissance() {
 		return dateDenaissance;
 	}
 
@@ -122,7 +122,7 @@ public class Personne {
 		this.telephone = telephone;
 	}
 
-	public void setDateDenaissonce(Date dateDenaissance) {
+	public void setDateDenaissance(Date dateDenaissance) {
 		this.dateDenaissance = dateDenaissance;
 	}
 

@@ -2,43 +2,38 @@ package sn.proxybanque.service;
 
 import java.util.List;
 
+import sn.proxybanque.dao.IDaoCarteImp;
 import sn.proxybanque.domaine.Carte;
 
-public class ServiceCarteImp implements IServiceCarte{
+public class ServiceCarteImp implements IServiceCarte {
+	IDaoCarteImp carteImp = new IDaoCarteImp();
 
 	public void ajouter(Carte t) {
-		// TODO Auto-generated method stub
-		
+		carteImp.create(t);
 	}
 
 	public void misAJour(Carte t) {
-		// TODO Auto-generated method stub
-		
+		carteImp.update(t);
 	}
 
 	public List<Carte> lister() {
-		// TODO Auto-generated method stub
-		return null;
+		return carteImp.read();
 	}
 
 	public void supprimer(Carte t) {
-		// TODO Auto-generated method stub
-		
+		carteImp.delete(t);
 	}
 
 	public void Consulter(Carte t) {
-		// TODO Auto-generated method stub
-		
+		carteImp.display(t);
 	}
 
 	public boolean disactiverCarte(Carte carte) {
-		// TODO Auto-generated method stub
-		return false;
+		return carteImp.disableCarte(carte);
 	}
 
-	public Carte rechercherParNumeroCarte(String NumberCarte) {
-		// TODO Auto-generated method stub
-		return null;
+	public Carte rechercherParNumeroCarte(String numberCarte) {
+		return carteImp.findByNumberCarte(numberCarte);
 	}
 
 }

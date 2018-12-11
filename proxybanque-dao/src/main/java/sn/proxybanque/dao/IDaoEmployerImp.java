@@ -22,7 +22,7 @@ public class IDaoEmployerImp implements IDaoEmployer {
 			ps.setString(1, t.getNumeroEmploye());
 			ps.setString(2, t.getNom());
 			ps.setString(3, t.getPrenom());
-			java.sql.Date date_sql = new java.sql.Date(t.getDateDenaissonce().getTime());
+			java.sql.Date date_sql = new java.sql.Date(t.getDateDenaissance().getTime());
 			ps.setDate(4, date_sql);
 			ps.setString(5, t.getTelephone());
 			ps.setString(6, t.getEmail());
@@ -45,7 +45,7 @@ public class IDaoEmployerImp implements IDaoEmployer {
 
 			ps.setString(1, t.getNom());
 			ps.setString(2, t.getPrenom());
-			java.sql.Date date_sql = new java.sql.Date(t.getDateDenaissonce().getTime());
+			java.sql.Date date_sql = new java.sql.Date(t.getDateDenaissance().getTime());
 			ps.setDate(3, date_sql);
 			ps.setString(4, t.getTelephone());
 			ps.setString(5, t.getEmail());
@@ -77,7 +77,7 @@ public class IDaoEmployerImp implements IDaoEmployer {
 				employe.setNumeroEmploye("numeroEmploye");
 				employe.setNom(rs.getString("nomEmploye"));
 				employe.setPrenom(rs.getString("prenomEmploye"));
-				employe.setDateDenaissonce(rs.getDate("dateDenaissanceEmploye"));
+				employe.setDateDenaissance(rs.getDate("dateDenaissanceEmploye"));
 				employe.setTelephone(rs.getString("TelephoneEmploye"));
 				employe.setEmail(rs.getString("EmailEmploye"));
 				employe.setLoginEmploye(rs.getString("loginEmploye"));
