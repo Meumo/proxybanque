@@ -55,6 +55,15 @@ public class Conseiller extends JPanel {
 		add(buttonModifierUnConseiller);
 		
 		JButton buttonSupprimerUnConseiller = new JButton("Supprimer un Conseiller");
+		buttonSupprimerUnConseiller.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SupprimerConseilles supprimerConseilles=new SupprimerConseilles();
+				panelFormulaire.removeAll();
+				supprimerConseilles.setBounds(209, 0, 745, 453);
+				panelFormulaire.add(supprimerConseilles);
+				panelFormulaire.validate();
+			}
+		});
 		buttonSupprimerUnConseiller.setFont(new Font("Tahoma", Font.BOLD, 15));
 		buttonSupprimerUnConseiller.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (3).jpg"));
 		buttonSupprimerUnConseiller.setBounds(0, 140, 209, 70);

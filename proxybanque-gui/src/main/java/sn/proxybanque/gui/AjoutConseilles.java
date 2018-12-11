@@ -206,7 +206,7 @@ public class AjoutConseilles extends JPanel {
 					loginConseiller.setText("");
 					passwordConseiller.setText("");
 					telConseiller.setText("");
-					
+				
 					Numero nouveauNumero=new Numero();
 					String num=nouveauNumero.generateNumeroEmploye();
 					numeroConseiller.setText(num);
@@ -222,6 +222,19 @@ public class AjoutConseilles extends JPanel {
 		panel.add(btnNewButton);
 		
 		JButton btnAnnuler = new JButton("Annuler");
+		btnAnnuler.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nomConseiller.setText("");
+				prenomConseiller.setText("");
+				adresseConseiller.setText("");
+				emailConseiller.setText("");
+				loginConseiller.setText("");
+				passwordConseiller.setText("");
+				telConseiller.setText("");
+				//dateNaissanceConseiller=new JDateChooser();
+			}
+			
+		});
 		btnAnnuler.setIcon(new ImageIcon("C:\\Users\\image\\busy.png"));
 		btnAnnuler.setBackground(new Color(255, 102, 0));
 		btnAnnuler.setFont(new Font("Tahoma", Font.BOLD, 11));

@@ -118,11 +118,11 @@ public class IDaoEmployerImp implements IDaoEmployer {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				employeRecup = new Employer(rs.getString("nomEmploye"), rs.getString("prenomEmploye"),
-						rs.getString("dateDenaissance"), rs.getString("TelephoneEmploye"),
-						rs.getDate("dateDanaissanceEmploye"), rs.getString("TelephoneEmploye"),
+						rs.getString("adresseEmploye"), rs.getString("TelephoneEmploye"),
+						rs.getDate("dateDenaissanceEmploye"), rs.getString("EmailEmploye"),
 						rs.getString("sexeEmploye"), rs.getString("numeroEmploye"), rs.getString("typeEmploye"),
 						rs.getString("loginEmploye"), rs.getString("passwordEmploye"), rs.getInt("idAgence"));
-			}
+				}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
