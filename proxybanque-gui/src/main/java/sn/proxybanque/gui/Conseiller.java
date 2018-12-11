@@ -113,15 +113,5 @@ public class Conseiller extends JPanel {
 		add(lblNewLabel);
 
 	}
-	public void update() {
-		Connection con = MysqlConnection.getInstanceConnection();
-		String sql = "SELECT * FROM employe";
-		try {
-			PreparedStatement ps = con.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-		}	
-}}
+	
+	}
