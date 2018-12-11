@@ -49,6 +49,16 @@ public class Conseiller extends JPanel {
 		add(buttonCreerUnConseiller);
 		
 		JButton buttonModifierUnConseiller = new JButton("Modifier un Conseiller");
+		buttonModifierUnConseiller.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModifierConseilles modifierConseilles =new ModifierConseilles ();
+				panelFormulaire.removeAll();
+				modifierConseilles .setBounds(209, 0, 745, 453);
+				panelFormulaire.add(modifierConseilles );
+				panelFormulaire.validate();
+			}
+			
+		});
 		buttonModifierUnConseiller.setFont(new Font("Tahoma", Font.BOLD, 15));
 		buttonModifierUnConseiller.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (2).jpg"));
 		buttonModifierUnConseiller.setBounds(0, 71, 209, 70);
