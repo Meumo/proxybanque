@@ -5,17 +5,25 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
+
+import sn.proxybanque.utils.MysqlConnection;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class Conseiller extends JPanel {
+	private JTable table;
 
 	/**
 	 * Create the panel.
@@ -29,9 +37,11 @@ public class Conseiller extends JPanel {
 		add(panelFormulaire);
 		panelFormulaire.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\image\\co.gif"));
-		panelFormulaire.add(lblNewLabel_1, BorderLayout.WEST);
+		JScrollPane scrollPane = new JScrollPane();
+		panelFormulaire.add(scrollPane, BorderLayout.CENTER);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
 		
 		JButton buttonCreerUnConseiller = new JButton("Creer un Conseiller");
 		buttonCreerUnConseiller.addActionListener(new ActionListener() {
@@ -84,6 +94,11 @@ public class Conseiller extends JPanel {
 		JButton buttonListerLesConseillers = new JButton("lister les Conseillers");
 		buttonListerLesConseillers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//ListeConseiller listeConseiller=new ListeConseiller();
+				//panelFormulaire.removeAll();
+				//listeConseiller.setBounds(209, 0, 745, 453);
+				//panelFormulaire.add(listeConseiller);
+				//panelFormulaire.validate();
 				
 			}
 		});
@@ -98,5 +113,15 @@ public class Conseiller extends JPanel {
 		add(lblNewLabel);
 
 	}
-	
-}
+	public void update() {
+		Connection con = MysqlConnection.getInstanceConnection();
+		String sql = "SELECT * FROM employe";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}	
+}}
