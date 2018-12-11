@@ -199,6 +199,17 @@ public class AjoutConseilles extends JPanel {
 					Employer employerCree=new Employer(nom, prenom, adresse, telephone, date, email, sexeChoise, numero,type, login, passWord, idAgence);
 					serviceEmployerImp.ajouter(employerCree);
 					JOptionPane.showMessageDialog(null,"insertion reussit");
+					nomConseiller.setText("");
+					prenomConseiller.setText("");
+					adresseConseiller.setText("");
+					emailConseiller.setText("");
+					loginConseiller.setText("");
+					passwordConseiller.setText("");
+					telConseiller.setText("");
+					
+					Numero nouveauNumero=new Numero();
+					String num=nouveauNumero.generateNumeroEmploye();
+					numeroConseiller.setText(num);
 				}
 					
 			    
