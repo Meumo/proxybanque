@@ -1,31 +1,30 @@
 package sn.proxybanque.gui;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
+
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.JRadioButton;
+import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
+
 import com.toedter.calendar.JDateChooser;
 
 import sn.proxybanque.domaine.Employer;
 import sn.proxybanque.service.Numero;
 import sn.proxybanque.service.ServiceEmployerImp;
-
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import javax.swing.border.TitledBorder;
-import java.awt.Color;
-import javax.swing.UIManager;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JPasswordField;
-import java.awt.event.ActionListener;
-import java.util.Date;
-import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import com.toedter.components.JLocaleChooser;
 
 public class AjoutConseilles extends JPanel {
 	private JTextField numeroConseiller;
@@ -37,7 +36,7 @@ public class AjoutConseilles extends JPanel {
 	private JTextField telConseiller;
 	private JTextField emailConseiller;
 	private JPasswordField passwordConseiller;
-	private ButtonGroup buttonGroup;
+	//private ButtonGroup buttonGroup;
 
 	/**
 	 * Create the panel.
@@ -171,7 +170,7 @@ public class AjoutConseilles extends JPanel {
 		comboBoxSexe.setModel(new DefaultComboBoxModel(new String[] {"Femme", "Homme"}));
 		//comboBoxSexe.setModel(new DefaultComboBoxModel(new String[] {"Homme"}));
 		comboBoxSexe.addItem("Femme");
-		comboBoxSexe.addItem("Hommee");
+		comboBoxSexe.addItem("Homme");
 		comboBoxSexe.setMaximumRowCount(2);
 		comboBoxSexe.setBounds(627, 156, 94, 30);
 		panel.add(comboBoxSexe);

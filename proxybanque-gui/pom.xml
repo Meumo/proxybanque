@@ -1,21 +1,23 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>sn.objis</groupId>
-    <artifactId>proxybanque</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <groupId>sn.objis</groupId>
-  <artifactId>proxybanque-gui</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>proxybanque-gui</name>
-  <url>http://maven.apache.org</url>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-   <dependencies>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>sn.objis</groupId>
+		<artifactId>proxybanque</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>sn.objis</groupId>
+	<artifactId>proxybanque-gui</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>proxybanque-gui</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -23,10 +25,17 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-all</artifactId>
-<!-- 				<version>1.9.5</version> -->
-			</dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<!-- <version>1.9.5</version> -->
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.toedter/jcalendar -->
+		<dependency>
+			<groupId>com.toedter</groupId>
+			<artifactId>jcalendar</artifactId>
+			<version>1.4</version>
+		</dependency>
+
 		<dependency>
 			<groupId>sn.objis</groupId>
 			<artifactId>proxybanque-service</artifactId>

@@ -59,12 +59,12 @@ public class Personne {
 	/**
 	 * Contructeur avec arguments
 	 */
-	public Personne(int id,String nom, String prenom, String adresse, String telephone, Date dateDenaissonce, String email,
+	public Personne(int id,String nom, String prenom, String adresse, String telephone, Date dateDenaissance, String email,
 			String sexe) {
 		this(id,nom,prenom);
 		this.adresse = adresse;
 		this.telephone = telephone;
-		this.dateDenaissance = dateDenaissonce;
+		this.dateDenaissance = dateDenaissance;
 		this.email = email;
 		this.sexe = sexe;
 	}

@@ -1,7 +1,6 @@
 package sn.proxybanque.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +24,8 @@ public class IDaoEmployerImp implements IDaoEmployer {
 			ps.setString(1, x.getNumeroEmploye());
 			ps.setString(2, x.getNom());
 			ps.setString(3, x.getPrenom());
-			ps.setDate(4, (Date) x.getDateDenaissonce());
+			java.sql.Date date_sql = new java.sql.Date(x.getDateDenaissonce().getTime());
+			ps.setDate(4, date_sql);
 			ps.setString(5, x.getTelephone());
 			ps.setString(6, x.getEmail());
 			ps.setString(7, x.getLoginEmploye());
@@ -33,7 +33,7 @@ public class IDaoEmployerImp implements IDaoEmployer {
 			ps.setString(9, x.getAdresse());
 			ps.setString(10, x.getSexe());
 			ps.setString(11, x.getTypeEmploye());
-			ps.setInt(13, x.getIdAgence());
+			ps.setInt(12, x.getIdAgence());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -41,8 +41,8 @@ public class IDaoEmployerImp implements IDaoEmployer {
 	}
 
 	public void update(Employer t) {
-		// TODO Auto-generated method stub
-
+		String sql="UPDATE employe SET nomEmploye=?,prenomEmploye=?,dateDenaissanceEmploye=?,TelephoneEmploye=?,EmailEmploye=?,loginEmploye=?,passwordEmploye=?,adresseEmploye=?,sexeEmploye=?,typeEmploye=?,idAgence=? WHERE numeroEmploye=?";
+		creaUp(t, sql);
 	}
 
 	public List<Employer> read() {
@@ -65,8 +65,6 @@ public class IDaoEmployerImp implements IDaoEmployer {
 
 	public Employer authentification(String login, String password) {
 		Employer employerRecup = null;
-		// boolean confirm = false;
-		// Connection con = null;
 
 		try {
 			String sql = "SELECT * FROM employe WHERE loginEmploye=? AND passwordEmploye=?";
