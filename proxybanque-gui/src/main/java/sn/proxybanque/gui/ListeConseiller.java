@@ -30,18 +30,4 @@ public class ListeConseiller extends JPanel {
 		scrollPane.setViewportView(table);
 
 	}
-	public void update() {
-		Connection con = MysqlConnection.getInstanceConnection();
-		String sql = "SELECT * FROM employe";
-		try {
-			PreparedStatement ps = con.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-		}
-	 
-
-	}
 }
