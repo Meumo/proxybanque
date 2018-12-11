@@ -68,13 +68,13 @@ public class Personne {
 		this.email = email;
 		this.sexe = sexe;
 	}
-	public Personne(String nom, String prenom, String adresse, String telephone, Date dateDenaissonce, String email,
+	public Personne(String nom, String prenom, String adresse, String telephone, Date dateDenaissance, String email,
 			String sexe) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse = adresse;
 		this.telephone = telephone;
-		this.dateDenaissance = dateDenaissonce;
+		this.dateDenaissance = dateDenaissance;
 		this.email = email;
 		this.sexe = sexe;
 	}
@@ -122,8 +122,8 @@ public class Personne {
 		this.telephone = telephone;
 	}
 
-	public void setDateDenaissonce(Date dateDenaissonce) {
-		this.dateDenaissance = dateDenaissonce;
+	public void setDateDenaissonce(Date dateDenaissance) {
+		this.dateDenaissance = dateDenaissance;
 	}
 
 	public void setSexe(String sexe) {
@@ -134,4 +134,14 @@ public class Personne {
 		this.email = email;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	
 }

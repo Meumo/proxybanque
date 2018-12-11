@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import sn.proxybanque.domaine.Employer;
@@ -15,25 +17,21 @@ public class IDaoEmployerImp implements IDaoEmployer {
 
 	public void create(Employer t) {
 		String sql = "INSERT INTO  employe (numeroEmploye, nomEmploye, prenomEmploye, dateDenaissanceEmploye, TelephoneEmploye, EmailEmploye, loginEmploye, passwordEmploye, adresseEmploye, sexeEmploye, typeEmploye, idAgence) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-		creaUp(t, sql);
-	}
-
-	private void creaUp(Employer x, String sql) {
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, x.getNumeroEmploye());
-			ps.setString(2, x.getNom());
-			ps.setString(3, x.getPrenom());
-			java.sql.Date date_sql = new java.sql.Date(x.getDateDenaissonce().getTime());
+			ps.setString(1, t.getNumeroEmploye());
+			ps.setString(2, t.getNom());
+			ps.setString(3, t.getPrenom());
+			java.sql.Date date_sql = new java.sql.Date(t.getDateDenaissonce().getTime());
 			ps.setDate(4, date_sql);
-			ps.setString(5, x.getTelephone());
-			ps.setString(6, x.getEmail());
-			ps.setString(7, x.getLoginEmploye());
-			ps.setString(8, x.getPasswordEmploye());
-			ps.setString(9, x.getAdresse());
-			ps.setString(10, x.getSexe());
-			ps.setString(11, x.getTypeEmploye());
-			ps.setInt(12, x.getIdAgence());
+			ps.setString(5, t.getTelephone());
+			ps.setString(6, t.getEmail());
+			ps.setString(7, t.getLoginEmploye());
+			ps.setString(8, t.getPasswordEmploye());
+			ps.setString(9, t.getAdresse());
+			ps.setString(10, t.getSexe());
+			ps.setString(11, t.getTypeEmploye());
+			ps.setInt(12, t.getIdAgence());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -41,26 +39,95 @@ public class IDaoEmployerImp implements IDaoEmployer {
 	}
 
 	public void update(Employer t) {
-		String sql="UPDATE employe SET nomEmploye=?,prenomEmploye=?,dateDenaissanceEmploye=?,TelephoneEmploye=?,EmailEmploye=?,loginEmploye=?,passwordEmploye=?,adresseEmploye=?,sexeEmploye=?,typeEmploye=?,idAgence=? WHERE numeroEmploye=?";
-		creaUp(t, sql);
+		String sql = "UPDATE employe SET nomEmploye=?,prenomEmploye=?,dateDenaissanceEmploye=?,TelephoneEmploye=?,EmailEmploye=?,loginEmploye=?,passwordEmploye=?,adresseEmploye=?,sexeEmploye=?,typeEmploye=?,idAgence=? WHERE numeroEmploye=?";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setString(1, t.getNom());
+			ps.setString(2, t.getPrenom());
+			java.sql.Date date_sql = new java.sql.Date(t.getDateDenaissonce().getTime());
+			ps.setDate(3, date_sql);
+			ps.setString(4, t.getTelephone());
+			ps.setString(5, t.getEmail());
+			ps.setString(6, t.getLoginEmploye());
+			ps.setString(7, t.getPasswordEmploye());
+			ps.setString(8, t.getAdresse());
+			ps.setString(9, t.getSexe());
+			ps.setString(10, t.getTypeEmploye());
+			ps.setInt(11, t.getIdAgence());
+			ps.setString(12, t.getNumeroEmploye());
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public List<Employer> read() {
-		// TODO Auto-generated method stub
-		return null;
+
+		List<Employer> listEmploye = new ArrayList<Employer>();
+		try {
+			String sql = "SELECT * FROM employe";
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				Employer employe = new Employer();
+
+				employe.setId(rs.getInt("idEmploye"));
+				employe.setNumeroEmploye("numeroEmploye");
+				employe.setNom(rs.getString("nomEmploye"));
+				employe.setPrenom(rs.getString("prenomEmploye"));
+				employe.setDateDenaissonce(rs.getDate("dateDenaissanceEmploye"));
+				employe.setTelephone(rs.getString("TelephoneEmploye"));
+				employe.setEmail(rs.getString("EmailEmploye"));
+				employe.setLoginEmploye(rs.getString("loginEmploye"));
+				employe.setPasswordEmploye(rs.getString("passwordEmploye"));
+				employe.setAdresse(rs.getString("adresseEmploye"));
+				employe.setSexe(rs.getString("sexeEmploye"));
+				employe.setTypeEmploye(rs.getString("typeEmploye"));
+				employe.setIdAgence(rs.getInt("idAgence"));
+				listEmploye.add(employe);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listEmploye;
 	}
 
 	public void delete(Employer t) {
-		// TODO Auto-generated method stub
-
+		try {
+			String sql = "DELETE FROM employe WHERE numeroEmploye=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, t.getNumeroEmploye());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void display(Employer t) {
-
+		// A faire after
 	}
 
 	public Employer findByNumberEmployer(String numberEmployer) {
-		return null;
+		Employer employeRecup = null;
+		try {
+			String sql = "SELECT * FROM employe WHERE numeroEmploye=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, numberEmployer);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				employeRecup = new Employer(rs.getString("nomEmploye"), rs.getString("prenomEmploye"),
+						rs.getString("dateDenaissance"), rs.getString("TelephoneEmploye"),
+						rs.getDate("dateDanaissanceEmploye"), rs.getString("TelephoneEmploye"),
+						rs.getString("sexeEmploye"), rs.getString("numeroEmploye"), rs.getString("typeEmploye"),
+						rs.getString("loginEmploye"), rs.getString("passwordEmploye"), rs.getInt("idAgence"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return employeRecup;
 	}
 
 	public Employer authentification(String login, String password) {
