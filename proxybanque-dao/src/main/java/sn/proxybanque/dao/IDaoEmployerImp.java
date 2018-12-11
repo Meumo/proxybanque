@@ -4,11 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import sn.proxybanque.domaine.Employer;
 import sn.proxybanque.utils.MysqlConnection;
@@ -28,8 +24,8 @@ public class IDaoEmployerImp implements IDaoEmployer {
 			ps.setString(1, x.getNumeroEmploye());
 			ps.setString(2, x.getNom());
 			ps.setString(3, x.getPrenom());
-			//ps.setDate(2, (java.sql.Date) t.getDatelancement());
-			ps.setDate(4, (java.sql.Date) x.getDateDenaissonce());
+			java.sql.Date date_sql = new java.sql.Date(x.getDateDenaissonce().getTime());
+			ps.setDate(4, date_sql);
 			ps.setString(5, x.getTelephone());
 			ps.setString(6, x.getEmail());
 			ps.setString(7, x.getLoginEmploye());
@@ -37,7 +33,7 @@ public class IDaoEmployerImp implements IDaoEmployer {
 			ps.setString(9, x.getAdresse());
 			ps.setString(10, x.getSexe());
 			ps.setString(11, x.getTypeEmploye());
-			ps.setInt(13, x.getIdAgence());
+			ps.setInt(12, x.getIdAgence());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -170,7 +170,7 @@ public class AjoutConseilles extends JPanel {
 		comboBoxSexe.setModel(new DefaultComboBoxModel(new String[] {"Femme", "Homme"}));
 		//comboBoxSexe.setModel(new DefaultComboBoxModel(new String[] {"Homme"}));
 		comboBoxSexe.addItem("Femme");
-		comboBoxSexe.addItem("Hommee");
+		comboBoxSexe.addItem("Homme");
 		comboBoxSexe.setMaximumRowCount(2);
 		comboBoxSexe.setBounds(627, 156, 94, 30);
 		panel.add(comboBoxSexe);
