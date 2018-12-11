@@ -27,7 +27,7 @@ import sn.proxybanque.service.Numero;
 import sn.proxybanque.service.ServiceEmployerImp;
 import java.awt.BorderLayout;
 
-public class SupprimerConseilles extends JPanel {
+public class ModifierConseilles extends JPanel {
 	private JTextField numeroConseiller;
 	private JTextField nomConseiller;
 	private JTextField prenomConseiller;
@@ -37,13 +37,13 @@ public class SupprimerConseilles extends JPanel {
 	private JTextField telConseiller;
 	private JTextField emailConseiller;
 	private JPasswordField passwordConseiller;
-	private JTextField dateDeNaissance;
-	Employer employerASupprime;
+	Employer employerMiseAjour;
 	final JPanel panelHaut;
+	JDateChooser dateDeNaissance;
 	/**
 	 * Create the panel.
 	 */
-	public SupprimerConseilles() {
+	public ModifierConseilles() {
 		Employer employer;
 		setLayout(new BorderLayout(0, 0));
 		final JPanel panelCentre = new JPanel();
@@ -107,19 +107,16 @@ public class SupprimerConseilles extends JPanel {
 		String num=numero.generateNumeroEmploye();
 		
 		nomConseiller = new JTextField();
-		nomConseiller.setEditable(false);
 		nomConseiller.setBounds(313, 21, 228, 26);
 		panelCentre.add(nomConseiller);
 		nomConseiller.setColumns(30);
 		
 		prenomConseiller = new JTextField();
-		prenomConseiller.setEditable(false);
 		prenomConseiller.setBounds(313, 55, 228, 30);
 		panelCentre.add(prenomConseiller);
 		prenomConseiller.setColumns(30);
 		
 		adresseConseiller = new JTextField();
-		adresseConseiller.setEditable(false);
 		adresseConseiller.setBounds(313, 96, 228, 30);
 		panelCentre.add(adresseConseiller);
 		adresseConseiller.setColumns(30);
@@ -139,19 +136,16 @@ public class SupprimerConseilles extends JPanel {
 		typeConseiller.setColumns(30);
 		
 		loginConseiller = new JTextField();
-		loginConseiller.setEditable(false);
 		loginConseiller.setBounds(313, 219, 228, 30);
 		panelCentre.add(loginConseiller);
 		loginConseiller.setColumns(30);
 		
 		telConseiller = new JTextField();
-		telConseiller.setEditable(false);
 		telConseiller.setBounds(313, 178, 228, 30);
 		panelCentre.add(telConseiller);
 		telConseiller.setColumns(30);
 		
 		emailConseiller = new JTextField();
-		emailConseiller.setEditable(false);
 		emailConseiller.setBounds(313, 137, 228, 30);
 		panelCentre.add(emailConseiller);
 		emailConseiller.setColumns(30);
@@ -170,28 +164,54 @@ public class SupprimerConseilles extends JPanel {
 		panelCentre.add(comboBoxSexe);
 
 		
-		JButton buttonSupprimer = new JButton("Supprimer");
-		buttonSupprimer.addActionListener(new ActionListener() {
+		JButton buttonUpdate = new JButton("Update");
+		buttonUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer la suppression", "Confirmation",
+				if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer les mise a jours", "Confirmation",
 						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 					ServiceEmployerImp serviceEmployerImp=new ServiceEmployerImp();
-					String type=employerASupprime.getTypeEmploye();
-					serviceEmployerImp.supprimer(employerASupprime);
-					JOptionPane.showMessageDialog(null,type+" supprimer");
-					panelCentre.setBounds(0, 53, 745, 412);
-					remove(panelCentre);
-					add(panelHaut);
-					validate();
+					 
+					int idAgence=1;
+					String nom=nomConseiller.getText();
+					String prenom=prenomConseiller.getText();
+					String adresse=adresseConseiller.getText();
+					String email=emailConseiller.getText();
+					String login =loginConseiller.getText();
+					String passWord=passwordConseiller.getText();
+					String telephone=telConseiller.getText();
+					String type=typeConseiller.getText();
+    				Date date=dateDeNaissance.getDate();
+					String numero=numeroConseiller.getText();
+					String sexeChoise=(String) comboBoxSexe.getSelectedItem();
+					
+					if(nom.length()==0 || prenom.length()==0 ||adresse.length()==0 || email.length()==0 ||login.length()==0 || passWord.length()==0 ||telephone.length()==0 ||type.length()==0 ||sexeChoise.length()==0 ||numero.length()==0 ||date==null )
+					{
+						JOptionPane.showMessageDialog(null,"veuillez remplire tout les champs");
+					}else {
+						Employer employerMiseAjour=new Employer(nom, prenom, adresse, telephone, date, email, sexeChoise, numero,type, login, passWord, idAgence);
+						serviceEmployerImp.misAJour(employerMiseAjour);
+						nomConseiller.setText("");
+						prenomConseiller.setText("");
+						adresseConseiller.setText("");
+						emailConseiller.setText("");
+						loginConseiller.setText("");
+						passwordConseiller.setText("");
+						telConseiller.setText("");
+						JOptionPane.showMessageDialog(null,type+"mise a jours");
+						panelCentre.setBounds(0, 53, 745, 412);
+						remove(panelCentre);
+						add(panelHaut);
+						validate();
+					}
 				}
 			    
 			}
 		});
-		buttonSupprimer.setIcon(new ImageIcon("C:\\Users\\image\\check.png"));
-		buttonSupprimer.setBackground(new Color(51, 204, 51));
-		buttonSupprimer.setFont(new Font("Tahoma", Font.BOLD, 11));
-		buttonSupprimer.setBounds(272, 378, 124, 30);
-		panelCentre.add(buttonSupprimer);
+		buttonUpdate.setIcon(new ImageIcon("C:\\Users\\image\\check.png"));
+		buttonUpdate.setBackground(new Color(51, 204, 51));
+		buttonUpdate.setFont(new Font("Tahoma", Font.BOLD, 11));
+		buttonUpdate.setBounds(272, 378, 124, 30);
+		panelCentre.add(buttonUpdate);
 		
 		JButton buttonAnnuler = new JButton("Annuler");
 		buttonAnnuler.addActionListener(new ActionListener() {
@@ -208,29 +228,26 @@ public class SupprimerConseilles extends JPanel {
 		buttonAnnuler.setBounds(406, 378, 128, 30);
 		panelCentre.add(buttonAnnuler);
 		
-		passwordConseiller = new JPasswordField();
-		passwordConseiller.setEditable(false);
-		passwordConseiller.setBounds(313, 260, 228, 30);
+		passwordConseiller = new JPasswordField();		passwordConseiller.setBounds(313, 260, 228, 30);
 		panelCentre.add(passwordConseiller);
+		 dateDeNaissance = new JDateChooser();
 		
-		dateDeNaissance = new JTextField();
-		dateDeNaissance.setEditable(false);
-		dateDeNaissance.setBounds(313, 336, 228, 26);
+		 dateDeNaissance.setDateFormatString("yyyy-M-d");
+		dateDeNaissance.setBounds(313, 336, 228, 30);
 		panelCentre.add(dateDeNaissance);
-		dateDeNaissance.setColumns(10);
 		
 		  panelHaut = new JPanel();
 		panelHaut.setBackground(new Color(176, 196, 222));
 		add(panelHaut);
 		panelHaut.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Numero Du Conseiller a Supprimer");
-		lblNewLabel.setBounds(10, 6, 235, 30);
+		JLabel lblNewLabel = new JLabel("Numero Du Conseiller a Modifer");
+		lblNewLabel.setBounds(10, 13, 235, 30);
 		panelHaut.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		
 		numeroConseiller = new JTextField();
-		numeroConseiller.setBounds(275, 6, 228, 30);
+		numeroConseiller.setBounds(275, 13, 228, 30);
 		panelHaut.add(numeroConseiller);
 		numeroConseiller.setColumns(30);
 		
@@ -241,20 +258,20 @@ public class SupprimerConseilles extends JPanel {
 				String numeroEntre=numeroConseiller.getText();
 				if(numeroEntre.length()==0)
 				{
-					JOptionPane.showMessageDialog(null,"entre le numero a supprimer");
+					JOptionPane.showMessageDialog(null,"entre le numero a modifier");
 				}else {
-					employerASupprime=serviceEmployerImp.rechercherParNumeroEmployer(numeroEntre);
-					if(employerASupprime==null) {
+					employerMiseAjour=serviceEmployerImp.rechercherParNumeroEmployer(numeroEntre);
+					if(employerMiseAjour==null) {
 						JOptionPane.showMessageDialog(null,"l'employer n'existe pas dans la basse de donnee");
 					}else {
-						nomConseiller.setText(employerASupprime.getNom());
-						prenomConseiller.setText(employerASupprime.getPrenom());
-						adresseConseiller.setText(employerASupprime.getAdresse());
-						emailConseiller.setText(employerASupprime.getEmail());
-						loginConseiller.setText(employerASupprime.getLoginEmploye());
-						passwordConseiller.setText(employerASupprime.getPasswordEmploye());
-						telConseiller.setText(employerASupprime.getTelephone());
-				        dateDeNaissance.setText(employerASupprime.getDateDenaissance()+"");
+						nomConseiller.setText(employerMiseAjour.getNom());
+						prenomConseiller.setText(employerMiseAjour.getPrenom());
+						adresseConseiller.setText(employerMiseAjour.getAdresse());
+						emailConseiller.setText(employerMiseAjour.getEmail());
+						loginConseiller.setText(employerMiseAjour.getLoginEmploye());
+						passwordConseiller.setText(employerMiseAjour.getPasswordEmploye());
+						telConseiller.setText(employerMiseAjour.getTelephone());
+				    
 						panelCentre.setBounds(0, 53, 745, 412);
 						remove(panelHaut);
 						add(panelCentre);
@@ -267,7 +284,7 @@ public class SupprimerConseilles extends JPanel {
 		btnRechercher.setBackground(Color.GREEN);
 		btnRechercher.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnRechercher.setIcon(new ImageIcon("C:\\Users\\image\\search.png"));
-		btnRechercher.setBounds(520, 6, 147, 28);
+		btnRechercher.setBounds(513, 13, 147, 28);
 		panelHaut.add(btnRechercher);
 		
 		
