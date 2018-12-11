@@ -168,7 +168,7 @@ public class Connection extends JFrame {
 		panel_1.add(btnAnnuler);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\grouep.png"));
+		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\image\\grouep.png"));
 		lblNewLabel_2.setBounds(10, 11, 149, 144);
 		panel_1.add(lblNewLabel_2);
 		
@@ -192,7 +192,7 @@ public class Connection extends JFrame {
 		btnNewButton.setBackground(new Color(255, 0, 51));
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\logout.png"));
-		btnNewButton.setBounds(0, 11, 117, 33);
+		btnNewButton.setBounds(31, 11, 101, 22);
 		panel_2.add(btnNewButton);
 	}
 }
