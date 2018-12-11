@@ -2,38 +2,33 @@ package sn.proxybanque.service;
 
 import java.util.List;
 
+import sn.proxybanque.dao.IDaoClientImp;
 import sn.proxybanque.domaine.Client;
 
 public class ServiceClientImp implements IServiceClient{
-
+IDaoClientImp clientImp=new IDaoClientImp();
 	public void ajouter(Client t) {
-		// TODO Auto-generated method stub
-		
+		clientImp.create(t);		
 	}
 
 	public void misAJour(Client t) {
-		// TODO Auto-generated method stub
-		
+		clientImp.update(t);		
 	}
 
 	public List<Client> lister() {
-		// TODO Auto-generated method stub
-		return null;
+		return clientImp.read();
 	}
 
 	public void supprimer(Client t) {
-		// TODO Auto-generated method stub
-		
+		clientImp.delete(t);		
 	}
 
 	public void Consulter(Client t) {
-		// TODO Auto-generated method stub
-		
+		clientImp.display(t);		
 	}
 
 	public Client rechercherParNumeroClient(String numeroClient) {
-		// TODO Auto-generated method stub
-		return null;
+		return clientImp.findByNumberClient(numeroClient);
 	}
 
 }

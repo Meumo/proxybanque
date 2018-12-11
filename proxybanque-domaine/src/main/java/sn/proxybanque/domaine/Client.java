@@ -30,7 +30,7 @@ public class Client extends Personne {
 	/**
 	 * Le conseiller d'un client
 	 */
-	private Employer conseillerClientel;
+	private int idConseillerClientel;
 
 	/**
 	 * Constructeur sans arguments
@@ -45,13 +45,13 @@ public class Client extends Personne {
 
 	public Client(int id,String nom, String prenom, String adresse, String telephone, Date dateDenaissonce, String email,
 			String sexe, String numeroClient, String codePostalClient, String vileClient, String professionClient,
-			Employer conseillerClientel) {
+			int idConseillerClientel) {
 		super();
 		this.numeroClient = numeroClient;
 		this.codePostalClient = codePostalClient;
 		this.villeClient = vileClient;
 		this.proffessionClient = professionClient;
-		this.conseillerClientel = conseillerClientel;
+		this.idConseillerClientel = idConseillerClientel;
 	}
 
 	public String getNumeroClient() {
@@ -70,10 +70,7 @@ public class Client extends Personne {
 		return proffessionClient;
 	}
 
-	public Employer getConseillerClientel() {
-		return conseillerClientel;
-	}
-
+	
 	public void setNumeroClient(String numeroClient) {
 		this.numeroClient = numeroClient;
 	}
@@ -90,7 +87,13 @@ public class Client extends Personne {
 		this.proffessionClient = professionClient;
 	}
 
-	public void setConseillerClientel(Employer conseillerClientel) {
-		this.conseillerClientel = conseillerClientel;
+	public int getIdConseillerClientel() {
+		return idConseillerClientel;
 	}
+
+	public void setIdConseillerClientel(int idConseillerClientel) {
+		this.idConseillerClientel = idConseillerClientel;
+	}
+
+	
 }

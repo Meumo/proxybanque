@@ -2,43 +2,39 @@ package sn.proxybanque.service;
 
 import java.util.List;
 
+import sn.proxybanque.dao.IDaoCompteImp;
 import sn.proxybanque.domaine.Compte;
 
 public class ServiceCompteImp implements IServiceCompte {
+	IDaoCompteImp compteImp = new IDaoCompteImp();
 
 	public void ajouter(Compte t) {
-		// TODO Auto-generated method stub
-		
+		compteImp.create(t);
 	}
 
 	public void misAJour(Compte t) {
-		// TODO Auto-generated method stub
-		
+		compteImp.update(t);
 	}
 
 	public List<Compte> lister() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return compteImp.read();
 	}
 
 	public void supprimer(Compte t) {
-		// TODO Auto-generated method stub
-		
+		compteImp.delete(t);
 	}
 
 	public void Consulter(Compte t) {
-		// TODO Auto-generated method stub
-		
+		compteImp.display(t);
 	}
 
-	public Compte rechercherParNumeroCompte(String NumeroCompte) {
-		// TODO Auto-generated method stub
-		return null;
+	public Compte rechercherParNumeroCompte(String numeroCompte) {
+		return compteImp.findByNumberCompte(numeroCompte);
 	}
 
 	public boolean auditer(Compte compte) {
-		// TODO Auto-generated method stub
-		return false;
+		return compteImp.audit(compte);
 	}
 
 }

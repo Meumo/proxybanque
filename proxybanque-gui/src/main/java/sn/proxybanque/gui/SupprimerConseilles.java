@@ -254,7 +254,7 @@ public class SupprimerConseilles extends JPanel {
 						loginConseiller.setText(employerASupprime.getLoginEmploye());
 						passwordConseiller.setText(employerASupprime.getPasswordEmploye());
 						telConseiller.setText(employerASupprime.getTelephone());
-				        dateDeNaissance.setText(employerASupprime.getDateDenaissonce()+"");
+				        dateDeNaissance.setText(employerASupprime.getDateDenaissance()+"");
 						panelCentre.setBounds(0, 53, 745, 412);
 						remove(panelHaut);
 						add(panelCentre);
