@@ -197,8 +197,9 @@ public class AjoutConseilles extends JPanel {
 				{
 					JOptionPane.showMessageDialog(null,"veuillez remplire tout les champs");
 				}else {
-					Employer employerCree=new Employer(nom, nom, adresse, telephone, date, email, sexeChoise, numero,type, login, passWord, idAgence);
+					Employer employerCree=new Employer(nom, prenom, adresse, telephone, date, email, sexeChoise, numero,type, login, passWord, idAgence);
 					serviceEmployerImp.ajouter(employerCree);
+					JOptionPane.showMessageDialog(null,"insertion reussit");
 				}
 					
 			    
