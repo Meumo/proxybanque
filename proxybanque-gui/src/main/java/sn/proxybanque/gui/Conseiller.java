@@ -5,17 +5,27 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
+
+import net.proteanit.sql.DbUtils;
+import sn.proxybanque.utils.MysqlConnection;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class Conseiller extends JPanel {
+	private JTable table;
 
 	/**
 	 * Create the panel.
@@ -27,11 +37,19 @@ public class Conseiller extends JPanel {
 		final JPanel panelFormulaire = new JPanel();
 		panelFormulaire.setBounds(209, 0, 745, 453);
 		add(panelFormulaire);
-		panelFormulaire.setLayout(new BorderLayout(0, 0));
+		panelFormulaire.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(0, 0, 745, 453);
 		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\image\\co.gif"));
-		panelFormulaire.add(lblNewLabel_1, BorderLayout.WEST);
+		panelFormulaire.add(lblNewLabel_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 657, 431);
+		panelFormulaire.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
 		
 		JButton buttonCreerUnConseiller = new JButton("Creer un Conseiller");
 		buttonCreerUnConseiller.addActionListener(new ActionListener() {
@@ -85,6 +103,7 @@ public class Conseiller extends JPanel {
 		buttonListerLesConseillers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				update();
 			}
 		});
 		buttonListerLesConseillers.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -96,6 +115,19 @@ public class Conseiller extends JPanel {
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\image\\images (4).jpg"));
 		lblNewLabel.setBounds(0, 278, 209, 175);
 		add(lblNewLabel);
+
+	}
+	public void update() {
+		try {
+			Connection con = MysqlConnection.getInstanceConnection();
+			String sql = "SELECT * FROM employe";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 	
