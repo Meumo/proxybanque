@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import net.proteanit.sql.DbUtils;
+import javax.swing.table.DefaultTableModel;
 
 public class ListeConseiller extends JPanel {
 	private JTable table;
@@ -23,11 +24,24 @@ public class ListeConseiller extends JPanel {
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 685, 357);
+		scrollPane.setBounds(0, 11, 745, 453);
 		add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		update();
+	}
+	
+	public void update() {
+		try {
+			Connection con = MysqlConnection.getInstanceConnection();
+			String sql = "SELECT * FROM employe";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 }

@@ -29,7 +29,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class Conseiller extends JPanel {
-	private JTable table;
 
 	/**
 	 * Create the panel.
@@ -41,23 +40,11 @@ public class Conseiller extends JPanel {
 		final JPanel panelFormulaire = new JPanel();
 		panelFormulaire.setBounds(209, 0, 745, 453);
 		add(panelFormulaire);
-		panelFormulaire.setLayout(null);
+		panelFormulaire.setLayout(new BorderLayout(0, 0));
 		
-		JScrollPane scrollPane = new JScrollPane();
-		panelFormulaire.add(scrollPane, BorderLayout.CENTER);
-
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(0, 0, 745, 453);
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\image\\co.gif"));
-		panelFormulaire.add(lblNewLabel_1);
-		
-		//JScrollPane scrollPane = new JScrollPane();
-		//scrollPane.setBounds(10, 11, 657, 431);
-		panelFormulaire.add(scrollPane);
-
-		
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("C:\\Users\\image\\co.gif"));
+		panelFormulaire.add(label, BorderLayout.WEST);
 		
 		JButton buttonCreerUnConseiller = new JButton("Creer un Conseiller");
 		buttonCreerUnConseiller.addActionListener(new ActionListener() {
@@ -110,13 +97,11 @@ public class Conseiller extends JPanel {
 		JButton buttonListerLesConseillers = new JButton("lister les Conseillers");
 		buttonListerLesConseillers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//ListeConseiller listeConseiller=new ListeConseiller();
-				//panelFormulaire.removeAll();
-				//listeConseiller.setBounds(209, 0, 745, 453);
-				//panelFormulaire.add(listeConseiller);
-				//panelFormulaire.validate();
-				
-				update();
+				ListeConseiller listeConseiller=new ListeConseiller();
+				panelFormulaire.removeAll();
+				listeConseiller.setBounds(209, 0, 745, 453);
+				panelFormulaire.add(listeConseiller);
+				panelFormulaire.validate();
 			}
 		});
 		buttonListerLesConseillers.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -130,18 +115,4 @@ public class Conseiller extends JPanel {
 		add(lblNewLabel);
 
 	}
-	public void update() {
-		try {
-			Connection con = MysqlConnection.getInstanceConnection();
-			String sql = "SELECT * FROM employe";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			table.setModel(DbUtils.resultSetToTableModel(rs));
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-	}
-	
 	}
