@@ -35,11 +35,15 @@
 			<artifactId>jcalendar</artifactId>
 			<version>1.4</version>
 		</dependency>
-
 		<dependency>
 			<groupId>sn.objis</groupId>
 			<artifactId>proxybanque-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>net.proteanit.sql</groupId> -->
+<!-- 			<artifactId>rs2xml</artifactId> -->
+<!-- 			<version>1.0</version> -->
+<!-- 		</dependency> -->
 	</dependencies>
 </project>
