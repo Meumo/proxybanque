@@ -1,6 +1,7 @@
 package sn.proxybanque.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +16,7 @@ public class IDaoClientImp implements IDaoClient {
 	Connection con = MysqlConnection.getInstanceConnection();
 
 	public void create(Client t) {
-		String sql = "INSERT INTO client(numeroClient, nomClient, prenomClient, adresseClient, sexeClient, emailClient, telephoneClient, codePostalClient, professionClient, villeClient, dateDenaissanceClient, idConseiller) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO client (numeroClient, nomClient, prenomClient, adresseClient, sexeClient, emailClient, telephoneClient, codePostalClient, professionClient, villeClient, dateDenaissanceClient, idConseiller) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, t.getNumeroClient());
@@ -28,12 +29,8 @@ public class IDaoClientImp implements IDaoClient {
 			ps.setString(8, t.getCodePostalClient());
 			ps.setString(9, t.getProfessionClient());
 			ps.setString(10, t.getVileClient());
-			java.sql.Date date_sql = new java.sql.Date(t.getDateDenaissance().getTime());
-			ps.setDate(11, date_sql);
+			ps.setDate(11, (Date) t.getDateDenaissance());
 			ps.setInt(12, t.getIdConseillerClientel());
-			//java.sql.Date date_sql = new java.sql.Date(t.getDateDenaissance().getTime());
-			//ps.setDate(4, date_sql);
-
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

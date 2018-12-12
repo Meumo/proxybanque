@@ -184,8 +184,9 @@ public class AjoutClient extends JPanel {
 				{
 					sexeSelection="femme";
 				}
-				String nom=nomClient.getText();
+				
 				String numero=numeroClient.getText();
+				String nom=nomClient.getText();
 				String prenom=prenomClient.getText();
 				String adresse=adresseClient.getText();
 				String email=emailClient.getText();
@@ -212,7 +213,7 @@ public class AjoutClient extends JPanel {
 					professionClient.setText("");
 					telephoneClient.setText("");
 					Numero nouveauNumero=new Numero();
-					numeroClient.setText(nouveauNumero+"");
+					numeroClient.setText(nouveauNumero.generateNumeroClient()+"");
 					}
 			}
 		});
