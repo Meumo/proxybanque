@@ -5,6 +5,9 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
+
+import sn.proxybanque.domaine.Employer;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
@@ -18,7 +21,7 @@ public class Clients extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Clients() {
+	public Clients(final Employer employerConnect) {
 		setBackground(new Color(0, 191, 255));
 		setLayout(null);
 		
@@ -34,8 +37,9 @@ public class Clients extends JPanel {
 		JButton buttonCreerUnClient = new JButton("Creer un Client");
 		buttonCreerUnClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AjoutConseilles ajoutclient=new AjoutConseilles();
+				AjoutClient ajoutclient=new AjoutClient(employerConnect.getId());
 				panelFormulaire.removeAll();
+				
 				ajoutclient.setBounds(209, 0, 745, 453);
 				panelFormulaire.add(ajoutclient);
 				panelFormulaire.validate();

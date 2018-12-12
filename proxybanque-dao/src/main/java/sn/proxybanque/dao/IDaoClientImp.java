@@ -31,6 +31,8 @@ public class IDaoClientImp implements IDaoClient {
 			java.sql.Date date_sql = new java.sql.Date(t.getDateDenaissance().getTime());
 			ps.setDate(11, date_sql);
 			ps.setInt(12, t.getIdConseillerClientel());
+			//java.sql.Date date_sql = new java.sql.Date(t.getDateDenaissance().getTime());
+			//ps.setDate(4, date_sql);
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
