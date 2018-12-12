@@ -7,31 +7,49 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import com.toedter.calendar.JDateChooser;
 
+import sn.proxybanque.domaine.Client;
 import sn.proxybanque.service.Numero;
+import sn.proxybanque.service.ServiceClientImp;
 
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 import java.awt.Color;
 import javax.swing.UIManager;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.util.Date;
+import java.awt.event.ActionEvent;
 
 public class AjoutClient extends JPanel {
 	private JTextField numeroClient;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
+	private JTextField nomClient;
+	private JTextField prenomClient;
+	private JTextField adresseClient;
+	private JTextField professionClient;
+	private JTextField villeClient;
+	private JTextField codePostal;
+	private JTextField telephoneClient;
+	private JTextField emailClient;
 
 	/**
 	 * Create the panel.
 	 */
-	public AjoutClient() {
+	public AjoutClient(final int idConseillerConnecter) {
 		setLayout(null);
+		ButtonGroup groupeSexe=new ButtonGroup();
+		final JRadioButton homme=new JRadioButton("homme");
+		homme.setSelected(true);
+		homme.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		final  JRadioButton femme=new JRadioButton("femme");
+		femme.setSelected(true);
+		femme.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		femme.setBounds(547, 180, 96, 23);
+		homme.setBounds(656, 180, 83, 23);
+		groupeSexe.add(homme);
+		groupeSexe.add(femme);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(176, 196, 222));
@@ -62,13 +80,15 @@ public class AjoutClient extends JPanel {
 		
 		JLabel lblSexe = new JLabel("Sexe");
 		lblSexe.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		lblSexe.setBounds(618, 120, 188, 30);
+		lblSexe.setBounds(627, 143, 188, 30);
 		panel.add(lblSexe);
 		
 		JLabel lblEmail = new JLabel("Email");
 		lblEmail.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblEmail.setBounds(55, 156, 188, 30);
 		panel.add(lblEmail);
+		panel.add(femme);
+		panel.add(homme);
 		
 		JLabel lblTelephone = new JLabel("Telephone");
 		lblTelephone.setFont(new Font("Times New Roman", Font.ITALIC, 15));
@@ -104,75 +124,112 @@ public class AjoutClient extends JPanel {
 		String num=numero.generateNumeroClient();
 		numeroClient.setText(num);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(313, 54, 228, 26);
-		panel.add(textField_1);
-		textField_1.setColumns(30);
+		nomClient = new JTextField();
+		nomClient.setBounds(313, 54, 228, 26);
+		panel.add(nomClient);
+		nomClient.setColumns(30);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(313, 85, 228, 30);
-		panel.add(textField_2);
-		textField_2.setColumns(30);
+		prenomClient = new JTextField();
+		prenomClient.setBounds(313, 85, 228, 30);
+		panel.add(prenomClient);
+		prenomClient.setColumns(30);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(313, 121, 228, 30);
-		panel.add(textField_3);
-		textField_3.setColumns(30);
+		adresseClient = new JTextField();
+		adresseClient.setBounds(313, 121, 228, 30);
+		panel.add(adresseClient);
+		adresseClient.setColumns(30);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Femme");
-		rdbtnNewRadioButton.setBounds(547, 161, 82, 23);
-		panel.add(rdbtnNewRadioButton);
+		final JDateChooser dateNaissanceClient = new JDateChooser();
+		dateNaissanceClient.setDateFormatString("yyyy-M-dd");
+		dateNaissanceClient.setBounds(313, 360, 228, 30);
+		panel.add(dateNaissanceClient);
 		
-		JRadioButton rdbtnHomme = new JRadioButton("Homme");
-		rdbtnHomme.setBounds(640, 161, 96, 23);
-		panel.add(rdbtnHomme);
+		professionClient = new JTextField();
+		professionClient.setBounds(313, 320, 228, 30);
+		panel.add(professionClient);
+		professionClient.setColumns(30);
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(313, 360, 228, 30);
-		panel.add(dateChooser);
+		villeClient = new JTextField();
+		villeClient.setBounds(313, 280, 228, 30);
+		panel.add(villeClient);
+		villeClient.setColumns(30);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(313, 320, 228, 30);
-		panel.add(textField_4);
-		textField_4.setColumns(30);
+		codePostal = new JTextField();
+		codePostal.setBounds(313, 239, 228, 30);
+		panel.add(codePostal);
+		codePostal.setColumns(30);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(313, 280, 228, 30);
-		panel.add(textField_5);
-		textField_5.setColumns(30);
+		telephoneClient = new JTextField();
+		telephoneClient.setBounds(313, 198, 228, 30);
+		panel.add(telephoneClient);
+		telephoneClient.setColumns(30);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(313, 239, 228, 30);
-		panel.add(textField_6);
-		textField_6.setColumns(30);
-		
-		textField_7 = new JTextField();
-		textField_7.setBounds(313, 198, 228, 30);
-		panel.add(textField_7);
-		textField_7.setColumns(30);
-		
-		textField_8 = new JTextField();
-		textField_8.setBounds(313, 157, 228, 30);
-		panel.add(textField_8);
-		textField_8.setColumns(30);
+		emailClient = new JTextField();
+		emailClient.setBounds(313, 157, 228, 30);
+		panel.add(emailClient);
+		emailClient.setColumns(30);
 		
 		JList list = new JList();
 		list.setBounds(388, 26, 1, 1);
 		panel.add(list);
 		
-		JButton btnNewButton = new JButton("Valider");
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\image\\check.png"));
-		btnNewButton.setBackground(new Color(51, 204, 51));
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton.setBounds(279, 401, 124, 30);
-		panel.add(btnNewButton);
+		JButton buttonValider = new JButton("Valider");
+		buttonValider.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String sexeSelection=" ";
+				if(homme.isSelected())
+				{
+					sexeSelection="Homme";
+				}else 
+				{
+					sexeSelection="femme";
+				}
+				String nom=nomClient.getText();
+				String numero=numeroClient.getText();
+				String prenom=prenomClient.getText();
+				String adresse=adresseClient.getText();
+				String email=emailClient.getText();
+				String ville=villeClient.getText();
+				String codepost=codePostal.getText();
+				String professeion=professionClient.getText();
+				String telephone=telephoneClient.getText();
+				Date date=dateNaissanceClient.getDate();
+				int idConseiller=idConseillerConnecter;
+				if(sexeSelection.length()==0 || nom.length()==0 || prenom.length()==0 ||adresse.length()==0 || email.length()==0 ||ville.length()==0 ||codepost.length()==0 ||professeion.length()==0 ||date==null)
+				{
+					JOptionPane.showMessageDialog(null,"veuillez remplire tout les champs");
+				}else {
+					Client clientAjouter=new Client(nom, prenom, adresse, telephone, date, email, sexeSelection, numero, codepost, ville, professeion, idConseiller);
+					ServiceClientImp serviceClientImp=new ServiceClientImp();
+					serviceClientImp.ajouter(clientAjouter);
+					JOptionPane.showMessageDialog(null,"insertion reussit");
+					nomClient.setText("");
+					prenomClient.setText("");
+					adresseClient.setText("");
+					emailClient.setText("");
+					villeClient.setText("");
+					codePostal.setText("");
+					professionClient.setText("");
+					telephoneClient.setText("");
+					Numero nouveauNumero=new Numero();
+					numeroClient.setText(nouveauNumero+"");
+					}
+			}
+		});
+		buttonValider.setIcon(new ImageIcon("C:\\Users\\image\\check.png"));
+		buttonValider.setBackground(new Color(51, 204, 51));
+		buttonValider.setFont(new Font("Tahoma", Font.BOLD, 11));
+		buttonValider.setBounds(279, 401, 124, 30);
+		panel.add(buttonValider);
 		
-		JButton btnAnnuler = new JButton("Annuler");
-		btnAnnuler.setIcon(new ImageIcon("C:\\Users\\image\\busy.png"));
-		btnAnnuler.setBackground(new Color(255, 102, 0));
-		btnAnnuler.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnAnnuler.setBounds(413, 401, 128, 30);
-		panel.add(btnAnnuler);
+		JButton buttonAnnuler = new JButton("Annuler");
+		buttonAnnuler.setIcon(new ImageIcon("C:\\Users\\image\\busy.png"));
+		buttonAnnuler.setBackground(new Color(255, 102, 0));
+		buttonAnnuler.setFont(new Font("Tahoma", Font.BOLD, 11));
+		buttonAnnuler.setBounds(413, 401, 128, 30);
+		panel.add(buttonAnnuler);
+		
+		
 
 	}
 }

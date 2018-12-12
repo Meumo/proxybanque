@@ -48,7 +48,7 @@ public class EspaceGerant extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EspaceGerant(Employer employer) {
+	public EspaceGerant(final Employer employer) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 650);
 		
@@ -118,7 +118,7 @@ public class EspaceGerant extends JFrame {
 		JButton buttonClients = new JButton("Clients");
 		buttonClients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Clients clients=new Clients();
+				Clients clients=new Clients(employer);
 				panelBody.removeAll();
 				clients.setBounds(10, 67, 964, 453);
 				panelBody.add(clients,BorderLayout.CENTER);

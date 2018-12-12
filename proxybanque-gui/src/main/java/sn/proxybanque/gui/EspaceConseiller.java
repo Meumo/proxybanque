@@ -88,7 +88,7 @@ public class EspaceConseiller extends JFrame {
 		JButton buttonClients = new JButton("Clients");
 		buttonClients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Clients clients=new Clients();
+				Clients clients=new Clients(null);
 				panelBody.removeAll();
 				clients.setBounds(10, 67, 964, 453);
 				panelBody.add(clients,BorderLayout.CENTER);

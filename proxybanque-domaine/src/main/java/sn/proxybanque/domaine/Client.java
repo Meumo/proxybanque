@@ -53,6 +53,16 @@ public class Client extends Personne {
 		this.proffessionClient = professionClient;
 		this.idConseillerClientel = idConseillerClientel;
 	}
+	public Client(String nom, String prenom, String adresse, String telephone, Date dateDenaissonce, String email,
+			String sexe, String numeroClient, String codePostalClient, String vileClient, String professionClient,
+			int idConseillerClientel) {
+		super();
+		this.numeroClient = numeroClient;
+		this.codePostalClient = codePostalClient;
+		this.villeClient = vileClient;
+		this.proffessionClient = professionClient;
+		this.idConseillerClientel = idConseillerClientel;
+	}
 
 	public String getNumeroClient() {
 		return numeroClient;
