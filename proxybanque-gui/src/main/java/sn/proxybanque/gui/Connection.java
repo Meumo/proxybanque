@@ -11,22 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.Font;
-import javax.swing.border.TitledBorder;
-
-import sn.proxybanque.domaine.Employer;
-import sn.proxybanque.service.ServiceEmployerImp;
-
-import java.awt.Color;
-import javax.swing.UIManager;
-import javax.swing.ImageIcon;
-import javax.swing.JPasswordField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -34,8 +18,8 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import sn.proxybanque.dao.IDaoEmployerImp;
 import sn.proxybanque.domaine.Employer;
+import sn.proxybanque.service.ServiceEmployerImp;
 
 public class Connection extends JFrame {
 
@@ -135,8 +119,9 @@ public class Connection extends JFrame {
 							EspaceGerant espaceGerant = new EspaceGerant(employerConnecter);
 
 							espaceGerant.setVisible(true);
+
 						} else {
-							EspaceConseiller espaceConseiller = new EspaceConseiller();
+							EspaceConseiller espaceConseiller = new EspaceConseiller(employerConnecter);
 
 							espaceConseiller.setVisible(true);
 						}

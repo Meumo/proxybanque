@@ -63,12 +63,30 @@ public class Clients extends JPanel {
 		add(buttonModifierUnClient);
 		
 		JButton buttonSupprimerUnClient = new JButton("Supprimer un Client");
+		buttonSupprimerUnClient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SupprimerClient supprimerClient=new SupprimerClient();
+				panelFormulaire.removeAll();
+				supprimerClient.setBounds(209, 0, 745, 453);
+				panelFormulaire.add(supprimerClient);
+				panelFormulaire.validate();
+			}
+		});
 		buttonSupprimerUnClient.setFont(new Font("Tahoma", Font.BOLD, 15));
 		buttonSupprimerUnClient.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (3).jpg"));
 		buttonSupprimerUnClient.setBounds(0, 140, 209, 70);
 		add(buttonSupprimerUnClient);
 		
 		JButton buttonListerLesClients = new JButton("lister les Clients");
+		buttonListerLesClients.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListeClient listClient=new ListeClient ();
+				panelFormulaire.removeAll();
+				listClient.setBounds(209, 0, 745, 453);
+				panelFormulaire.add(listClient);
+				panelFormulaire.validate();
+			}
+		});
 		buttonListerLesClients.setFont(new Font("Tahoma", Font.BOLD, 15));
 		buttonListerLesClients.setIcon(new ImageIcon("C:\\Users\\image\\customers.png"));
 		buttonListerLesClients.setBounds(0, 209, 209, 70);

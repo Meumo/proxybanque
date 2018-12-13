@@ -203,6 +203,7 @@ public class AjoutClient extends JPanel {
 					Client clientAjouter=new Client(nom, prenom, adresse, telephone, date, email, sexeSelection, numero, codepost, ville, professeion, idConseiller);
 					ServiceClientImp serviceClientImp=new ServiceClientImp();
 					serviceClientImp.ajouter(clientAjouter);
+					System.out.println(clientAjouter);
 					JOptionPane.showMessageDialog(null,"insertion reussit");
 					nomClient.setText("");
 					prenomClient.setText("");
