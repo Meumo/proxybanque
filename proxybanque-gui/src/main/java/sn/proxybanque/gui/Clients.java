@@ -53,6 +53,15 @@ public class Clients extends JPanel {
 		add(buttonCreerUnClient);
 		
 		JButton buttonModifierUnClient = new JButton("Modifier un Client");
+		buttonModifierUnClient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModifierClient modifierClient =new ModifierClient(employerConnect.getId());
+				panelFormulaire.removeAll();
+				modifierClient.setBounds(209, 0, 745, 453);
+				panelFormulaire.add(modifierClient);
+				panelFormulaire.validate();
+			}
+		});
 		buttonModifierUnClient.setFont(new Font("Tahoma", Font.BOLD, 15));
 		buttonModifierUnClient.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (2).jpg"));
 		buttonModifierUnClient.setBounds(0, 71, 209, 70);
