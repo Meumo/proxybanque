@@ -112,7 +112,7 @@ public class IDaoClientImp implements IDaoClient {
 	public Client findByNumberClient(String numberClient) {
 		Client clientRecup = null;
 		try {
-			String sql = "SELECT * FROM employe WHERE numeroClient=?";
+			String sql = "SELECT * FROM client WHERE numeroClient=?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, numberClient);
 			ResultSet rs = ps.executeQuery();
@@ -121,7 +121,7 @@ public class IDaoClientImp implements IDaoClient {
 						rs.getString("adresseClient"), rs.getString("telephoneClient"),
 						rs.getDate("dateDenaissanceClient"), rs.getString("emailClient"), rs.getString("sexeClient"),
 						rs.getString("numeroClient"), rs.getString("codePostalClient"), rs.getString("villeClient"),
-						rs.getString("professionCleint"), rs.getInt("idConseiller"));
+						rs.getString("professionClient"), rs.getInt("idConseiller"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
