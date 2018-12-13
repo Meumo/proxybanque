@@ -29,7 +29,8 @@ public class IDaoClientImp implements IDaoClient {
 			ps.setString(8, t.getCodePostalClient());
 			ps.setString(9, t.getProfessionClient());
 			ps.setString(10, t.getVileClient());
-			ps.setDate(11, (Date) t.getDateDenaissance());
+			java.sql.Date date_sql = new java.sql.Date(t.getDateDenaissance().getTime());
+			ps.setDate(11,date_sql);
 			ps.setInt(12, t.getIdConseillerClientel());
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -112,7 +113,7 @@ public class IDaoClientImp implements IDaoClient {
 	public Client findByNumberClient(String numberClient) {
 		Client clientRecup = null;
 		try {
-			String sql = "SELECT * FROM employe WHERE numeroClient=?";
+			String sql = "SELECT * FROM client WHERE numeroClient=?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, numberClient);
 			ResultSet rs = ps.executeQuery();
@@ -121,8 +122,8 @@ public class IDaoClientImp implements IDaoClient {
 						rs.getString("adresseClient"), rs.getString("telephoneClient"),
 						rs.getDate("dateDenaissanceClient"), rs.getString("emailClient"), rs.getString("sexeClient"),
 						rs.getString("numeroClient"), rs.getString("codePostalClient"), rs.getString("villeClient"),
-						rs.getString("professionCleint"), rs.getInt("idConseiller"));
-			}
+						rs.getString("professionClient"), rs.getInt("idConseiller"));
+			}                         
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

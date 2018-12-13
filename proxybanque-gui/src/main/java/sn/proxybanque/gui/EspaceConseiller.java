@@ -6,9 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import sn.proxybanque.domaine.Employer;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -17,6 +21,8 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.FlowLayout;
 
 public class EspaceConseiller extends JFrame {
 
@@ -29,7 +35,8 @@ public class EspaceConseiller extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EspaceConseiller frame = new EspaceConseiller();
+					Employer employer =new Employer();
+					EspaceConseiller frame = new EspaceConseiller(employer);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +48,7 @@ public class EspaceConseiller extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EspaceConseiller() {
+	public EspaceConseiller(final Employer employer) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 650);
 		
@@ -49,20 +56,21 @@ public class EspaceConseiller extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnParamettrage = new JMenu("Paramettrage");
-		mnParamettrage.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\settings.png"));
+		mnParamettrage.setIcon(new ImageIcon("C:\\Users\\image\\settings.png"));
 		menuBar.add(mnParamettrage);
 		
 		JMenuItem menuItem = new JMenuItem("New menu item");
 		mnParamettrage.add(menuItem);
 		
 		JMenu mnApropos = new JMenu("Apropos");
-		mnApropos.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\téléchargement.png"));
+		mnApropos.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement.png"));
 		menuBar.add(mnApropos);
 		
 		JMenuItem mntmHelp = new JMenuItem("Help");
-		mntmHelp.setIcon(new ImageIcon("C:\\developpement\\outil\\workpace\\proxibank\\proxybanque-gui\\image\\word-895582_960_720.png"));
+		mntmHelp.setIcon(new ImageIcon("C:\\Users\\image\\word-895582_960_720.png"));
 		mnApropos.add(mntmHelp);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(128, 128, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -82,13 +90,35 @@ public class EspaceConseiller extends JFrame {
 			}
 		});
 		btnAccueille.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnAccueille.setIcon(new ImageIcon("C:\\developpement\\workpace2\\proxybanque\\proxybanque-gui\\image\\home.png"));
+
+
+		btnAccueille.setIcon(new ImageIcon("C:\\Users\\image\\home.png"));
+
 		toolBar.add(btnAccueille);
+		
+		JButton buttonConseillers = new JButton("Conseillers  ");
+		buttonConseillers.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Conseiller conseiller=new Conseiller();
+				panelBody.removeAll();
+				conseiller.setBounds(10, 67, 964, 453);
+				panelBody.add(conseiller,BorderLayout.CENTER);
+				getContentPane().validate();
+			}
+			
+		});
+		buttonConseillers.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+
+		buttonConseillers.setIcon(new ImageIcon("C:\\Users\\image\\special-offer.png"));
+
+		buttonConseillers.setToolTipText("Gestion des conseillers clientelle");
+		toolBar.add(buttonConseillers);
 		
 		JButton buttonClients = new JButton("Clients");
 		buttonClients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Clients clients=new Clients(null);
+				Clients clients=new Clients(employer);
 				panelBody.removeAll();
 				clients.setBounds(10, 67, 964, 453);
 				panelBody.add(clients,BorderLayout.CENTER);
@@ -96,51 +126,117 @@ public class EspaceConseiller extends JFrame {
 			}
 		});
 		buttonClients.setFont(new Font("Tahoma", Font.BOLD, 11));
-		buttonClients.setIcon(new ImageIcon("C:\\developpement\\workpace2\\proxybanque\\proxybanque-gui\\image\\user.png"));
+
+		buttonClients.setToolTipText("Gestion des clients");
+
+		buttonClients.setIcon(new ImageIcon("C:\\Users\\image\\user.png"));
 		buttonClients.setToolTipText("Gestion des ");
+
 		toolBar.add(buttonClients);
 		
 		JButton buttonComptes = new JButton("Comptes");
 		buttonComptes.setFont(new Font("Tahoma", Font.BOLD, 11));
-		buttonComptes.setIcon(new ImageIcon("C:\\developpement\\workpace2\\proxybanque\\proxybanque-gui\\image\\téléchargement (1).jpg"));
+
+		buttonComptes.setToolTipText("Gestion des comptes");
+
+		buttonComptes.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (1).jpg"));
 		buttonComptes.setToolTipText("Gestion des ");
+
 		toolBar.add(buttonComptes);
 		
 		JButton buttonCartesBancaires = new JButton("Cartes  ");
 		buttonCartesBancaires.setFont(new Font("Tahoma", Font.BOLD, 11));
-		buttonCartesBancaires.setIcon(new ImageIcon("C:\\developpement\\workpace2\\proxybanque\\proxybanque-gui\\image\\carte.jpg"));
+
+		buttonCartesBancaires.setToolTipText("Gestion des cartes");
+
+		buttonCartesBancaires.setIcon(new ImageIcon("C:\\Users\\image\\carte.jpg"));
 		buttonCartesBancaires.setToolTipText("Gestion des ");
+
 		toolBar.add(buttonCartesBancaires);
 		
 		JButton buttonSimulationCredit = new JButton("Simulation ");
 		buttonSimulationCredit.setFont(new Font("Tahoma", Font.BOLD, 11));
-		buttonSimulationCredit.setIcon(new ImageIcon("C:\\developpement\\workpace2\\proxybanque\\proxybanque-gui\\image\\simitation.jpg"));
+
+
+		buttonSimulationCredit.setIcon(new ImageIcon("C:\\Users\\image\\simitation.jpg"));
+
 		buttonSimulationCredit.setToolTipText("Gestion de la simulation de credit ");
 		toolBar.add(buttonSimulationCredit);
 		
+		JButton buttonAuditer = new JButton("Auditer");
+		buttonAuditer.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+
+		buttonAuditer.setIcon(new ImageIcon("C:\\Users\\image\\images.jpg"));
+		buttonAuditer.setToolTipText("Gestion de l'audit");
+		toolBar.add(buttonAuditer);
+		
 		JButton buttonJournalisation = new JButton("Journalisation");
 		buttonJournalisation.setFont(new Font("Tahoma", Font.BOLD, 11));
-		buttonJournalisation.setIcon(new ImageIcon("C:\\developpement\\workpace2\\proxybanque\\proxybanque-gui\\image\\images (1).jpg"));
+
+
+		buttonJournalisation.setIcon(new ImageIcon("C:\\Users\\image\\images (1).jpg"));
 		buttonJournalisation.setToolTipText("Gestion de la journalisation des transactions ");
 		toolBar.add(buttonJournalisation);
 		
 		JButton buttonPatrimoinePlacement = new JButton("Patrimoine et Placement");
 		buttonPatrimoinePlacement.setFont(new Font("Tahoma", Font.BOLD, 11));
-		buttonPatrimoinePlacement.setIcon(new ImageIcon("C:\\developpement\\workpace2\\proxybanque\\proxybanque-gui\\image\\images (2).jpg"));
+
+		buttonPatrimoinePlacement.setIcon(new ImageIcon("C:\\Users\\image\\images (2).jpg"));
 		buttonPatrimoinePlacement.setToolTipText("Gestion du patrimoine et du placement");
 		toolBar.add(buttonPatrimoinePlacement);
-		panelBody.setBackground(new Color(102, 102, 153));
+		panelBody.setBackground(new Color(255, 255, 255));
 		
 		//Accueille accueille=new Accueille();
 		
 		
-		panelBody.setBounds(10, 67, 964, 453);
+		panelBody.setBounds(10, 55, 964, 465);
 		contentPane.add(panelBody);
 		panelBody.setLayout(new BorderLayout(0, 0));
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("C:\\Users\\image\\acc.gif"));
+		panelBody.add(label);
 		
 		JPanel panelBas = new JPanel();
 		panelBas.setBackground(new Color(102, 102, 153));
 		panelBas.setBounds(10, 531, 964, 46);
 		contentPane.add(panelBas);
+
+		
+		JButton buttonDeconne = new JButton("Deconnexion");
+		buttonDeconne.setIcon(new ImageIcon("C:\\Users\\image\\logout.png"));
+		buttonDeconne.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer la deconnexion", "Confirmation",
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+					Connection connection=new Connection();
+					dispose();
+					connection.setVisible(true);
+				}
+				
+			}
+			
+			
+		});
+		panelBas.add(buttonDeconne);
+
+		panelBas.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JLabel Profil = new JLabel("En ligne");
+		panelBas.add(Profil);
+		Profil.setForeground(Color.GREEN);
+		Profil.setFont(new Font("Tahoma", Font.BOLD, 17));
+		
+		JLabel nomEmployer = new JLabel("nomEmployer");
+		panelBas.add(nomEmployer);
+		nomEmployer.setFont(new Font("Tahoma", Font.ITALIC, 16));
+		nomEmployer.setText(employer.getNom());
+		
+		JLabel prenomEmployer = new JLabel("New label");
+		panelBas.add(prenomEmployer);
+		prenomEmployer.setFont(new Font("Tahoma", Font.ITALIC, 16));
+		prenomEmployer.setText(employer.getPrenom());
+
 	}
 }

@@ -11,6 +11,17 @@ import java.util.Date;
  * @version 1.0-SNAPSHOT
  */
 public class Client extends Personne {
+	
+
+	@Override
+	public String toString() {
+		return "Client [numeroClient=" + numeroClient + ", codePostalClient=" + codePostalClient + ", villeClient="
+				+ villeClient + ", proffessionClient=" + proffessionClient + ", idConseillerClientel="
+				+ idConseillerClientel + ", id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse
+				+ ", telephone=" + telephone + ", dateDenaissance=" + dateDenaissance + ", email=" + email + ", sexe="
+				+ sexe + "]";
+	}
+
 	/**
 	 * Le numero d'un client
 	 */
@@ -46,7 +57,7 @@ public class Client extends Personne {
 	public Client(int id,String nom, String prenom, String adresse, String telephone, Date dateDenaissonce, String email,
 			String sexe, String numeroClient, String codePostalClient, String vileClient, String professionClient,
 			int idConseillerClientel) {
-		super();
+		super(id, nom, prenom, adresse, telephone, dateDenaissonce, email, sexe);
 		this.numeroClient = numeroClient;
 		this.codePostalClient = codePostalClient;
 		this.villeClient = vileClient;
@@ -56,7 +67,7 @@ public class Client extends Personne {
 	public Client(String nom, String prenom, String adresse, String telephone, Date dateDenaissonce, String email,
 			String sexe, String numeroClient, String codePostalClient, String vileClient, String professionClient,
 			int idConseillerClientel) {
-		super();
+		super(nom, prenom, adresse, telephone, dateDenaissonce, email, sexe);
 		this.numeroClient = numeroClient;
 		this.codePostalClient = codePostalClient;
 		this.villeClient = vileClient;

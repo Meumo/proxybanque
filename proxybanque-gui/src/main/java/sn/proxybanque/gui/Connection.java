@@ -135,7 +135,7 @@ public class Connection extends JFrame {
 							
 							espaceGerant.setVisible(true);
 						}else {
-							EspaceConseiller espaceConseiller=new EspaceConseiller();
+							EspaceConseiller espaceConseiller=new EspaceConseiller(employerConnecter);
 						
 							espaceConseiller.setVisible(true);
 						}
