@@ -182,7 +182,7 @@ public class AjoutClient extends JPanel {
 					sexeSelection="Homme";
 				}else 
 				{
-					sexeSelection="femme";
+					sexeSelection="Femme";
 				}
 				
 				String numero=numeroClient.getText();
