@@ -1,9 +1,10 @@
 package sn.proxybanque.gui;
 
-import javax.swing.JPanel;
 import java.awt.Color;
-import javax.swing.JLabel;
+
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class Accueille extends JPanel {
 

@@ -1,12 +1,12 @@
 package sn.proxybanque.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 
-import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,7 +25,6 @@ import com.toedter.calendar.JDateChooser;
 import sn.proxybanque.domaine.Employer;
 import sn.proxybanque.service.Numero;
 import sn.proxybanque.service.ServiceEmployerImp;
-import java.awt.BorderLayout;
 
 public class ModifierConseilles extends JPanel {
 	private JTextField numeroConseiller;

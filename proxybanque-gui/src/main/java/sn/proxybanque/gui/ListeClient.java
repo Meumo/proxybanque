@@ -6,13 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JPanel;
-
-import sn.proxybanque.utils.MysqlConnection;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import net.proteanit.sql.DbUtils;
-import javax.swing.table.DefaultTableModel;
+import sn.proxybanque.utils.MysqlConnection;
 
 public class ListeClient extends JPanel {
 	private JTable table;
