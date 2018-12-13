@@ -12,6 +12,10 @@ import java.util.Date;
  */
 public class Compte {
 	/**
+	 * Identifiant compte
+	 */
+	private int idCompte;
+	/**
 	 * Numero d'un compte
 	 */
 	private String numeroCompte;
@@ -41,8 +45,9 @@ public class Compte {
 	/**
 	 * Constructeur avec arguments
 	 */
-	public Compte(String numeroCompte, double soldeCompte, String typeDeCompte, Date dateOuvetureCompte, int idClient) {
+	public Compte(int idCompte,String numeroCompte, double soldeCompte, String typeDeCompte, Date dateOuvetureCompte, int idClient) {
 		super();
+		this.idCompte=idCompte;
 		this.numeroCompte = numeroCompte;
 		this.soldeCompte = soldeCompte;
 		this.typeDeCompte = typeDeCompte;
@@ -90,4 +95,13 @@ public class Compte {
 		this.idClient = idClient;
 	}
 
+	public int getIdCompte() {
+		return idCompte;
+	}
+
+	public void setIdCompte(int idCompte) {
+		this.idCompte = idCompte;
+	}
+
+	
 }
