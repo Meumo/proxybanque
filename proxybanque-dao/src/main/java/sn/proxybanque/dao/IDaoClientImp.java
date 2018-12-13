@@ -29,7 +29,9 @@ public class IDaoClientImp implements IDaoClient {
 			ps.setString(8, t.getCodePostalClient());
 			ps.setString(9, t.getProfessionClient());
 			ps.setString(10, t.getVileClient());
-			ps.setDate(11, (Date) t.getDateDenaissance());
+			java.sql.Date date_sql = new java.sql.Date(t.getDateDenaissance().getTime());
+			ps.setDate(11, date_sql);
+			//ps.setDate(11, (Date) t.getDateDenaissance());
 			ps.setInt(12, t.getIdConseillerClientel());
 			ps.executeUpdate();
 		} catch (SQLException e) {

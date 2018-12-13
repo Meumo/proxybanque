@@ -199,7 +199,7 @@ public class EspaceGerant extends JFrame {
 		panelBody.add(label);
 		
 		JPanel panelBas = new JPanel();
-		panelBas.setBackground(new Color(102, 102, 153));
+		panelBas.setBackground(Color.WHITE);
 		panelBas.setBounds(10, 531, 964, 46);
 		contentPane.add(panelBas);
 
