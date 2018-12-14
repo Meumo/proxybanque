@@ -143,6 +143,15 @@ public class EspaceGerant extends JFrame {
 		toolBar.add(buttonComptes);
 		
 		JButton buttonCartesBancaires = new JButton("Cartes  ");
+		buttonCartesBancaires.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CartesBanque cartesBanque=new CartesBanque(employer);
+				panelBody.removeAll();
+				cartesBanque.setBounds(10, 67, 964, 453);
+				panelBody.add(cartesBanque,BorderLayout.CENTER);
+				getContentPane().validate();
+			}
+		});
 		buttonCartesBancaires.setFont(new Font("Tahoma", Font.BOLD, 11));
 
 		buttonCartesBancaires.setToolTipText("Gestion des cartes");

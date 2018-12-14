@@ -75,7 +75,7 @@ public class IDaoClientImp implements IDaoClient {
 				Client client = new Client();
 
 				client.setId(rs.getInt("idClient"));
-				client.setNumeroClient("numeroClient");
+				client.setNumeroClient(rs.getString("numeroClient"));
 				client.setNom(rs.getString("nomClient"));
 				client.setPrenom(rs.getString("prenomClient"));
 				client.setAdresse(rs.getString("adresseClient"));
