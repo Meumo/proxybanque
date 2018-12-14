@@ -133,6 +133,15 @@ public class EspaceGerant extends JFrame {
 		toolBar.add(buttonClients);
 		
 		JButton buttonComptes = new JButton("Comptes");
+		buttonComptes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CompteBanque compteBanque=new CompteBanque(employer);
+				panelBody.removeAll();
+				compteBanque.setBounds(10, 67, 964, 453);
+				panelBody.add(compteBanque,BorderLayout.CENTER);
+				getContentPane().validate();
+			}
+		});
 		buttonComptes.setFont(new Font("Tahoma", Font.BOLD, 11));
 
 		buttonComptes.setToolTipText("Gestion des comptes");

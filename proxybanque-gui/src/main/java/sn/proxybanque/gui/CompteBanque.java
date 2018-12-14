@@ -16,12 +16,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
-public class CartesBanque extends JPanel {
+public class CompteBanque extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public CartesBanque(final Employer employerConnect) {
+	public CompteBanque(final Employer employerConnect) {
 		setBackground(new Color(0, 191, 255));
 		setLayout(null);
 		
@@ -33,27 +33,27 @@ public class CartesBanque extends JPanel {
 		JLabel lblNewLabel_1 = new JLabel("");
 		panelFormulaire.add(lblNewLabel_1, BorderLayout.WEST);
 		
-		JButton buttonCreerUnCarte = new JButton("Creer une Carte");
-		buttonCreerUnCarte.addActionListener(new ActionListener() {
+		JButton buttonCreerUnCompte = new JButton("Creer un Compte");
+		buttonCreerUnCompte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				AjoutCarte ajoutCarte=new AjoutCarte();
+				AjoutCompte ajoutCompte=new AjoutCompte();
 				panelFormulaire.removeAll();
 				
-				ajoutCarte.setBounds(209, 0, 745, 453);
-				panelFormulaire.add(ajoutCarte);
+				ajoutCompte.setBounds(209, 0, 745, 453);
+				panelFormulaire.add(ajoutCompte);
 				panelFormulaire.validate();
 				
 				
 			}
 		});
-		buttonCreerUnCarte.setFont(new Font("Tahoma", Font.BOLD, 15));
-		buttonCreerUnCarte.setIcon(new ImageIcon("C:\\Users\\image\\hire-me.png"));
-		buttonCreerUnCarte.setBounds(0, 0, 209, 70);
-		add(buttonCreerUnCarte);
+		buttonCreerUnCompte.setFont(new Font("Tahoma", Font.BOLD, 15));
+		buttonCreerUnCompte.setIcon(new ImageIcon("C:\\Users\\image\\hire-me.png"));
+		buttonCreerUnCompte.setBounds(0, 0, 209, 70);
+		add(buttonCreerUnCompte);
 		
-		JButton buttonModifierUneCarte = new JButton("Modifier une Carte");
-		buttonModifierUneCarte.addActionListener(new ActionListener() {
+		JButton buttonModifierUnCompte = new JButton("Modifier un Compte");
+		buttonModifierUnCompte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ModifierCarte modifierCarte=new ModifierCarte();
 				panelFormulaire.removeAll();
@@ -62,13 +62,13 @@ public class CartesBanque extends JPanel {
 				panelFormulaire.validate();
 			}
 		});
-		buttonModifierUneCarte.setFont(new Font("Tahoma", Font.BOLD, 15));
-		buttonModifierUneCarte.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (2).jpg"));
-		buttonModifierUneCarte.setBounds(0, 71, 209, 70);
-		add(buttonModifierUneCarte);
+		buttonModifierUnCompte.setFont(new Font("Tahoma", Font.BOLD, 15));
+		buttonModifierUnCompte.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (2).jpg"));
+		buttonModifierUnCompte.setBounds(0, 71, 209, 70);
+		add(buttonModifierUnCompte);
 		
-		JButton buttonSupprimerUneCarte = new JButton("Supprimer une Carte");
-		buttonSupprimerUneCarte.addActionListener(new ActionListener() {
+		JButton buttonSupprimerUnCompte = new JButton("Supprimer un Compte");
+		buttonSupprimerUnCompte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SupprimerCarte supprimerCarte=new SupprimerCarte();
 				panelFormulaire.removeAll();
@@ -77,14 +77,14 @@ public class CartesBanque extends JPanel {
 				panelFormulaire.validate();
 			}
 		});
-		buttonSupprimerUneCarte.setFont(new Font("Tahoma", Font.BOLD, 15));
-		buttonSupprimerUneCarte.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (3).jpg"));
-		buttonSupprimerUneCarte.setBounds(0, 140, 209, 70);
-		add(buttonSupprimerUneCarte);
+		buttonSupprimerUnCompte.setFont(new Font("Tahoma", Font.BOLD, 15));
+		buttonSupprimerUnCompte.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (3).jpg"));
+		buttonSupprimerUnCompte.setBounds(0, 140, 209, 70);
+		add(buttonSupprimerUnCompte);
 		
-		JButton buttonListerLesCartes = new JButton("lister les Cartes");
-		buttonListerLesCartes.setToolTipText("lister les Cartes");
-		buttonListerLesCartes.addActionListener(new ActionListener() {
+		JButton buttonListerLesCompte = new JButton("lister les Compte");
+		buttonListerLesCompte.setToolTipText("lister les Cartes");
+		buttonListerLesCompte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListeCarte listClient=new ListeCarte();
 				panelFormulaire.removeAll();
@@ -93,10 +93,10 @@ public class CartesBanque extends JPanel {
 				panelFormulaire.validate();
 			}
 		});
-		buttonListerLesCartes.setFont(new Font("Tahoma", Font.BOLD, 15));
-		buttonListerLesCartes.setIcon(new ImageIcon("C:\\Users\\image\\customers.png"));
-		buttonListerLesCartes.setBounds(0, 209, 209, 70);
-		add(buttonListerLesCartes);
+		buttonListerLesCompte.setFont(new Font("Tahoma", Font.BOLD, 15));
+		buttonListerLesCompte.setIcon(new ImageIcon("C:\\Users\\image\\customers.png"));
+		buttonListerLesCompte.setBounds(0, 209, 209, 70);
+		add(buttonListerLesCompte);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\image\\images (4).jpg"));
