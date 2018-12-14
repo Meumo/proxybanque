@@ -46,7 +46,7 @@ public class AjoutCarte extends JPanel {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(176, 196, 222));
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Ajout Carte", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(102, 102, 204)));
-		panel.setBounds(-28, 11, 773, 453);
+		panel.setBounds(-42, 11, 773, 453);
 		add(panel);
 		panel.setLayout(null);
 		

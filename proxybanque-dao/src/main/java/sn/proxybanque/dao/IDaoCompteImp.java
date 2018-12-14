@@ -110,4 +110,9 @@ public class IDaoCompteImp implements IDaoCompte {
 		return false;
 	}
 
+	public List<Compte> nbreCompte(int idClient) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

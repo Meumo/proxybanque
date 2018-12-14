@@ -111,4 +111,9 @@ public class IDaoCarteImp implements IDaoCarte {
 		return carteRecup;
 	}
 
+	public List<Carte> nbreCarte(int idClient) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
