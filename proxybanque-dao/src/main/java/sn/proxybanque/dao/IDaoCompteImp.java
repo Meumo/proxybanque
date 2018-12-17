@@ -111,8 +111,26 @@ public class IDaoCompteImp implements IDaoCompte {
 	}
 
 	public List<Compte> nbreCompte(int idClient) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Compte> listCompte = new ArrayList<Compte>();
+		try {
+			String sql = "SELECT * FROM compte WHERE idClient=idClient";
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				Compte compte = new Compte();
+
+				compte.setIdCompte(rs.getInt("idCompte"));
+				compte.setNumeroCompte(rs.getString("numeroCompte"));
+				compte.setSoldeCompte(rs.getDouble("soldeCompte"));
+				compte.setTypeDeCompte(rs.getString("typeDeCompte"));
+				compte.setDateOuvetureCompte(rs.getDate("dateOuvetureCompte"));
+				compte.setIdClient(rs.getInt("idClient"));
+				listCompte.add(compte);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listCompte;
 	}
 
 }

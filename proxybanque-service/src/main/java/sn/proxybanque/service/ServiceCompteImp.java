@@ -37,4 +37,8 @@ public class ServiceCompteImp implements IServiceCompte {
 		return compteImp.audit(compte);
 	}
 
+	public List<Compte> nbreCompte(int idClient) {
+		return compteImp.nbreCompte(idClient);
+	}
+
 }

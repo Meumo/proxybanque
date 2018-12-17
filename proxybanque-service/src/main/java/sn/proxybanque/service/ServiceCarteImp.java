@@ -36,4 +36,8 @@ public class ServiceCarteImp implements IServiceCarte {
 		return carteImp.findByNumberCarte(numberCarte);
 	}
 
+	public List<Carte> nbreCarte(int idClient) {
+		return carteImp.nbreCarte(idClient);
+	}
+
 }

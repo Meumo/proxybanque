@@ -112,8 +112,26 @@ public class IDaoCarteImp implements IDaoCarte {
 	}
 
 	public List<Carte> nbreCarte(int idClient) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Carte> listCarte = new ArrayList<Carte>();
+		try {
+			String sql = "SELECT * FROM carte WHERE idClient=idClient";
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				Carte carte = new Carte();
+
+				carte.setNumeroCarte("numeroCarte");
+				carte.setTypeCarte(rs.getString("typeDeCarte"));
+				carte.setCodeSecretCarte(rs.getString("codeSecretCarte"));
+				carte.setDateExpirationCarte(rs.getDate("dateExpirationCarte"));
+				carte.setIdClient(rs.getInt("idClient"));
+
+				listCarte.add(carte);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listCarte;
 	}
 
 }
