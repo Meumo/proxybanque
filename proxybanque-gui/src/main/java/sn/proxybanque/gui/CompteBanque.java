@@ -1,20 +1,17 @@
 package sn.proxybanque.gui;
 
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import javax.swing.JToolBar;
-import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import sn.proxybanque.domaine.Employer;
-
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import java.awt.Font;
-import javax.swing.JLabel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
 
 public class CompteBanque extends JPanel {
 
@@ -70,10 +67,10 @@ public class CompteBanque extends JPanel {
 		JButton buttonSupprimerUnCompte = new JButton("Supprimer un Compte");
 		buttonSupprimerUnCompte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SupprimerCarte supprimerCarte=new SupprimerCarte();
+				SupprimerCompte supprimerCompte=new SupprimerCompte();
 				panelFormulaire.removeAll();
-				supprimerCarte.setBounds(209, 0, 745, 453);
-				panelFormulaire.add(supprimerCarte);
+				supprimerCompte.setBounds(209, 0, 745, 453);
+				panelFormulaire.add(supprimerCompte);
 				panelFormulaire.validate();
 			}
 		});
@@ -86,10 +83,10 @@ public class CompteBanque extends JPanel {
 		buttonListerLesCompte.setToolTipText("lister les Cartes");
 		buttonListerLesCompte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListeCarte listClient=new ListeCarte();
+				ListeCompte listeCompte=new ListeCompte();
 				panelFormulaire.removeAll();
-				listClient.setBounds(209, 0, 745, 453);
-				panelFormulaire.add(listClient);
+				listeCompte.setBounds(209, 0, 745, 453);
+				panelFormulaire.add(listeCompte);
 				panelFormulaire.validate();
 			}
 		});
