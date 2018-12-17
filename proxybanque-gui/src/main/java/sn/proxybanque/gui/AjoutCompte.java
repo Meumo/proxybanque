@@ -33,6 +33,8 @@ import sn.proxybanque.service.ServiceClientImp;
 import sn.proxybanque.service.ServiceCompteImp;
 import sn.proxybanque.service.ServiceEmployerImp;
 import javax.swing.JRadioButton;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class AjoutCompte extends JPanel {
 	private JTextField numeroCompte;
@@ -109,6 +111,23 @@ public class AjoutCompte extends JPanel {
 		panel.add(listeClient);
 		
 		solde = new JTextField();
+		solde.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent evt) {
+				char car= evt.getKeyChar();
+		        if((car<'0' || car>'9' ) && solde.getText().contains(".")
+		            && (car!=(char)KeyEvent.VK_BACK_SPACE))
+		        {
+		            evt.consume();
+		            JOptionPane.showMessageDialog(null,"entre seulment des chiffre","validation  "
+		                ,JOptionPane.INFORMATION_MESSAGE);
+		        } else if((car<'0' ||car>'9')&&(car!='.')
+		            &&(car!=(char)KeyEvent.VK_BACK_SPACE)){
+		            evt.consume();
+		            JOptionPane.showMessageDialog(null,"SVP entrer seulement des chiffre","message de confirmation d'ecrire seulment des numero "
+		                ,JOptionPane.INFORMATION_MESSAGE); }
+			}
+		});
 		solde.setBounds(313, 173, 228, 26);
 		panel.add(solde);
 		solde.setColumns(10);
@@ -125,60 +144,48 @@ public class AjoutCompte extends JPanel {
 		JButton buttonValider = new JButton("Valider");
 		buttonValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				double soldeEntre;
-				String testmont=null;
-				do {
-
-					try {
-						 soldeEntre=Double.parseDouble(solde.getText());
-						 testmont="valide";
-						break;
-					} catch (Exception ex) {
-						
-					}
-				} while (true);
-				
-				
+				double soldeEntre=0;
+				if(solde.getText().length()>0)
+				{
+					 soldeEntre =Double.parseDouble(solde.getText());
+				}
 				Date dateEntre=dateOuverture.getDate();
-				String typeCompte;
+				String typeCompte="";
 				String numeroCompt=numeroCompte.getText();
 				if(compteEpargne.isSelected())
 				{
-					typeCompte=new String("Epargne");
+					typeCompte="Epargne";
 				}else
 				{
-					typeCompte=new String("Courant");
+					typeCompte="Courant";
 				}
 				String numeroClient=(String) listeClient.getSelectedItem();
 			    int idClient=serviceClientImp.rechercherParNumeroClient(numeroClient).getId();
-		
-			    	 if(dateEntre==null ||numeroCompt.length()==0)
-					    {
-					    	JOptionPane.showMessageDialog(null,"remplire tout les champ");
-					    
+				System.out.println(idClient);
+
+				  if(dateEntre==null || idClient< 0 || solde.getText().length()==0)
+			    { 	
+			     JOptionPane.showMessageDialog(null,"remplire tout les champ");
+		        	
 			    }else
 			    {
 			    	Compte compteCreer= new Compte();
 			    	compteCreer.setDateOuvetureCompte(dateEntre);
-			    	compteCreer.setNumeroCompte(numeroCompt);
-			    	compteCreer.setTypeDeCompte(typeCompte);
-			    	compteCreer.setSoldeCompte(soldeEntre);
-			    	compteCreer.setIdClient(idClient);
-			       ServiceCompteImp serviceCompteImp =new ServiceCompteImp();
-			        serviceCompteImp.ajouter(compteCreer);
-			        JOptionPane.showMessageDialog(null,"Compte Creer");
-			        String newNumer0=numero.generateNumeroCompte();
-			        numeroCompte.setText(newNumer0);
-			        solde.setText("");
-			        
+		    	compteCreer.setNumeroCompte(numeroCompt);
+		    	compteCreer.setTypeDeCompte(typeCompte);
+		    	compteCreer.setSoldeCompte(soldeEntre);
+		    	compteCreer.setIdClient(idClient);
+		        ServiceCompteImp serviceCompteImp =new ServiceCompteImp();
+		        serviceCompteImp.ajouter(compteCreer);
+		        JOptionPane.showMessageDialog(null,"Compte Creer");
+		        String newNumer0=numero.generateNumeroCompte();
+		        numeroCompte.setText(newNumer0);
+		        solde.setText("");
+			    	
 			    }
-		      
-		    	  
-			
-					
-			    
 			}
 		});
+	
 		buttonValider.setIcon(new ImageIcon("C:\\Users\\image\\check.png"));
 		buttonValider.setBackground(new Color(51, 204, 51));
 		buttonValider.setFont(new Font("Tahoma", Font.BOLD, 11));

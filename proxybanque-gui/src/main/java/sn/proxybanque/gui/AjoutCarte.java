@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.Iterator;
 
 import javax.swing.ButtonGroup;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
@@ -29,8 +28,6 @@ import sn.proxybanque.domaine.Employer;
 import sn.proxybanque.service.Numero;
 import sn.proxybanque.service.ServiceCarteImp;
 import sn.proxybanque.service.ServiceClientImp;
-import sn.proxybanque.service.ServiceEmployerImp;
-import javax.swing.JRadioButton;
 
 public class AjoutCarte extends JPanel {
 	private JTextField numeroCarte;
