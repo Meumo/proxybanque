@@ -52,10 +52,10 @@ public class CompteBanque extends JPanel {
 		JButton buttonModifierUnCompte = new JButton("Modifier un Compte");
 		buttonModifierUnCompte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ModifierCarte modifierCarte=new ModifierCarte();
+				ModifierCompte modifierCompte=new ModifierCompte();
 				panelFormulaire.removeAll();
-				modifierCarte.setBounds(209, 0, 745, 453);
-				panelFormulaire.add(modifierCarte);
+				modifierCompte.setBounds(209, 0, 745, 453);
+				panelFormulaire.add(modifierCompte);
 				panelFormulaire.validate();
 			}
 		});
