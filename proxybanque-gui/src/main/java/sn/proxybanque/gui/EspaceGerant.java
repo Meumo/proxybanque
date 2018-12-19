@@ -33,9 +33,11 @@ public class EspaceGerant extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Employer employer =new Employer();
-					EspaceGerant frame = new EspaceGerant(employer);
-					frame.setVisible(true);
+					Connection connection=new Connection();
+					connection.setVisible(true);
+					//Employer employer =new Employer();
+					//EspaceGerant frame = new EspaceGerant(employer);
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -48,8 +50,8 @@ public class EspaceGerant extends JFrame {
 	 */
 	public EspaceGerant(final Employer employer) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 650);
-		
+		setBounds(100, 100, 1000, 668);
+		setLocationRelativeTo(null);
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -216,7 +218,7 @@ public class EspaceGerant extends JFrame {
 		
 		JPanel panelBas = new JPanel();
 		panelBas.setBackground(Color.WHITE);
-		panelBas.setBounds(10, 531, 964, 46);
+		panelBas.setBounds(10, 531, 964, 49);
 		contentPane.add(panelBas);
 
 		
