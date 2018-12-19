@@ -74,7 +74,7 @@ public class EspaceGerant extends JFrame {
 		contentPane.setLayout(null);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(10, 11, 964, 45);
+		toolBar.setBounds(10, 11, 974, 45);
 		contentPane.add(toolBar);
 		
 		JButton btnAccueille = new JButton("Accueille");
@@ -170,6 +170,31 @@ public class EspaceGerant extends JFrame {
 
 		toolBar.add(buttonCartesBancaires);
 		
+		JButton buttonTransaction = new JButton("Transactions");
+		buttonTransaction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Transactions transactions=new Transactions(employer);
+				panelBody.removeAll();
+				transactions.setBounds(10, 67, 964, 453);
+				panelBody.add(transactions,BorderLayout.CENTER);
+				getContentPane().validate();
+			}
+			
+		});
+		buttonTransaction.setFont(new Font("Tahoma", Font.BOLD, 11));
+		
+				buttonTransaction.setIcon(new ImageIcon("C:\\Users\\image\\images (2).jpg"));
+				buttonTransaction.setToolTipText("Gestion des Transactions");
+				toolBar.add(buttonTransaction);
+		
+		JButton buttonAuditer = new JButton("Auditer");
+		buttonAuditer.setFont(new Font("Tahoma", Font.BOLD, 11));
+		
+		
+				buttonAuditer.setIcon(new ImageIcon("C:\\Users\\image\\images.jpg"));
+				buttonAuditer.setToolTipText("Gestion de l'audit");
+				toolBar.add(buttonAuditer);
+		
 		JButton buttonSimulationCredit = new JButton("Simulation ");
 		buttonSimulationCredit.setFont(new Font("Tahoma", Font.BOLD, 11));
 
@@ -179,14 +204,6 @@ public class EspaceGerant extends JFrame {
 		buttonSimulationCredit.setToolTipText("Gestion de la simulation de credit ");
 		toolBar.add(buttonSimulationCredit);
 		
-		JButton buttonAuditer = new JButton("Auditer");
-		buttonAuditer.setFont(new Font("Tahoma", Font.BOLD, 11));
-
-
-		buttonAuditer.setIcon(new ImageIcon("C:\\Users\\image\\images.jpg"));
-		buttonAuditer.setToolTipText("Gestion de l'audit");
-		toolBar.add(buttonAuditer);
-		
 		JButton buttonJournalisation = new JButton("Journalisation");
 		buttonJournalisation.setFont(new Font("Tahoma", Font.BOLD, 11));
 
@@ -194,13 +211,6 @@ public class EspaceGerant extends JFrame {
 		buttonJournalisation.setIcon(new ImageIcon("C:\\Users\\image\\images (1).jpg"));
 		buttonJournalisation.setToolTipText("Gestion de la journalisation des transactions ");
 		toolBar.add(buttonJournalisation);
-		
-		JButton buttonPatrimoinePlacement = new JButton("Patrimoine et Placement");
-		buttonPatrimoinePlacement.setFont(new Font("Tahoma", Font.BOLD, 11));
-
-		buttonPatrimoinePlacement.setIcon(new ImageIcon("C:\\Users\\image\\images (2).jpg"));
-		buttonPatrimoinePlacement.setToolTipText("Gestion du patrimoine et du placement");
-		toolBar.add(buttonPatrimoinePlacement);
 		panelBody.setBackground(new Color(255, 255, 255));
 		
 		//Accueille accueille=new Accueille();
