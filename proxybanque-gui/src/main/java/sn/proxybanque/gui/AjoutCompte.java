@@ -39,7 +39,6 @@ import java.awt.event.KeyEvent;
 public class AjoutCompte extends JPanel {
 	private JTextField numeroCompte;
 	private JTextField solde;
-	
 
 	/**
 	 * Create the panel.
@@ -49,167 +48,155 @@ public class AjoutCompte extends JPanel {
 		Employer employer;
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(176, 196, 222));
-		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Ajout Carte", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(102, 102, 204)));
-		panel.setBounds(-28, 11, 773, 453);
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Ajout Carte", TitledBorder.CENTER,
+				TitledBorder.TOP, null, new Color(102, 102, 204)));
+		panel.setBounds(-36, 11, 773, 453);
 		add(panel);
 		panel.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Numero Compte");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblNewLabel.setBounds(55, 54, 188, 30);
 		panel.add(lblNewLabel);
-		
+
 		JLabel lblCodePostal = new JLabel("Numero Client");
 		lblCodePostal.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblCodePostal.setBounds(55, 219, 188, 30);
 		panel.add(lblCodePostal);
-		
+
 		JLabel lblProfession = new JLabel("Type de Compte");
 		lblProfession.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblProfession.setBounds(55, 115, 188, 30);
 		panel.add(lblProfession);
-		
+
 		JLabel lblVille = new JLabel("Solde");
 		lblVille.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblVille.setBounds(55, 173, 188, 30);
 		panel.add(lblVille);
-		
+
 		JLabel dated = new JLabel("Date D'Ouverture");
 		dated.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		dated.setBounds(55, 284, 188, 30);
 		panel.add(dated);
-		
+
 		numeroCompte = new JTextField();
 		numeroCompte.setEditable(false);
 		numeroCompte.setBounds(313, 54, 228, 30);
 		panel.add(numeroCompte);
 		numeroCompte.setColumns(30);
-		final Numero numero=new Numero();
-		String num=numero.generateNumeroCompte();
+		final Numero numero = new Numero();
+		String num = numero.generateNumeroCompte();
 		numeroCompte.setText(num);
 		final JRadioButton compteEpargne = new JRadioButton("Epargne");
 		compteEpargne.setBounds(314, 116, 109, 30);
-		
-		
+
 		final JRadioButton compteourant = new JRadioButton("Courant");
 		compteourant.setBounds(432, 116, 109, 30);
-		
-		ButtonGroup groupeCarte=new ButtonGroup();
+
+		ButtonGroup groupeCarte = new ButtonGroup();
 		groupeCarte.add(compteourant);
 		groupeCarte.add(compteEpargne);
 		panel.add(compteourant);
 		panel.add(compteEpargne);
-		
+
 		final JComboBox listeClient = new JComboBox();
-		listeClient.setBounds(313, 220, 228, 30);
-		final ServiceClientImp serviceClientImp=new ServiceClientImp();
+		listeClient.setBounds(323, 220, 228, 30);
+		final ServiceClientImp serviceClientImp = new ServiceClientImp();
 		for (Iterator iterator = serviceClientImp.lister().iterator(); iterator.hasNext();) {
-			Client client= (Client) iterator.next();
+			Client client = (Client) iterator.next();
 			listeClient.addItem(client.getNumeroClient());
-			
+
 		}
 		panel.add(listeClient);
-		
+
 		solde = new JTextField();
 		solde.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent evt) {
-				char car= evt.getKeyChar();
-		        if((car<'0' || car>'9' ) && solde.getText().contains(".")
-		            && (car!=(char)KeyEvent.VK_BACK_SPACE))
-		        {
-		            evt.consume();
-		            JOptionPane.showMessageDialog(null,"entre seulment des chiffre","validation  "
-		                ,JOptionPane.INFORMATION_MESSAGE);
-		        } else if((car<'0' ||car>'9')&&(car!='.')
-		            &&(car!=(char)KeyEvent.VK_BACK_SPACE)){
-		            evt.consume();
-		            JOptionPane.showMessageDialog(null,"SVP entrer seulement des chiffre","message de confirmation d'ecrire seulment des numero "
-		                ,JOptionPane.INFORMATION_MESSAGE); }
+				char car = evt.getKeyChar();
+				if ((car < '0' || car > '9') && solde.getText().contains(".")
+						&& (car != (char) KeyEvent.VK_BACK_SPACE)) {
+					evt.consume();
+					JOptionPane.showMessageDialog(null, "entre seulment des chiffre", "validation  ",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else if ((car < '0' || car > '9') && (car != '.') && (car != (char) KeyEvent.VK_BACK_SPACE)) {
+					evt.consume();
+					JOptionPane.showMessageDialog(null, "SVP entrer seulement des chiffre",
+							"message de confirmation d'ecrire seulment des numero ", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		solde.setBounds(313, 173, 228, 26);
 		panel.add(solde);
 		solde.setColumns(10);
-		
+
 		final JDateChooser dateOuverture = new JDateChooser();
 		dateOuverture.setDateFormatString("yyyy-M-d ");
 		dateOuverture.setBounds(313, 284, 228, 30);
 		panel.add(dateOuverture);
-		
+
 		JList list = new JList();
 		list.setBounds(388, 26, 1, 1);
 		panel.add(list);
-         
+
 		JButton buttonValider = new JButton("Valider");
 		buttonValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				double soldeEntre=0;
-				if(solde.getText().length()>0)
-				{
-					 soldeEntre =Double.parseDouble(solde.getText());
+				double soldeEntre = 0;
+				if (solde.getText().length() > 0) {
+					soldeEntre = Double.parseDouble(solde.getText());
 				}
-				Date dateEntre=dateOuverture.getDate();
-				String typeCompte="";
-				String numeroCompt=numeroCompte.getText();
-				if(compteEpargne.isSelected())
-				{
-					typeCompte="Epargne";
-				}else
-				{
-					typeCompte="Courant";
+				Date dateEntre = dateOuverture.getDate();
+				String typeCompte = "";
+				String numeroCompt = numeroCompte.getText();
+				if (compteEpargne.isSelected()) {
+					typeCompte = "Epargne";
+				} else {
+					typeCompte = "Courant";
 				}
-				String numeroClient=(String) listeClient.getSelectedItem();
-			    int idClient=serviceClientImp.rechercherParNumeroClient(numeroClient).getId();
+				String numeroClient = (String) listeClient.getSelectedItem();
+				int idClient = serviceClientImp.rechercherParNumeroClient(numeroClient).getId();
 				System.out.println(idClient);
 
-				  if(dateEntre==null || idClient< 0 || solde.getText().length()==0)
-			    { 	
-			     JOptionPane.showMessageDialog(null,"remplire tout les champ");
-		        	
-			    }else
-			    {
-			    	Compte compteCreer= new Compte();
-			    	compteCreer.setDateOuvetureCompte(dateEntre);
-		    	compteCreer.setNumeroCompte(numeroCompt);
-		    	compteCreer.setTypeDeCompte(typeCompte);
-		    	compteCreer.setSoldeCompte(soldeEntre);
-		    	compteCreer.setIdClient(idClient);
-		        ServiceCompteImp serviceCompteImp =new ServiceCompteImp();
-		        serviceCompteImp.ajouter(compteCreer);
-		        JOptionPane.showMessageDialog(null,"Compte Creer");
-		        String newNumer0=numero.generateNumeroCompte();
-		        numeroCompte.setText(newNumer0);
-		        solde.setText("");
-			    	
-			    }
+				if (dateEntre == null || idClient < 0 || solde.getText().length() == 0) {
+					JOptionPane.showMessageDialog(null, "remplire tout les champ");
+
+				} else {
+					Compte compteCreer = new Compte();
+					compteCreer.setDateOuvetureCompte(dateEntre);
+					compteCreer.setNumeroCompte(numeroCompt);
+					compteCreer.setTypeDeCompte(typeCompte);
+					compteCreer.setSoldeCompte(soldeEntre);
+					compteCreer.setIdClient(idClient);
+					ServiceCompteImp serviceCompteImp = new ServiceCompteImp();
+					serviceCompteImp.ajouter(compteCreer);
+					JOptionPane.showMessageDialog(null, "Compte Creer");
+					String newNumer0 = numero.generateNumeroCompte();
+					numeroCompte.setText(newNumer0);
+					solde.setText("");
+
+				}
 			}
 		});
-	
+
 		buttonValider.setIcon(new ImageIcon("C:\\Users\\image\\check.png"));
 		buttonValider.setBackground(new Color(51, 204, 51));
 		buttonValider.setFont(new Font("Tahoma", Font.BOLD, 11));
 		buttonValider.setBounds(236, 369, 124, 30);
 		panel.add(buttonValider);
-		
+
 		JButton btnAnnuler = new JButton("Annuler");
 		btnAnnuler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
-			
+
 		});
 		btnAnnuler.setIcon(new ImageIcon("C:\\Users\\image\\busy.png"));
 		btnAnnuler.setBackground(new Color(255, 102, 0));
 		btnAnnuler.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnAnnuler.setBounds(402, 369, 128, 30);
 		panel.add(btnAnnuler);
-		
-		
-		
-	
-		
-		
-		
+
 	}
 }
