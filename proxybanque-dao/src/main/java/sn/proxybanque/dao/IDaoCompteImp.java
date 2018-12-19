@@ -31,16 +31,15 @@ public class IDaoCompteImp implements IDaoCompte {
 	}
 
 	public void update(Compte t) {
-		String sql = "UPDATE compte SET numeroCompte=?,soldeCompte?=,typeDeCompte=?,dateOuvetureCompte=?,idClient=? WHERE numeroCompte";
+		String sql = "UPDATE compte SET soldeCompte=?,typeDeCompte=?,dateOuvetureCompte=? WHERE numeroCompte=?";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 
-			ps.setString(1, t.getNumeroCompte());
-			ps.setDouble(2, t.getSoldeCompte());
-			ps.setString(3, t.getTypeDeCompte());
+			ps.setDouble(1, t.getSoldeCompte());
+			ps.setString(2, t.getTypeDeCompte());
 			java.sql.Date date_sql = new java.sql.Date(t.getDateOuvetureCompte().getTime());
-			ps.setDate(4, date_sql);
-			ps.setString(5, t.getNumeroCompte());
+			ps.setDate(3, date_sql);
+			ps.setString(4, t.getNumeroCompte());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

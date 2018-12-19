@@ -151,6 +151,7 @@ public class ModifierCompte extends JPanel {
 						String typec = "Compte";
 						ServiceCompteImp serviceCompteImp=new ServiceCompteImp();
 						compteAModifier=new Compte();
+						compteAModifier.setNumeroCompte(numeroCompte.getText());
 						compteAModifier.setDateOuvetureCompte(dateExp);
 						compteAModifier.setSoldeCompte(soldeEntre);
 						compteAModifier.setTypeDeCompte(type);
