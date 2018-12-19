@@ -2,7 +2,7 @@ package sn.proxybanque.dao;
 
 import sn.proxybanque.domaine.Compte;
 
-public class IdaoTransaction {
+public class DaoTransaction {
 
 	public void verser(Compte compte, float montcred) {
 		double ancienSolde = compte.getSoldeCompte();
