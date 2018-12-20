@@ -11,7 +11,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -22,28 +21,30 @@ import javax.swing.border.TitledBorder;
 import com.toedter.calendar.JDateChooser;
 
 import sn.proxybanque.domaine.Carte;
-import sn.proxybanque.domaine.Client;
-import sn.proxybanque.domaine.Employer;
-import sn.proxybanque.service.Numero;
 import sn.proxybanque.service.ServiceCarteImp;
-import sn.proxybanque.service.ServiceClientImp;
 
 public class ModifierCarte extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField numeroCarte;
 	private JTextField codeSecret;
 	private JTextField client;
 	Carte cartAModifer;
 	final JPanel panelHaut;
 	String numeroEntre;
+
 	/**
 	 * Create the panel.
 	 */
 	public ModifierCarte() {
-		Employer employer;
+
 		setLayout(new BorderLayout(0, 0));
 		final JPanel panelCentre = new JPanel();
 		panelCentre.setBackground(new Color(176, 196, 222));
-		panelCentre.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Carte Trouve", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(102, 102, 204)));
+		panelCentre.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Carte Trouve",
+				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(102, 102, 204)));
 		add(panelCentre);
 		panelCentre.setLayout(null);
 		remove(panelCentre);
@@ -67,8 +68,6 @@ public class ModifierCarte extends JPanel {
 		Client.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		Client.setBounds(55, 219, 188, 30);
 		panelCentre.add(Client);
-		Numero numero = new Numero();
-		String num = numero.generateNumeroEmploye();
 
 		codeSecret = new JTextField();
 		codeSecret.setBounds(313, 24, 228, 27);
@@ -77,18 +76,15 @@ public class ModifierCarte extends JPanel {
 
 		final JRadioButton visaElectron = new JRadioButton("Electron");
 		visaElectron.setBounds(313, 146, 109, 30);
-		
-		
+
 		final JRadioButton visaPremier = new JRadioButton("Premier");
 		visaPremier.setBounds(432, 147, 109, 30);
-		
-		ButtonGroup groupeCarte=new ButtonGroup();
+
+		ButtonGroup groupeCarte = new ButtonGroup();
 		groupeCarte.add(visaPremier);
 		groupeCarte.add(visaElectron);
 		panelCentre.add(visaPremier);
 		panelCentre.add(visaElectron);
-
-		final JDateChooser dateNaissanceConseiller;
 
 		client = new JTextField();
 		client.setBounds(313, 220, 228, 30);
@@ -99,30 +95,26 @@ public class ModifierCarte extends JPanel {
 		dateExpiration.setBounds(313, 86, 228, 30);
 		panelCentre.add(dateExpiration);
 
-
 		JButton buttonModifer = new JButton("Modifer");
 		buttonModifer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String type;
-				if(cartAModifer.getTypeCarte().equals("Electron"))
-				 {
-					type=new String("Electron");
-				 }else
-				 {
-					 type=new String("Premier");
-				 }
-				String code=codeSecret.getText();
-				int idClient=Integer.parseInt(client.getText());
-				Date dateExp=dateExpiration.getDate();
-				if(code.length()==0 || dateExp==null ||dateExp==null)
-			    {
-			    	JOptionPane.showMessageDialog(null,"remplire tout les champ");
-			    }else {
-			    	if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer les modifcation du Carte",
+				if (cartAModifer.getTypeCarte().equals("Electron")) {
+					type = new String("Electron");
+				} else {
+					type = new String("Premier");
+				}
+				String code = codeSecret.getText();
+				int idClient = Integer.parseInt(client.getText());
+				Date dateExp = dateExpiration.getDate();
+				if (code.length() == 0 || dateExp == null || dateExp == null) {
+					JOptionPane.showMessageDialog(null, "remplire tout les champ");
+				} else {
+					if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer les modifcation du Carte",
 							"Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						String typec = "Carte";
-						ServiceCarteImp serviceCarteImp=new ServiceCarteImp();
-						cartAModifer=new Carte(numeroEntre, type, code, dateExp, idClient);
+						ServiceCarteImp serviceCarteImp = new ServiceCarteImp();
+						cartAModifer = new Carte(numeroEntre, type, code, dateExp, idClient);
 						serviceCarteImp.misAJour(cartAModifer);
 						JOptionPane.showMessageDialog(null, typec + "modifer");
 						panelCentre.setBounds(0, 53, 745, 412);
@@ -132,7 +124,7 @@ public class ModifierCarte extends JPanel {
 					}
 
 				}
-				
+
 			}
 		});
 		buttonModifer.setIcon(new ImageIcon("C:\\Users\\image\\check.png"));
@@ -155,8 +147,7 @@ public class ModifierCarte extends JPanel {
 		buttonAnnuler.setFont(new Font("Tahoma", Font.BOLD, 11));
 		buttonAnnuler.setBounds(413, 282, 128, 30);
 		panelCentre.add(buttonAnnuler);
-		
-		
+
 		panelHaut = new JPanel();
 		panelHaut.setBackground(new Color(176, 196, 222));
 		add(panelHaut);
@@ -176,26 +167,24 @@ public class ModifierCarte extends JPanel {
 		buttonRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				ServiceCarteImp serviceCarteImp=new ServiceCarteImp();
+				ServiceCarteImp serviceCarteImp = new ServiceCarteImp();
 				numeroEntre = numeroCarte.getText();
 				if (numeroEntre.length() == 0) {
 					JOptionPane.showMessageDialog(null, "entre le numero du carte a supprimer");
 				} else {
-					cartAModifer=serviceCarteImp.rechercherParNumeroCarte(numeroEntre);
+					cartAModifer = serviceCarteImp.rechercherParNumeroCarte(numeroEntre);
 					if (cartAModifer == null) {
 						JOptionPane.showMessageDialog(null, "la carte n'existe pas dans la basse de donnee");
 					} else {
-                        
+
 						codeSecret.setText(cartAModifer.getCodeSecretCarte());
-						//dateExpiration=new JDateChooser(carteASupprimer.getDateExpirationCarte());
-						 if(cartAModifer.getTypeCarte().equals("Electron"))
-						 {
-							visaElectron.setSelected(true); 
-						 }else
-						 {
-							 visaPremier.setSelected(true);
-						 }
-						client.setText(cartAModifer.getIdClient()+"");
+						// dateExpiration=new JDateChooser(carteASupprimer.getDateExpirationCarte());
+						if (cartAModifer.getTypeCarte().equals("Electron")) {
+							visaElectron.setSelected(true);
+						} else {
+							visaPremier.setSelected(true);
+						}
+						client.setText(cartAModifer.getIdClient() + "");
 						remove(panelHaut);
 						add(panelCentre);
 						validate();

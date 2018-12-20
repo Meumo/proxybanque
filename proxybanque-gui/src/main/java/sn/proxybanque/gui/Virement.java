@@ -5,34 +5,31 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.text.ParseException;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
-import com.toedter.calendar.JDateChooser;
-
-import sn.proxybanque.domaine.Carte;
 import sn.proxybanque.domaine.Compte;
-import sn.proxybanque.domaine.Employer;
 import sn.proxybanque.domaine.Transaction;
 import sn.proxybanque.service.Numero;
-import sn.proxybanque.service.ServiceCarteImp;
 import sn.proxybanque.service.ServiceCompteImp;
 import sn.proxybanque.service.ServiceTransaction;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.text.ParseException;
-import java.util.Date;
-
 public class Virement extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField numeroCompteDebiteur;
 	private JTextField typeTansaction;
 	private JTextField dateTransaction;
@@ -42,9 +39,9 @@ public class Virement extends JPanel {
 	Compte compteCrediteur;
 	final JPanel panelHaut;
 	private JTextField montant;
-	 Date dateTrans = null;
-	 private JTextField numeroComptecrediteur;
-
+	Date dateTrans = null;
+	private JTextField numeroComptecrediteur;
+    Numero numero;
 	/**
 	 * Create the panel.
 	 */
@@ -52,7 +49,8 @@ public class Virement extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 		final JPanel panelCentre = new JPanel();
 		panelCentre.setBackground(new Color(176, 196, 222));
-		panelCentre.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Compte Trouve", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(102, 102, 204)));
+		panelCentre.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Compte Trouve",
+				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(102, 102, 204)));
 		add(panelCentre);
 		panelCentre.setLayout(null);
 		remove(panelCentre);
@@ -76,9 +74,7 @@ public class Virement extends JPanel {
 		Client.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		Client.setBounds(55, 176, 188, 30);
 		panelCentre.add(Client);
-		final Numero numero = new Numero();
-		String num = numero.generateNumeroEmploye();
-
+		 
 		typeTansaction = new JTextField();
 		typeTansaction.setText("Virement");
 		typeTansaction.setEditable(false);
@@ -98,10 +94,7 @@ public class Virement extends JPanel {
 		panelCentre.add(solde);
 		solde.setColumns(30);
 
-		// buttonGroup.add(buttonSexeConseillerFemme);
-		// buttonGroup.add(buttonSexeconseillerHomme);
-
-		final JDateChooser dateNaissanceConseiller;
+		
 
 		client = new JTextField();
 		client.setEditable(false);
@@ -109,34 +102,28 @@ public class Virement extends JPanel {
 		panelCentre.add(client);
 		client.setColumns(30);
 
-		JList list = new JList();
-		list.setBounds(388, 26, 1, 1);
-		panelCentre.add(list);
-
+		
 		JButton buttonDepot = new JButton("Valider");
 		buttonDepot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ServiceTransaction serviceTransaction=new ServiceTransaction();
-				double montantAVirer=0;
-				if(montant.getText().length()>0)
-				{
-					 montantAVirer=Double.parseDouble(montant.getText());
+				ServiceTransaction serviceTransaction = new ServiceTransaction();
+				double montantAVirer = 0;
+				if (montant.getText().length() > 0) {
+					montantAVirer = Double.parseDouble(montant.getText());
 				}
-				if(montantAVirer>compteDebiteur.getSoldeCompte())
-				{
+				if (montantAVirer > compteDebiteur.getSoldeCompte()) {
 					JOptionPane.showMessageDialog(null, "votre solde ne vous permet pas de faire ce virement");
-				}else
-				{
-					if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer le virement",
-							"Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+				} else {
+					if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer le virement", "Confirmation",
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						Transaction transaction;
-						String numTransaction=numero.generateNumeroTransaction();
+						String numTransaction = numero.generateNumeroTransaction();
 						serviceTransaction.retirer(compteDebiteur, montantAVirer);
 						serviceTransaction.verser(compteCrediteur, montantAVirer);
-						Numero numero=new Numero();
-						transaction=new Transaction();
+						numero = new Numero();
+						transaction = new Transaction();
 						try {
-							Heure heure=new Heure();
+							Heure heure = new Heure();
 							transaction.setDateTransaction(heure.daterecup());
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
@@ -148,10 +135,10 @@ public class Virement extends JPanel {
 						transaction.setNumeroTransaction(numTransaction);
 						transaction.setTypeTransaction("Virement");
 						serviceTransaction.create(transaction);
-						
-						transaction=new Transaction();
+
+						transaction = new Transaction();
 						try {
-							Heure heure=new Heure();
+							Heure heure = new Heure();
 							transaction.setDateTransaction(heure.daterecup());
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
@@ -163,7 +150,7 @@ public class Virement extends JPanel {
 						transaction.setNumeroTransaction(numTransaction);
 						transaction.setTypeTransaction("Virement");
 						serviceTransaction.create(transaction);
-						
+
 						JOptionPane.showMessageDialog(null, "virement valider");
 						panelCentre.setBounds(0, 53, 745, 412);
 						remove(panelCentre);
@@ -171,7 +158,6 @@ public class Virement extends JPanel {
 						validate();
 					}
 				}
-				
 
 			}
 		});
@@ -195,28 +181,27 @@ public class Virement extends JPanel {
 		buttonAnnuler.setFont(new Font("Tahoma", Font.BOLD, 11));
 		buttonAnnuler.setBounds(413, 282, 128, 30);
 		panelCentre.add(buttonAnnuler);
-		
+
 		JLabel lblMontantADepose = new JLabel("Montant Du virement");
 		lblMontantADepose.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblMontantADepose.setBounds(55, 232, 188, 30);
 		panelCentre.add(lblMontantADepose);
-		
+
 		montant = new JTextField();
 		montant.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent evt) {
-				char car= evt.getKeyChar();
-		        if((car<'0' || car>'9' ) && solde.getText().contains(".")
-		            && (car!=(char)KeyEvent.VK_BACK_SPACE))
-		        {
-		            evt.consume();
-		            JOptionPane.showMessageDialog(null,"entre seulment des chiffre","validation  "
-		                ,JOptionPane.INFORMATION_MESSAGE);
-		        } else if((car<'0' ||car>'9')&&(car!='.')
-		            &&(car!=(char)KeyEvent.VK_BACK_SPACE)){
-		            evt.consume();
-		            JOptionPane.showMessageDialog(null,"SVP entrer seulement des chiffre","message de confirmation d'ecrire seulment des numero "
-		                ,JOptionPane.INFORMATION_MESSAGE); }
+				char car = evt.getKeyChar();
+				if ((car < '0' || car > '9') && solde.getText().contains(".")
+						&& (car != (char) KeyEvent.VK_BACK_SPACE)) {
+					evt.consume();
+					JOptionPane.showMessageDialog(null, "entre seulment des chiffre", "validation  ",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else if ((car < '0' || car > '9') && (car != '.') && (car != (char) KeyEvent.VK_BACK_SPACE)) {
+					evt.consume();
+					JOptionPane.showMessageDialog(null, "SVP entrer seulement des chiffre",
+							"message de confirmation d'ecrire seulment des numero ", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		montant.setBounds(313, 227, 228, 30);
@@ -242,29 +227,29 @@ public class Virement extends JPanel {
 		buttonRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				ServiceCompteImp serviceCompteImp=new ServiceCompteImp();
+				ServiceCompteImp serviceCompteImp = new ServiceCompteImp();
 				String numeroDebiteur = numeroCompteDebiteur.getText();
 				String numeroCrediteur = numeroComptecrediteur.getText();
-				if (numeroDebiteur.length() == 0 || numeroCrediteur.length()==0) {
+				if (numeroDebiteur.length() == 0 || numeroCrediteur.length() == 0) {
 					JOptionPane.showMessageDialog(null, "entre les numero des deux comptes");
 				} else {
-					compteDebiteur=serviceCompteImp.rechercherParNumeroCompte(numeroDebiteur);
-					compteCrediteur=serviceCompteImp.rechercherParNumeroCompte(numeroCrediteur);
-					if (compteDebiteur == null || compteCrediteur==null) {
+					compteDebiteur = serviceCompteImp.rechercherParNumeroCompte(numeroDebiteur);
+					compteCrediteur = serviceCompteImp.rechercherParNumeroCompte(numeroCrediteur);
+					if (compteDebiteur == null || compteCrediteur == null) {
 						JOptionPane.showMessageDialog(null, "veuillez saisir de bon numeros");
 					} else {
-                       
+
 						typeTansaction.setText("Virement");
 						try {
-							Heure heure =new Heure();
-							dateTransaction.setText(heure.daterecup()+"");
+							Heure heure = new Heure();
+							dateTransaction.setText(heure.daterecup() + "");
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						solde.setText(compteDebiteur.getSoldeCompte()+"");
-						
-						client.setText(compteDebiteur.getIdClient()+"");
+						solde.setText(compteDebiteur.getSoldeCompte() + "");
+
+						client.setText(compteDebiteur.getIdClient() + "");
 						remove(panelHaut);
 						add(panelCentre);
 						validate();
@@ -278,12 +263,12 @@ public class Virement extends JPanel {
 		buttonRechercher.setIcon(new ImageIcon("C:\\Users\\image\\search.png"));
 		buttonRechercher.setBounds(418, 47, 147, 28);
 		panelHaut.add(buttonRechercher);
-		
+
 		JLabel lblNumeroDuCompte = new JLabel("Numero Du Compte compte Crediteur");
 		lblNumeroDuCompte.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblNumeroDuCompte.setBounds(392, 6, 243, 30);
 		panelHaut.add(lblNumeroDuCompte);
-		
+
 		numeroComptecrediteur = new JTextField();
 		numeroComptecrediteur.setBounds(632, 6, 113, 30);
 		panelHaut.add(numeroComptecrediteur);
