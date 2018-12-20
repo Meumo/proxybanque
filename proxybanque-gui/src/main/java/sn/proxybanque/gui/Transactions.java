@@ -33,21 +33,20 @@ public class Transactions extends JPanel {
 		JLabel lblNewLabel_1 = new JLabel("");
 		panelFormulaire.add(lblNewLabel_1, BorderLayout.WEST);
 		
-		JButton buttonDebiter = new JButton("Débiter Un Compte");
+		JButton buttonDebiter = new JButton("Retrait");
 		buttonDebiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				AjoutCarte ajoutCarte=new AjoutCarte();
+			Debiter debiter=new Debiter(employerConnect.getId());
 				panelFormulaire.removeAll();
-				
-				ajoutCarte.setBounds(209, 0, 745, 453);
-				panelFormulaire.add(ajoutCarte);
+				debiter.setBounds(209, 0, 745, 453);
+				panelFormulaire.add(debiter);
 				panelFormulaire.validate();
 				
 				
 			}
 		});
-		buttonDebiter.setFont(new Font("Tahoma", Font.BOLD, 15));
+		buttonDebiter.setFont(new Font("Tahoma", Font.BOLD, 12));
 		buttonDebiter.setIcon(new ImageIcon("C:\\Users\\image\\hire-me.png"));
 		buttonDebiter.setBounds(0, 0, 209, 70);
 		add(buttonDebiter);
@@ -56,14 +55,14 @@ public class Transactions extends JPanel {
 		buttonDepot.setHorizontalAlignment(SwingConstants.LEFT);
 		buttonDepot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Depot depot=new Depot();
+				Depot depot=new Depot(employerConnect.getId());
 				panelFormulaire.removeAll();
 				depot.setBounds(209, 0, 745, 453);
 				panelFormulaire.add(depot);
 				panelFormulaire.validate();
 			}
 		});
-		buttonDepot.setFont(new Font("Tahoma", Font.BOLD, 15));
+		buttonDepot.setFont(new Font("Tahoma", Font.BOLD, 12));
 		buttonDepot.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (2).jpg"));
 		buttonDepot.setBounds(0, 71, 209, 70);
 		add(buttonDepot);
@@ -72,43 +71,48 @@ public class Transactions extends JPanel {
 		buttonVirement.setHorizontalAlignment(SwingConstants.LEFT);
 		buttonVirement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SupprimerCarte supprimerCarte=new SupprimerCarte();
+				Virement virement=new Virement(employerConnect.getId());
 				panelFormulaire.removeAll();
-				supprimerCarte.setBounds(209, 0, 745, 453);
-				panelFormulaire.add(supprimerCarte);
+				virement.setBounds(209, 0, 745, 453);
+				panelFormulaire.add(virement);
 				panelFormulaire.validate();
 			}
 		});
-		buttonVirement.setFont(new Font("Tahoma", Font.BOLD, 15));
+		buttonVirement.setFont(new Font("Tahoma", Font.BOLD, 12));
 		buttonVirement.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (3).jpg"));
 		buttonVirement.setBounds(0, 140, 209, 70);
 		add(buttonVirement);
 		
-		JButton buttonGestionPatrimoine = new JButton("Gestion Gatrimoine");
-		buttonGestionPatrimoine.setToolTipText("lister les Cartes");
-		buttonGestionPatrimoine.addActionListener(new ActionListener() {
+		JButton buttonListeTransaction = new JButton("Liste des  Transaction");
+		buttonListeTransaction.setToolTipText("lister les Cartes");
+		buttonListeTransaction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListeCarte listClient=new ListeCarte();
+				ListeTransaction listeTransaction=new ListeTransaction();
 				panelFormulaire.removeAll();
-				listClient.setBounds(209, 0, 745, 453);
-				panelFormulaire.add(listClient);
+				listeTransaction.setBounds(209, 0, 745, 453);
+				panelFormulaire.add(listeTransaction);
 				panelFormulaire.validate();
 			}
 		});
-		buttonGestionPatrimoine.setFont(new Font("Tahoma", Font.BOLD, 15));
-		buttonGestionPatrimoine.setIcon(new ImageIcon("C:\\Users\\image\\customers.png"));
-		buttonGestionPatrimoine.setBounds(0, 209, 209, 70);
-		add(buttonGestionPatrimoine);
+		buttonListeTransaction.setFont(new Font("Tahoma", Font.BOLD, 12));
+		buttonListeTransaction.setIcon(new ImageIcon("C:\\Users\\image\\customers.png"));
+		buttonListeTransaction.setBounds(0, 209, 209, 70);
+		add(buttonListeTransaction);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\image\\images (4).jpg"));
-		lblNewLabel.setBounds(0, 341, 209, 112);
+		lblNewLabel.setBounds(0, 401, 209, 52);
 		add(lblNewLabel);
 		
 		JButton buttonPlacement = new JButton("Gestion Placements");
-		buttonPlacement.setFont(new Font("Tahoma", Font.BOLD, 15));
+		buttonPlacement.setFont(new Font("Tahoma", Font.BOLD, 12));
 		buttonPlacement.setBounds(0, 279, 209, 63);
 		add(buttonPlacement);
+		
+		JButton buttonGestionPatrimoine = new JButton("Gestion Gatrimoine");
+		buttonGestionPatrimoine.setFont(new Font("Tahoma", Font.BOLD, 12));
+		buttonGestionPatrimoine.setBounds(0, 341, 209, 63);
+		add(buttonGestionPatrimoine);
 
 	}
 }
