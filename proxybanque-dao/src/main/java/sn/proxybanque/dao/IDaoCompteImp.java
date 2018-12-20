@@ -11,6 +11,13 @@ import java.util.List;
 import sn.proxybanque.domaine.Compte;
 import sn.proxybanque.utils.MysqlConnection;
 
+/**
+ * Date Decembre 20-2018 # La classe 'IDaoCompteImp' c'est une classe qui etend
+ * notre interface 'IDaoCompte'.
+ * 
+ * @author DIOUF Mamadou & DIACK Mamadou
+ * @see IDaoCompte
+ */
 public class IDaoCompteImp implements IDaoCompte {
 	Connection con = MysqlConnection.getInstanceConnection();
 

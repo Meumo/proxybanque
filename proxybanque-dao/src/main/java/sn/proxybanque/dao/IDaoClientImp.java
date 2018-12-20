@@ -11,6 +11,13 @@ import java.util.List;
 import sn.proxybanque.domaine.Client;
 import sn.proxybanque.utils.MysqlConnection;
 
+/**
+ * Date Decembre 20-2018 # La classe 'IDaoClientImp' c'est une classe qui etend
+ * notre classe IDaoClient.
+ * 
+ * @author DIOUF Mamadou & DIACK Mamadou
+ * @see IDaoClient
+ */
 public class IDaoClientImp implements IDaoClient {
 	Connection con = MysqlConnection.getInstanceConnection();
 
@@ -31,8 +38,8 @@ public class IDaoClientImp implements IDaoClient {
 			java.sql.Date date_sql = new java.sql.Date(t.getDateDenaissance().getTime());
 
 			ps.setDate(11, date_sql);
-			//ps.setDate(11, (Date) t.getDateDenaissance());
-			ps.setDate(11,date_sql);
+			// ps.setDate(11, (Date) t.getDateDenaissance());
+			ps.setDate(11, date_sql);
 			ps.setInt(12, t.getIdConseillerClientel());
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -119,20 +126,19 @@ public class IDaoClientImp implements IDaoClient {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, numberClient);
 			ResultSet rs = ps.executeQuery();
-			
-				while (rs.next()) {
-					clientRecup = new Client(rs.getInt("idClient"), rs.getString("nomClient"), rs.getString("prenomClient"),
-							rs.getString("adresseClient"), rs.getString("telephoneClient"),
-							rs.getDate("dateDenaissanceClient"), rs.getString("emailClient"), rs.getString("sexeClient"),
-							rs.getString("numeroClient"), rs.getString("codePostalClient"), rs.getString("villeClient"),
-							rs.getString("professionClient"), rs.getInt("idConseiller"));
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		                      
-			return clientRecup;
-		}
-		
-}
 
+			while (rs.next()) {
+				clientRecup = new Client(rs.getInt("idClient"), rs.getString("nomClient"), rs.getString("prenomClient"),
+						rs.getString("adresseClient"), rs.getString("telephoneClient"),
+						rs.getDate("dateDenaissanceClient"), rs.getString("emailClient"), rs.getString("sexeClient"),
+						rs.getString("numeroClient"), rs.getString("codePostalClient"), rs.getString("villeClient"),
+						rs.getString("professionClient"), rs.getInt("idConseiller"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return clientRecup;
+	}
+
+}

@@ -1,21 +1,32 @@
 package sn.proxybanque.dao;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Numero {
-	private String url = "jdbc:mysql://localhost:3306/proxibanque";
-	private String user = "objis";
-	private String passwd = "objis";
+import sn.proxybanque.utils.MysqlConnection;
 
+/**
+ * Date Decembre 20-2018 # La classe 'Numero' c'est une classe qui permet de
+ * generer les differents numeros des classe qui composent notre systeme.
+ * 
+ * @author DIOUF Mamadou & DIACK Mamadou
+ */
+public class Numero {
+	Connection con = MysqlConnection.getInstanceConnection();
+
+	/**
+	 * La methode 'generateNumeroCarte' permet de generer le numero d'une carte
+	 * bancaire.
+	 * 
+	 * @return Une chaine de caractere composee uniquement de chiffre.
+	 */
 	public String generateNumeroCarte() {
 		long sufCarte = 0;
 		String prefCarte = null;
 		try {
-			Connection con = DriverManager.getConnection(url, user, passwd);
 			String sql = "SELECT * FROM numero";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -35,11 +46,16 @@ public class Numero {
 		return prefCarte + " " + sufCarte;
 	}
 
+	/**
+	 * La methode 'generateNumeroCompte' permet de generer le numero d'un compte
+	 * bancaire.
+	 * 
+	 * @return Une chaine de caractere composee uniquement de chiffre.
+	 */
 	public String generateNumeroCompte() {
 		long sufCompte = 0;
 		String prefCompte = null;
 		try {
-			Connection con = DriverManager.getConnection(url, user, passwd);
 			String sql = "SELECT * FROM numero";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -59,11 +75,15 @@ public class Numero {
 		return prefCompte + " " + sufCompte;
 	}
 
+	/**
+	 * La methode 'generateNumeroAgence' permet de generer le numero d'une agence.
+	 * 
+	 * @return Une chaine de caractere composee uniquement de chiffre.
+	 */
 	public String generateNumeroAgence() {
 		long sufAgence = 0;
 		long prefAgence = 0;
 		try {
-			Connection con = DriverManager.getConnection(url, user, passwd);
 			String sql = "SELECT * FROM numero";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -83,11 +103,15 @@ public class Numero {
 		return "" + prefAgence + sufAgence;
 	}
 
+	/**
+	 * La methode 'generateNumeroClient' permet de generer le numero d'un client.
+	 * 
+	 * @return Une chaine de caractere composee uniquement de chiffre.
+	 */
 	public String generateNumeroClient() {
 		long sufClient = 0;
 		long prefClient = 0;
 		try {
-			Connection con = DriverManager.getConnection(url, user, passwd);
 			String sql = "SELECT * FROM numero";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -107,11 +131,15 @@ public class Numero {
 		return "" + prefClient + sufClient;
 	}
 
+	/**
+	 * La methode 'generateNumeroEmploye' permet de generer le numero d'un employe.
+	 * 
+	 * @return Une chaine de caractere composee uniquement de chiffre.
+	 */
 	public String generateNumeroEmploye() {
 		long sufEmploye = 0;
 		long prefEmploye = 0;
 		try {
-			Connection con = DriverManager.getConnection(url, user, passwd);
 			String sql = "SELECT * FROM numero";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -131,11 +159,16 @@ public class Numero {
 		return "" + prefEmploye + sufEmploye;
 	}
 
+	/**
+	 * La methode 'generateNumeroTransaction' permet de generer le numero d'une
+	 * transaction.
+	 * 
+	 * @return Une chaine de caractere composee uniquement de chiffre.
+	 */
 	public String generateNumeroTransaction() {
 		long sufTransaction = 0;
 		long prefTransaction = 0;
 		try {
-			Connection con = DriverManager.getConnection(url, user, passwd);
 			String sql = "SELECT * FROM numero";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);

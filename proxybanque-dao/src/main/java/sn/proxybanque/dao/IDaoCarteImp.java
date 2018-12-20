@@ -11,6 +11,13 @@ import java.util.List;
 import sn.proxybanque.domaine.Carte;
 import sn.proxybanque.utils.MysqlConnection;
 
+/**
+ * Date Decembre 20-2018 # La classe 'IDaoCarteImp' c'est une classe qui etend
+ * notre classe IDaoCarte.
+ * 
+ * @author DIOUF Mamadou & DIACK Mamadou
+ * @see IDaoCarte
+ */
 public class IDaoCarteImp implements IDaoCarte {
 
 	Connection con = MysqlConnection.getInstanceConnection();

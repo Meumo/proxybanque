@@ -5,6 +5,13 @@ import java.util.List;
 import sn.proxybanque.dao.IDaoCompteImp;
 import sn.proxybanque.domaine.Compte;
 
+/**
+ * Date Decembre 20-2018 # La classe 'ServiceCompteImp' c'est une classe qui
+ * etend notre interface 'IServiceCompte'.
+ * 
+ * @author DIOUF Mamadou & DIACK Mamadou
+ * @see IServiceCompte
+ */
 public class ServiceCompteImp implements IServiceCompte {
 	IDaoCompteImp compteImp = new IDaoCompteImp();
 

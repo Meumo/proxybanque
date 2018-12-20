@@ -5,6 +5,13 @@ import java.util.List;
 import sn.proxybanque.dao.IDaoCarteImp;
 import sn.proxybanque.domaine.Carte;
 
+/**
+ * Date Decembre 20-2018 # La classe 'ServiceCarteImp' c'est une classe qui etend
+ * notre classe IServiceCarte.
+ * 
+ * @author DIOUF Mamadou & DIACK Mamadou
+ * @see IServiceCarte
+ */
 public class ServiceCarteImp implements IServiceCarte {
 	IDaoCarteImp carteImp = new IDaoCarteImp();
 
