@@ -1,20 +1,21 @@
-package sn.proxybanque.service;
-
+package sn.proxybanque.dao;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import sn.proxybanque.utils.MysqlConnection;
-
 public class Numero {
-	Connection con = MysqlConnection.getInstanceConnection();
+	private String url = "jdbc:mysql://localhost:3306/proxibanque";
+	private String user = "objis";
+	private String passwd = "objis";
 
 	public String generateNumeroCarte() {
 		long sufCarte = 0;
 		String prefCarte = null;
 		try {
+			Connection con = DriverManager.getConnection(url, user, passwd);
 			String sql = "SELECT * FROM numero";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -38,6 +39,7 @@ public class Numero {
 		long sufCompte = 0;
 		String prefCompte = null;
 		try {
+			Connection con = DriverManager.getConnection(url, user, passwd);
 			String sql = "SELECT * FROM numero";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -61,6 +63,7 @@ public class Numero {
 		long sufAgence = 0;
 		long prefAgence = 0;
 		try {
+			Connection con = DriverManager.getConnection(url, user, passwd);
 			String sql = "SELECT * FROM numero";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -84,6 +87,7 @@ public class Numero {
 		long sufClient = 0;
 		long prefClient = 0;
 		try {
+			Connection con = DriverManager.getConnection(url, user, passwd);
 			String sql = "SELECT * FROM numero";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -107,6 +111,7 @@ public class Numero {
 		long sufEmploye = 0;
 		long prefEmploye = 0;
 		try {
+			Connection con = DriverManager.getConnection(url, user, passwd);
 			String sql = "SELECT * FROM numero";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -130,6 +135,7 @@ public class Numero {
 		long sufTransaction = 0;
 		long prefTransaction = 0;
 		try {
+			Connection con = DriverManager.getConnection(url, user, passwd);
 			String sql = "SELECT * FROM numero";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
