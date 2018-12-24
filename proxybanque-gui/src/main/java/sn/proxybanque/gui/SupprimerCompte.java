@@ -170,7 +170,7 @@ public class SupprimerCompte extends JPanel {
 					} else {
                         
 						typeCompte.setText(compteASupprimer.getTypeDeCompte());
-						dateOuverture.setText(compteASupprimer.getDateOuvetureCompte()+"");
+						dateOuverture.setText(compteASupprimer.getDateOuvertureCompte()+"");
 						solde.setText(compteASupprimer.getSoldeCompte()+"");
 						client.setText(compteASupprimer.getIdClient()+"");
 						remove(panelHaut);

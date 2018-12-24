@@ -73,17 +73,32 @@ public class DaoTransaction {
 	 */
 	public boolean retirer(Compte compte, double montdb) {
 		boolean result = false;
-		if (compte.getSoldeCompte() > montdb) {
-			double ancienSolde = compte.getSoldeCompte();
-			double nouvoSolde = ancienSolde - montdb;
-			compte.setSoldeCompte(nouvoSolde);
+		if (compte.getTypeDeCompte().equals("Courant")) {
+			if (compte.getSoldeCompte() + compte.getCaracteristique() != 0
+					&& compte.getSoldeCompte() + compte.getCaracteristique() > 0) {
+				double ancienSolde = compte.getSoldeCompte();
+				double nouvoSolde = ancienSolde - montdb;
+				compte.setSoldeCompte(nouvoSolde);
 
-			compteImp.update(compte);
-			System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
-			result = true;
-			System.out.println("-----------------");
+				compteImp.update(compte);
+				System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
+				result = true;
+				System.out.println("-----------------");
+			} else {
+				System.out.println("impossible!! decouvert depassé");
+			}
 		} else {
-			System.out.println("impossible!! Montant a debiter supperieur au solde");
+			if (compte.getSoldeCompte() > montdb) {
+
+				double ancienSolde = compte.getSoldeCompte();
+				double nouvoSolde = ancienSolde - montdb;
+				compte.setSoldeCompte(nouvoSolde);
+				System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
+				result = true;
+				System.out.println("-----------------");
+			} else {
+				System.out.println("impossible!! Montant a debiter supperieur au solde");
+			}
 		}
 		return result;
 	}
@@ -113,4 +128,5 @@ public class DaoTransaction {
 			System.out.println("Operation Impossible!!");
 		}
 	}
+
 }
