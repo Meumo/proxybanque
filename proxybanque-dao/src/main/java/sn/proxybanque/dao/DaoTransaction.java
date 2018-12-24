@@ -53,12 +53,22 @@ public class DaoTransaction {
 	 *            de type 'double'
 	 */
 	public void verser(Compte compte, double montcred) {
-		double ancienSolde = compte.getSoldeCompte();
-		double nouvoSolde = ancienSolde + (montcred * 0.03);
-		compte.setSoldeCompte(nouvoSolde);
 
-		compteImp.update(compte);
-		System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
+		if (compte.getTypeDeCompte().equals("Epargne")) {
+			double interet = montcred * 0.03;
+			double ancienSolde = compte.getSoldeCompte();
+			double nouvoSolde = ancienSolde + montcred + interet;
+			compte.setSoldeCompte(nouvoSolde);
+			compteImp.update(compte);
+			System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
+		} else {
+			double ancienSolde = compte.getSoldeCompte();
+			double nouvoSolde = ancienSolde + montcred;
+			compte.setSoldeCompte(nouvoSolde);
+			compteImp.update(compte);
+			System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
+		}
+
 	}
 
 	/**
