@@ -24,8 +24,13 @@ import sn.proxybanque.domaine.Employer;
 
 public class EspaceGerant extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	JPanel panelBody =  new Accueille();
+	JPanel panelBody = new Accueille();
+
 	/**
 	 * Launch the application.
 	 */
@@ -33,11 +38,11 @@ public class EspaceGerant extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Connection connection=new Connection();
+					Connection connection = new Connection();
 					connection.setVisible(true);
-					//Employer employer =new Employer();
-					//EspaceGerant frame = new EspaceGerant(employer);
-					//frame.setVisible(true);
+					// Employer employer =new Employer();
+					// EspaceGerant frame = new EspaceGerant(employer);
+					// frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -54,18 +59,18 @@ public class EspaceGerant extends JFrame {
 		setLocationRelativeTo(null);
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		JMenu mnParamettrage = new JMenu("Paramettrage");
 		mnParamettrage.setIcon(new ImageIcon("C:\\Users\\image\\settings.png"));
 		menuBar.add(mnParamettrage);
-		
+
 		JMenuItem menuItem = new JMenuItem("New menu item");
 		mnParamettrage.add(menuItem);
-		
+
 		JMenu mnApropos = new JMenu("Apropos");
 		mnApropos.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement.png"));
 		menuBar.add(mnApropos);
-		
+
 		JMenuItem mntmHelp = new JMenuItem("Help");
 		mntmHelp.setIcon(new ImageIcon("C:\\Users\\image\\word-895582_960_720.png"));
 		mnApropos.add(mntmHelp);
@@ -74,54 +79,52 @@ public class EspaceGerant extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(10, 11, 974, 45);
 		contentPane.add(toolBar);
-		
+
 		JButton btnAccueille = new JButton("Accueille");
 		btnAccueille.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Accueille accueille=new Accueille();
+				Accueille accueille = new Accueille();
 				panelBody.removeAll();
 				panelBody.add(accueille);
 				validate();
-			
+
 			}
 		});
 		btnAccueille.setFont(new Font("Tahoma", Font.BOLD, 11));
 
-
 		btnAccueille.setIcon(new ImageIcon("C:\\Users\\image\\home.png"));
 
 		toolBar.add(btnAccueille);
-		
+
 		JButton buttonConseillers = new JButton("Conseillers  ");
 		buttonConseillers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Conseiller conseiller=new Conseiller();
+				Conseiller conseiller = new Conseiller();
 				panelBody.removeAll();
 				conseiller.setBounds(10, 67, 964, 453);
-				panelBody.add(conseiller,BorderLayout.CENTER);
+				panelBody.add(conseiller, BorderLayout.CENTER);
 				getContentPane().validate();
 			}
-			
+
 		});
 		buttonConseillers.setFont(new Font("Tahoma", Font.BOLD, 11));
-
 
 		buttonConseillers.setIcon(new ImageIcon("C:\\Users\\image\\special-offer.png"));
 
 		buttonConseillers.setToolTipText("Gestion des conseillers clientelle");
 		toolBar.add(buttonConseillers);
-		
+
 		JButton buttonClients = new JButton("Clients");
 		buttonClients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Clients clients=new Clients(employer);
+				Clients clients = new Clients(employer);
 				panelBody.removeAll();
 				clients.setBounds(10, 67, 964, 453);
-				panelBody.add(clients,BorderLayout.CENTER);
+				panelBody.add(clients, BorderLayout.CENTER);
 				getContentPane().validate();
 			}
 		});
@@ -133,14 +136,14 @@ public class EspaceGerant extends JFrame {
 		buttonClients.setToolTipText("Gestion des ");
 
 		toolBar.add(buttonClients);
-		
+
 		JButton buttonComptes = new JButton("Comptes");
 		buttonComptes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CompteBanque compteBanque=new CompteBanque(employer);
+				CompteBanque compteBanque = new CompteBanque(employer);
 				panelBody.removeAll();
 				compteBanque.setBounds(10, 67, 964, 453);
-				panelBody.add(compteBanque,BorderLayout.CENTER);
+				panelBody.add(compteBanque, BorderLayout.CENTER);
 				getContentPane().validate();
 			}
 		});
@@ -152,14 +155,14 @@ public class EspaceGerant extends JFrame {
 		buttonComptes.setToolTipText("Gestion des ");
 
 		toolBar.add(buttonComptes);
-		
+
 		JButton buttonCartesBancaires = new JButton("Cartes  ");
 		buttonCartesBancaires.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CartesBanque cartesBanque=new CartesBanque(employer);
+				CartesBanque cartesBanque = new CartesBanque(employer);
 				panelBody.removeAll();
 				cartesBanque.setBounds(10, 67, 964, 453);
-				panelBody.add(cartesBanque,BorderLayout.CENTER);
+				panelBody.add(cartesBanque, BorderLayout.CENTER);
 				getContentPane().validate();
 			}
 		});
@@ -171,96 +174,90 @@ public class EspaceGerant extends JFrame {
 		buttonCartesBancaires.setToolTipText("Gestion des ");
 
 		toolBar.add(buttonCartesBancaires);
-		
+
 		JButton buttonTransaction = new JButton("Transactions");
 		buttonTransaction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Transactions transactions=new Transactions(employer);
+				Transactions transactions = new Transactions(employer);
 				panelBody.removeAll();
 				transactions.setBounds(10, 67, 964, 453);
-				panelBody.add(transactions,BorderLayout.CENTER);
+				panelBody.add(transactions, BorderLayout.CENTER);
 				getContentPane().validate();
 			}
-			
+
 		});
 		buttonTransaction.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
-				buttonTransaction.setIcon(new ImageIcon("C:\\Users\\image\\images (2).jpg"));
-				buttonTransaction.setToolTipText("Gestion des Transactions");
-				toolBar.add(buttonTransaction);
-		
+
+		buttonTransaction.setIcon(new ImageIcon("C:\\Users\\image\\images (2).jpg"));
+		buttonTransaction.setToolTipText("Gestion des Transactions");
+		toolBar.add(buttonTransaction);
+
 		JButton buttonAuditer = new JButton("Auditer");
 		buttonAuditer.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
-		
-				buttonAuditer.setIcon(new ImageIcon("C:\\Users\\image\\images.jpg"));
-				buttonAuditer.setToolTipText("Gestion de l'audit");
-				toolBar.add(buttonAuditer);
-		
+
+		buttonAuditer.setIcon(new ImageIcon("C:\\Users\\image\\images.jpg"));
+		buttonAuditer.setToolTipText("Gestion de l'audit");
+		toolBar.add(buttonAuditer);
+
 		JButton buttonSimulationCredit = new JButton("Simulation ");
 		buttonSimulationCredit.setFont(new Font("Tahoma", Font.BOLD, 11));
-
 
 		buttonSimulationCredit.setIcon(new ImageIcon("C:\\Users\\image\\simitation.jpg"));
 
 		buttonSimulationCredit.setToolTipText("Gestion de la simulation de credit ");
 		toolBar.add(buttonSimulationCredit);
-		
+
 		JButton buttonJournalisation = new JButton("Journalisation");
 		buttonJournalisation.setFont(new Font("Tahoma", Font.BOLD, 11));
-
 
 		buttonJournalisation.setIcon(new ImageIcon("C:\\Users\\image\\images (1).jpg"));
 		buttonJournalisation.setToolTipText("Gestion de la journalisation des transactions ");
 		toolBar.add(buttonJournalisation);
 		panelBody.setBackground(new Color(255, 255, 255));
-		
-		//Accueille accueille=new Accueille();
-		
-		
+
+		// Accueille accueille=new Accueille();
+
 		panelBody.setBounds(10, 55, 964, 465);
 		contentPane.add(panelBody);
 		panelBody.setLayout(new BorderLayout(0, 0));
-		
+
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon("C:\\Users\\image\\acc.gif"));
 		panelBody.add(label);
-		
+
 		JPanel panelBas = new JPanel();
 		panelBas.setBackground(Color.WHITE);
 		panelBas.setBounds(10, 531, 964, 49);
 		contentPane.add(panelBas);
 
-		
 		JButton buttonDeconne = new JButton("Deconnexion");
 		buttonDeconne.setIcon(new ImageIcon("C:\\Users\\image\\logout.png"));
 		buttonDeconne.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer la deconnexion", "Confirmation",
 						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-					Connection connection=new Connection();
+					Connection connection = new Connection();
 					dispose();
 					connection.setVisible(true);
 				}
-				
+
 			}
-			
-			
+
 		});
 		panelBas.add(buttonDeconne);
 
 		panelBas.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
+
 		JLabel Profil = new JLabel("En ligne");
 		panelBas.add(Profil);
 		Profil.setForeground(Color.GREEN);
 		Profil.setFont(new Font("Tahoma", Font.BOLD, 17));
-		
+
 		JLabel nomEmployer = new JLabel("nomEmployer");
 		panelBas.add(nomEmployer);
 		nomEmployer.setFont(new Font("Tahoma", Font.ITALIC, 16));
 		nomEmployer.setText(employer.getNom());
-		
+
 		JLabel prenomEmployer = new JLabel("New label");
 		panelBas.add(prenomEmployer);
 		prenomEmployer.setFont(new Font("Tahoma", Font.ITALIC, 16));

@@ -5,6 +5,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.text.ParseException;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,21 +22,17 @@ import javax.swing.border.TitledBorder;
 
 import com.toedter.calendar.JDateChooser;
 
-import sn.proxybanque.domaine.Carte;
 import sn.proxybanque.domaine.Compte;
-import sn.proxybanque.domaine.Employer;
 import sn.proxybanque.domaine.Transaction;
 import sn.proxybanque.service.Numero;
-import sn.proxybanque.service.ServiceCarteImp;
 import sn.proxybanque.service.ServiceCompteImp;
 import sn.proxybanque.service.ServiceTransaction;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.text.ParseException;
-import java.util.Date;
-
 public class Debiter extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField numeroCompte;
 	private JTextField typeTansaction;
 	private JTextField dateTransaction;
@@ -41,7 +41,7 @@ public class Debiter extends JPanel {
 	Compte compteARetire;
 	final JPanel panelHaut;
 	private JTextField montant;
-	 Date dateTrans = null;
+	Date dateTrans = null;
 
 	/**
 	 * Create the panel.
@@ -50,7 +50,8 @@ public class Debiter extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 		final JPanel panelCentre = new JPanel();
 		panelCentre.setBackground(new Color(176, 196, 222));
-		panelCentre.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Compte Trouve", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(102, 102, 204)));
+		panelCentre.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Compte Trouve",
+				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(102, 102, 204)));
 		add(panelCentre);
 		panelCentre.setLayout(null);
 		remove(panelCentre);
@@ -74,8 +75,7 @@ public class Debiter extends JPanel {
 		Client.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		Client.setBounds(55, 176, 188, 30);
 		panelCentre.add(Client);
-		Numero numero = new Numero();
-		String num = numero.generateNumeroEmploye();
+		 
 
 		typeTansaction = new JTextField();
 		typeTansaction.setText("Retrait");
@@ -96,10 +96,8 @@ public class Debiter extends JPanel {
 		panelCentre.add(solde);
 		solde.setColumns(30);
 
-		// buttonGroup.add(buttonSexeConseillerFemme);
-		// buttonGroup.add(buttonSexeconseillerHomme);
-
-		final JDateChooser dateNaissanceConseiller;
+	
+		
 
 		client = new JTextField();
 		client.setEditable(false);
@@ -107,28 +105,23 @@ public class Debiter extends JPanel {
 		panelCentre.add(client);
 		client.setColumns(30);
 
-		JList list = new JList();
-		list.setBounds(388, 26, 1, 1);
-		panelCentre.add(list);
-
 		JButton buttonDepot = new JButton("Valider");
 		buttonDepot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ServiceTransaction serviceTransaction=new ServiceTransaction();
-				double montantARetire=0;
-				if(montant.getText().length()>0)
-				{
-					 montantARetire=Double.parseDouble(montant.getText());
+				ServiceTransaction serviceTransaction = new ServiceTransaction();
+				double montantARetire = 0;
+				if (montant.getText().length() > 0) {
+					montantARetire = Double.parseDouble(montant.getText());
 				}
-			    if(montantARetire<compteARetire.getSoldeCompte()) {
-			    	if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer le Retrait",
-							"Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+				if (serviceTransaction.retirer(compteARetire, montantARetire)) {
+					if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer le Retrait", "Confirmation",
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						Transaction transaction;
-						serviceTransaction.retirer(compteARetire, montantARetire);
-						Numero numero=new Numero();
-						transaction=new Transaction();
+						//serviceTransaction.retirer(compteARetire, montantARetire);
+						Numero numero = new Numero();
+						transaction = new Transaction();
 						try {
-							Heure heure=new Heure();
+							Heure heure = new Heure();
 							transaction.setDateTransaction(heure.daterecup());
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
@@ -146,8 +139,8 @@ public class Debiter extends JPanel {
 						add(panelHaut);
 						validate();
 					}
-			    }else {
-					JOptionPane.showMessageDialog(null,"ce montant ne peut pas etre retire du compte");
+				} else {
+					JOptionPane.showMessageDialog(null, "ce montant ne peut pas etre retire du compte");
 				}
 
 			}
@@ -172,28 +165,31 @@ public class Debiter extends JPanel {
 		buttonAnnuler.setFont(new Font("Tahoma", Font.BOLD, 11));
 		buttonAnnuler.setBounds(413, 282, 128, 30);
 		panelCentre.add(buttonAnnuler);
+
+
+		JLabel lblMontantADepose = new JLabel("Montant a Deposer");
+
 		
-		JLabel lblMontantADepose = new JLabel("Montant à Retirer");
+
 		lblMontantADepose.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblMontantADepose.setBounds(55, 232, 188, 30);
 		panelCentre.add(lblMontantADepose);
-		
+
 		montant = new JTextField();
 		montant.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent evt) {
-				char car= evt.getKeyChar();
-		        if((car<'0' || car>'9' ) && solde.getText().contains(".")
-		            && (car!=(char)KeyEvent.VK_BACK_SPACE))
-		        {
-		            evt.consume();
-		            JOptionPane.showMessageDialog(null,"entre seulment des chiffre","validation  "
-		                ,JOptionPane.INFORMATION_MESSAGE);
-		        } else if((car<'0' ||car>'9')&&(car!='.')
-		            &&(car!=(char)KeyEvent.VK_BACK_SPACE)){
-		            evt.consume();
-		            JOptionPane.showMessageDialog(null,"SVP entrer seulement des chiffre","message de confirmation d'ecrire seulment des numero "
-		                ,JOptionPane.INFORMATION_MESSAGE); }
+				char car = evt.getKeyChar();
+				if ((car < '0' || car > '9') && solde.getText().contains(".")
+						&& (car != (char) KeyEvent.VK_BACK_SPACE)) {
+					evt.consume();
+					JOptionPane.showMessageDialog(null, "entre seulment des chiffre", "validation  ",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else if ((car < '0' || car > '9') && (car != '.') && (car != (char) KeyEvent.VK_BACK_SPACE)) {
+					evt.consume();
+					JOptionPane.showMessageDialog(null, "SVP entrer seulement des chiffre",
+							"message de confirmation d'ecrire seulment des numero ", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		montant.setBounds(313, 227, 228, 30);
@@ -219,27 +215,27 @@ public class Debiter extends JPanel {
 		buttonRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				ServiceCompteImp serviceCompteImp=new ServiceCompteImp();
+				ServiceCompteImp serviceCompteImp = new ServiceCompteImp();
 				String numeroEntre = numeroCompte.getText();
 				if (numeroEntre.length() == 0) {
 					JOptionPane.showMessageDialog(null, "entre le numero du compte pour le retrait");
 				} else {
-					compteARetire=serviceCompteImp.rechercherParNumeroCompte(numeroEntre);
+					compteARetire = serviceCompteImp.rechercherParNumeroCompte(numeroEntre);
 					if (compteARetire == null) {
 						JOptionPane.showMessageDialog(null, "le compte n'existe pas dans la basse de donnee");
 					} else {
-                       
+
 						typeTansaction.setText("Retrait");
 						try {
-							Heure heure =new Heure();
-							dateTransaction.setText(heure.daterecup()+"");
+							Heure heure = new Heure();
+							dateTransaction.setText(heure.daterecup() + "");
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						solde.setText(compteARetire.getSoldeCompte()+"");
-						
-						client.setText(compteARetire.getIdClient()+"");
+						solde.setText(compteARetire.getSoldeCompte() + "");
+
+						client.setText(compteARetire.getIdClient() + "");
 						remove(panelHaut);
 						add(panelCentre);
 						validate();
