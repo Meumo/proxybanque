@@ -54,7 +54,7 @@ public class DaoTransaction {
 	 */
 	public void verser(Compte compte, double montcred) {
 		double ancienSolde = compte.getSoldeCompte();
-		double nouvoSolde = ancienSolde + montcred;
+		double nouvoSolde = ancienSolde + (montcred * 0.03);
 		compte.setSoldeCompte(nouvoSolde);
 
 		compteImp.update(compte);
