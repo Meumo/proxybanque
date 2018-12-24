@@ -113,11 +113,11 @@ public class Debiter extends JPanel {
 				if (montant.getText().length() > 0) {
 					montantARetire = Double.parseDouble(montant.getText());
 				}
-				if (montantARetire < compteARetire.getSoldeCompte()) {
+				if (serviceTransaction.retirer(compteARetire, montantARetire)) {
 					if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer le Retrait", "Confirmation",
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						Transaction transaction;
-						serviceTransaction.retirer(compteARetire, montantARetire);
+						//serviceTransaction.retirer(compteARetire, montantARetire);
 						Numero numero = new Numero();
 						transaction = new Transaction();
 						try {
@@ -170,7 +170,6 @@ public class Debiter extends JPanel {
 		JLabel lblMontantADepose = new JLabel("Montant a Deposer");
 
 		
-		JLabel lblMontantADepose = new JLabel("Montant à Retirer");
 
 		lblMontantADepose.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblMontantADepose.setBounds(55, 232, 188, 30);

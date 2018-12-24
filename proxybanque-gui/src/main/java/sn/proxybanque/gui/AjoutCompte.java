@@ -21,6 +21,8 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
+import org.jdom.adapters.DOMAdapter;
+
 import com.toedter.calendar.JDateChooser;
 
 import sn.proxybanque.domaine.Carte;
@@ -148,11 +150,14 @@ public class AjoutCompte extends JPanel {
 				}
 				Date dateEntre = dateOuverture.getDate();
 				String typeCompte = "";
+				double caracteristique = 0;
 				String numeroCompt = numeroCompte.getText();
 				if (compteEpargne.isSelected()) {
 					typeCompte = "Epargne";
+					 caracteristique = 0.03;
 				} else {
 					typeCompte = "Courant";
+					caracteristique = 656510;
 				}
 				String numeroClient = (String) listeClient.getSelectedItem();
 				int idClient = serviceClientImp.rechercherParNumeroClient(numeroClient).getId();
@@ -168,8 +173,10 @@ public class AjoutCompte extends JPanel {
 					compteCreer.setTypeDeCompte(typeCompte);
 					compteCreer.setSoldeCompte(soldeEntre);
 					compteCreer.setIdClient(idClient);
+					compteCreer.setCaracteristique(caracteristique);
 					ServiceCompteImp serviceCompteImp = new ServiceCompteImp();
 					serviceCompteImp.ajouter(compteCreer);
+					
 					JOptionPane.showMessageDialog(null, "Compte Creer");
 					String newNumer0 = numero.generateNumeroCompte();
 					numeroCompte.setText(newNumer0);
