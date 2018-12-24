@@ -163,7 +163,7 @@ public class AjoutCompte extends JPanel {
 
 				} else {
 					Compte compteCreer = new Compte();
-					compteCreer.setDateOuvetureCompte(dateEntre);
+					compteCreer.setDateOuvertureCompte(dateEntre);
 					compteCreer.setNumeroCompte(numeroCompt);
 					compteCreer.setTypeDeCompte(typeCompte);
 					compteCreer.setSoldeCompte(soldeEntre);

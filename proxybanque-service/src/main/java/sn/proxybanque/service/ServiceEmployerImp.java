@@ -4,7 +4,13 @@ import java.util.List;
 
 import sn.proxybanque.dao.IDaoEmployerImp;
 import sn.proxybanque.domaine.Employer;
-
+/**
+ * Date Decembre 20-2018 # La classe 'ServiceEmployerImp' c'est une classe qui
+ * etend notre interface 'IServiceEmployer'.
+ * 
+ * @author DIOUF Mamadou & DIACK Mamadou
+ * @see IServiceEmployer
+ */
 public class ServiceEmployerImp implements IServiceEmployer {
 	IDaoEmployerImp iDaoEmployerImp = new IDaoEmployerImp();
 

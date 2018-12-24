@@ -166,7 +166,12 @@ public class Debiter extends JPanel {
 		buttonAnnuler.setBounds(413, 282, 128, 30);
 		panelCentre.add(buttonAnnuler);
 
+
 		JLabel lblMontantADepose = new JLabel("Montant a Deposer");
+
+		
+		JLabel lblMontantADepose = new JLabel("Montant à Retirer");
+
 		lblMontantADepose.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblMontantADepose.setBounds(55, 232, 188, 30);
 		panelCentre.add(lblMontantADepose);

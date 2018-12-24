@@ -3,7 +3,7 @@ package sn.proxybanque.dao;
 import java.util.List;
 
 /**
- * Date Decembre 218-2018 # L'interface IDaoGenerique c'est une interface
+ * Date Decembre 18-2018 # L'interface IDaoGenerique c'est une interface
  * generique qui contient nos methodes generique.
  * 
  * @author DIOUF Mamadou & DIACK Mamadou

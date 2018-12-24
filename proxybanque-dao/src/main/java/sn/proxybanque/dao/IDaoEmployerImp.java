@@ -11,6 +11,13 @@ import java.util.List;
 import sn.proxybanque.domaine.Employer;
 import sn.proxybanque.utils.MysqlConnection;
 
+/**
+ * Date Decembre 20-2018 # La classe 'IDaoEmployerImp' c'est une classe qui
+ * etend notre interface 'IDaoEmployer'.
+ * 
+ * @author DIOUF Mamadou & DIACK Mamadou
+ * @see IDaoEmployer
+ */
 public class IDaoEmployerImp implements IDaoEmployer {
 
 	Connection con = MysqlConnection.getInstanceConnection();
@@ -119,10 +126,10 @@ public class IDaoEmployerImp implements IDaoEmployer {
 			while (rs.next()) {
 				employeRecup = new Employer(rs.getString("nomEmploye"), rs.getString("prenomEmploye"),
 						rs.getString("adresseEmploye"), rs.getString("TelephoneEmploye"),
-						rs.getDate("dateDenaissanceEmploye"), rs.getString("EmailEmploye"),
-						rs.getString("sexeEmploye"), rs.getString("numeroEmploye"), rs.getString("typeEmploye"),
-						rs.getString("loginEmploye"), rs.getString("passwordEmploye"), rs.getInt("idAgence"));
-				}
+						rs.getDate("dateDenaissanceEmploye"), rs.getString("EmailEmploye"), rs.getString("sexeEmploye"),
+						rs.getString("numeroEmploye"), rs.getString("typeEmploye"), rs.getString("loginEmploye"),
+						rs.getString("passwordEmploye"), rs.getInt("idAgence"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

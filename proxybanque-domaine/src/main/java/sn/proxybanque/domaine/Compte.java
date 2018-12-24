@@ -35,6 +35,11 @@ public class Compte {
 	 * Identifiant d'un Client dans la classe compte
 	 */
 	private int idClient;
+	
+	/**
+	 * Champ qui caracterise un type compte 
+	 */
+	private double caracteristique;
 
 	/**
 	 * Constructeur sans arguments
@@ -55,6 +60,28 @@ public class Compte {
 		this.idClient = idClient;
 	}
 
+	
+	
+	public Compte(int idCompte, String numeroCompte, double soldeCompte, String typeDeCompte, Date dateOuvertureCompte,
+			int idClient, double caracteristique) {
+		super();
+		this.idCompte = idCompte;
+		this.numeroCompte = numeroCompte;
+		this.soldeCompte = soldeCompte;
+		this.typeDeCompte = typeDeCompte;
+		this.dateOuvertureCompte = dateOuvertureCompte;
+		this.idClient = idClient;
+		this.caracteristique = caracteristique;
+	}
+
+	public double getDecouvert() {
+		return caracteristique;
+	}
+
+	public void setCaracteristique(double caracteristique) {
+		this.caracteristique = caracteristique;
+	}
+
 	public String getNumeroCompte() {
 		return numeroCompte;
 	}
@@ -67,12 +94,17 @@ public class Compte {
 		return typeDeCompte;
 	}
 
-	public Date getDateOuvetureCompte() {
+	public Date getDateOuvertureCompte() {
 		return dateOuvertureCompte;
 	}
 
 	public int getIdClient() {
 		return idClient;
+	}
+
+	
+	public double getCaracteristique() {
+		return caracteristique;
 	}
 
 	public void setNumeroCompte(String numeroCompte) {
@@ -87,7 +119,7 @@ public class Compte {
 		this.typeDeCompte = typeDeCompte;
 	}
 
-	public void setDateOuvetureCompte(Date dateOuvetureCompte) {
+	public void setDateOuvertureCompte(Date dateOuvetureCompte) {
 		this.dateOuvertureCompte = dateOuvetureCompte;
 	}
 
@@ -103,5 +135,4 @@ public class Compte {
 		this.idCompte = idCompte;
 	}
 
-	
 }

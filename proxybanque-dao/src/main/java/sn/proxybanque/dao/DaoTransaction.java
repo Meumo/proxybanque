@@ -8,10 +8,24 @@ import sn.proxybanque.domaine.Compte;
 import sn.proxybanque.domaine.Transaction;
 import sn.proxybanque.utils.MysqlConnection;
 
+/**
+ * Date Decembre 20-2018 # La classe 'DaoTransaction' c'est une classe qui nous
+ * permet d'effectuer les operations (debiter et crediter) et inserer une
+ * transaction dans notre base de donnees.
+ * 
+ * @author DIOUF Mamadou & DIACK Mamadou
+ */
 public class DaoTransaction {
 	Connection con = MysqlConnection.getInstanceConnection();
 	IDaoCompteImp compteImp = new IDaoCompteImp();
 
+	/**
+	 * La methode 'create(Transaction t)' recoit une transaction et l'insere dans la
+	 * base de donnees.
+	 * 
+	 * @param t
+	 *            De la methode de type 'Transaction'
+	 */
 	public void create(Transaction t) {
 		String sql = "INSERT INTO transaction(numeroTransaction, montantTransaction, dateTransaction, typeTransaction, idCompte, idConseiller) VALUES (?,?,?,?,?,?)";
 		try {
@@ -29,6 +43,15 @@ public class DaoTransaction {
 		}
 	}
 
+	/**
+	 * La methode 'verser(Compte compte, double montcred)' qui permet d'effectuer un
+	 * versement d'un montant dans un compte.
+	 * 
+	 * @param compte
+	 *            de type 'Compte'
+	 * @param montcred
+	 *            de type 'double'
+	 */
 	public void verser(Compte compte, double montcred) {
 		double ancienSolde = compte.getSoldeCompte();
 		double nouvoSolde = ancienSolde + montcred;
@@ -38,23 +61,59 @@ public class DaoTransaction {
 		System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
 	}
 
+	/**
+	 * La methode 'retirer(Compte compte, double montdb)' qui permet d'effectuer un
+	 * retrait d'un montant d'un compte.'
+	 * 
+	 * @param compte
+	 *            de type 'Compte'
+	 * @param montdb
+	 *            de type 'double'
+	 * @return true si l'operation a reussi et false daans le cas contraire
+	 */
 	public boolean retirer(Compte compte, double montdb) {
 		boolean result = false;
-		if (compte.getSoldeCompte() > montdb) {
-			double ancienSolde = compte.getSoldeCompte();
-			double nouvoSolde = ancienSolde - montdb;
-			compte.setSoldeCompte(nouvoSolde);
+		if (compte.getTypeDeCompte().equals("Courant")) {
+			if (compte.getSoldeCompte() + compte.getCaracteristique() != 0
+					&& compte.getSoldeCompte() + compte.getCaracteristique() > 0) {
+				double ancienSolde = compte.getSoldeCompte();
+				double nouvoSolde = ancienSolde - montdb;
+				compte.setSoldeCompte(nouvoSolde);
 
-			compteImp.update(compte);
-			System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
-			result = true;
-			System.out.println("-----------------");
+				compteImp.update(compte);
+				System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
+				result = true;
+				System.out.println("-----------------");
+			} else {
+				System.out.println("impossible!! decouvert depassé");
+			}
 		} else {
-			System.out.println("impossible!! Montant a debiter supperieur au solde");
+			if (compte.getSoldeCompte() > montdb) {
+
+				double ancienSolde = compte.getSoldeCompte();
+				double nouvoSolde = ancienSolde - montdb;
+				compte.setSoldeCompte(nouvoSolde);
+				System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
+				result = true;
+				System.out.println("-----------------");
+			} else {
+				System.out.println("impossible!! Montant a debiter supperieur au solde");
+			}
 		}
 		return result;
 	}
 
+	/**
+	 * La methode 'virer(Compte compteDebiteur, Compte compteCrediteur, double
+	 * montant)' qui permet d'effectuer un virement d'un compte vers un autre.
+	 * 
+	 * @param compteDebiteur
+	 *            de type 'double'
+	 * @param compteCrediteur
+	 *            de type 'double'
+	 * @param montant
+	 *            de type 'double'
+	 */
 	public void virer(Compte compteDebiteur, Compte compteCrediteur, double montant) {
 		boolean isCorrect = this.retirer(compteDebiteur, montant);
 		if (isCorrect) {
@@ -69,4 +128,5 @@ public class DaoTransaction {
 			System.out.println("Operation Impossible!!");
 		}
 	}
+
 }

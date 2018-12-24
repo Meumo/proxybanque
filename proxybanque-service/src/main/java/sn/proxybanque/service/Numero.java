@@ -4,6 +4,12 @@ import java.sql.Connection;
 
 import sn.proxybanque.utils.MysqlConnection;
 
+/**
+ * Date Decembre 20-2018 # La classe 'Numero' c'est une classe qui permet de
+ * generer les differents numeros des classe qui composent notre systeme.
+ * 
+ * @author DIOUF Mamadou & DIACK Mamadou
+ */
 public class Numero {
 	Connection con = MysqlConnection.getInstanceConnection();
 sn.proxybanque.dao.Numero numero =new sn.proxybanque.dao.Numero();
