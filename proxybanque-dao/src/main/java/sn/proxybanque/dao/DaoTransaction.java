@@ -64,13 +64,11 @@ public class DaoTransaction {
 			double nouvoSolde = ancienSolde + montcred + interet;
 			compte.setSoldeCompte(nouvoSolde);
 			compteImp.update(compte);
-			System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
 		} else {
 			double ancienSolde = compte.getSoldeCompte();
 			double nouvoSolde = ancienSolde + montcred;
 			compte.setSoldeCompte(nouvoSolde);
 			compteImp.update(compte);
-			System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
 		}
 
 	}
@@ -95,11 +93,9 @@ public class DaoTransaction {
 				compte.setSoldeCompte(nouvoSolde);
 
 				compteImp.update(compte);
-				System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
 				result = true;
 				System.out.println("-----------------");
 			} else {
-				System.out.println("impossible!! decouvert depassé");
 			}
 		} else {
 			if (compte.getSoldeCompte() > montdb) {
@@ -107,11 +103,9 @@ public class DaoTransaction {
 				double ancienSolde = compte.getSoldeCompte();
 				double nouvoSolde = ancienSolde - montdb;
 				compte.setSoldeCompte(nouvoSolde);
-				System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
 				result = true;
 				System.out.println("-----------------");
 			} else {
-				System.out.println("impossible!! Montant a debiter supperieur au solde");
 			}
 		}
 		return result;
@@ -136,8 +130,6 @@ public class DaoTransaction {
 			this.verser(compteCrediteur, montant);
 
 			compteImp.update(compteCrediteur);
-
-			System.out.println("Operation de virement reussie!!");
 		} else {
 			System.out.println("Operation Impossible!!");
 		}
