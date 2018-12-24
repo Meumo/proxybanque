@@ -39,29 +39,20 @@ public class ModifierClient extends JPanel {
 	Client clientAModifer;
 	final JPanel panelHaut;
 	String sexe;
+	private JTextField dateDeNaissanceClient;
+	private JTextField sexeClient;
 
 	/**
 	 * Create the panel.
 	 */
 	public ModifierClient(final int idConseiller) {
 		ButtonGroup groupeSexe=new ButtonGroup();
-		final JRadioButton homme=new JRadioButton("homme");
-		homme.setSelected(true);
-		homme.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
-		final  JRadioButton femme=new JRadioButton("femme");
-		femme.setSelected(true);
-		femme.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
-		femme.setBounds(547, 180, 96, 23);
-		homme.setBounds(656, 180, 83, 23);
-		groupeSexe.add(homme);
-		groupeSexe.add(femme);
 		
 		Employer employer;
 		setLayout(new BorderLayout(0, 0));
 		final JPanel panelCentre = new JPanel();
 		panelCentre.setBackground(new Color(176, 196, 222));
-		panelCentre.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Conseiller Trouve",
-				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(102, 102, 204)));
+		panelCentre.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "ClientTrouve", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(102, 102, 204)));
 		add(panelCentre);
 		panelCentre.setLayout(null);
 		remove(panelCentre);
@@ -80,11 +71,6 @@ public class ModifierClient extends JPanel {
 		lblAdresseClient.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblAdresseClient.setBounds(55, 103, 188, 30);
 		panelCentre.add(lblAdresseClient);
-
-		JLabel lblSexe = new JLabel("Sexe");
-		lblSexe.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		lblSexe.setBounds(620, 144, 36, 30);
-		panelCentre.add(lblSexe);
 
 		JLabel lblEmail = new JLabel("Email");
 		lblEmail.setFont(new Font("Times New Roman", Font.ITALIC, 15));
@@ -119,11 +105,13 @@ public class ModifierClient extends JPanel {
 		String num = numero.generateNumeroEmploye();
 
 		nomClient = new JTextField();
+		nomClient.setEditable(false);
 		nomClient.setBounds(313, 21, 228, 26);
 		panelCentre.add(nomClient);
 		nomClient.setColumns(30);
 
 		prenomClient = new JTextField();
+		prenomClient.setEditable(false);
 		prenomClient.setBounds(313, 55, 228, 30);
 		panelCentre.add(prenomClient);
 		prenomClient.setColumns(30);
@@ -162,37 +150,25 @@ public class ModifierClient extends JPanel {
 		list.setBounds(388, 26, 1, 1);
 		panelCentre.add(list);
 
-		final JDateChooser dateDeNaissanceClient = new JDateChooser();
-		dateDeNaissanceClient.setBounds(313, 336, 228, 26);
-		panelCentre.add(dateDeNaissanceClient);
-
 		JButton buttonModifier = new JButton("Modifier");
 		buttonModifier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String numero=numeroClient.getText();
-				String nom=nomClient.getText();
-				String prenom=prenomClient.getText();
+				
 				String adresse=adresseClient.getText();
 				String email=emailClient.getText();
 				String ville=villeClient.getText();
 				String codepost=codepostalClient.getText();
 				String professeion=professionClient.getText();
 				String telephone=telClient.getText();
-			    Date date=dateDeNaissanceClient.getDate();
-			    if(homme.isSelected())
-				{
-					sexe=new String("Homme");
-					
-				}else
-				{
-					sexe=new String("Femme");
-				}
+			   
 			    
-			    if( nom.length()==0 || prenom.length()==0 ||adresse.length()==0 || email.length()==0 ||ville.length()==0 ||codepost.length()==0 ||professeion.length()==0 ||date==null)
+			    
+			    if(adresse.length()==0 || email.length()==0 ||ville.length()==0 ||codepost.length()==0 ||professeion.length()==0 )
 				{
 					JOptionPane.showMessageDialog(null,"veuillez remplire tout les champs");
 				}else {
-					clientAModifer=new Client(nom, prenom, adresse, telephone, date, email, sexe, numero, codepost, ville, professeion, idConseiller);
+					clientAModifer=new Client(clientAModifer.getNom(),clientAModifer.getPrenom(), adresse, telephone, clientAModifer.getDateDenaissance(), email,clientAModifer.getSexe(), numero, codepost, ville, professeion, idConseiller);
 					ServiceClientImp serviceClientImp=new ServiceClientImp();
 					if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer les modification du Client",
 							"Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -239,9 +215,23 @@ public class ModifierClient extends JPanel {
 		villeClient = new JTextField();
 		villeClient.setBounds(313, 260, 228, 30);
 		panelCentre.add(villeClient);
-
-		panelCentre.add(femme);
-		panelCentre.add(homme);
+		
+		dateDeNaissanceClient = new JTextField();
+		dateDeNaissanceClient.setEditable(false);
+		dateDeNaissanceClient.setBounds(313, 336, 228, 30);
+		panelCentre.add(dateDeNaissanceClient);
+		dateDeNaissanceClient.setColumns(10);
+		
+		sexeClient = new JTextField();
+		sexeClient.setEditable(false);
+		sexeClient.setBounds(580, 178, 128, 30);
+		panelCentre.add(sexeClient);
+		sexeClient.setColumns(10);
+		
+		final JLabel dd = new JLabel("Sexe");
+		dd.setFont(new Font("Times New Roman", Font.ITALIC, 13));
+		dd.setBounds(624, 145, 67, 30);
+		panelCentre.add(dd);
 		
 		
 
@@ -285,14 +275,8 @@ public class ModifierClient extends JPanel {
 						codepostalClient.setText(clientAModifer.getEmail());
 						villeClient.setText(clientAModifer.getVileClient());
 						professionClient.setText(clientAModifer.getProfessionClient());
-						if(clientAModifer.getSexe().equals("Femme"))
-						{
-							homme.setSelected(true);
-							
-						}else
-						{
-							femme.setSelected(true);
-						}
+						dateDeNaissanceClient.setText(clientAModifer.getDateDenaissance()+"");
+						sexeClient.setText(clientAModifer.getSexe());
 						panelCentre.setBounds(0, 53, 745, 412);
 						remove(panelHaut);
 						add(panelCentre);

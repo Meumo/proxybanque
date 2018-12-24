@@ -37,11 +37,14 @@ import sn.proxybanque.service.ServiceEmployerImp;
 import javax.swing.JRadioButton;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
 
 public class AjoutCompte extends JPanel {
 	private JTextField numeroCompte;
 	private JTextField solde;
-
+	private JTextField dateOuverture;
+	Heure heure;
+	Date dateEntre=null;
 	/**
 	 * Create the panel.
 	 */
@@ -102,7 +105,7 @@ public class AjoutCompte extends JPanel {
 		panel.add(compteEpargne);
 
 		final JComboBox listeClient = new JComboBox();
-		listeClient.setBounds(323, 220, 228, 30);
+		listeClient.setBounds(313, 220, 228, 30);
 		final ServiceClientImp serviceClientImp = new ServiceClientImp();
 		for (Iterator iterator = serviceClientImp.lister().iterator(); iterator.hasNext();) {
 			Client client = (Client) iterator.next();
@@ -132,11 +135,6 @@ public class AjoutCompte extends JPanel {
 		panel.add(solde);
 		solde.setColumns(10);
 
-		final JDateChooser dateOuverture = new JDateChooser();
-		dateOuverture.setDateFormatString("yyyy-M-d ");
-		dateOuverture.setBounds(313, 284, 228, 30);
-		panel.add(dateOuverture);
-
 		JList list = new JList();
 		list.setBounds(388, 26, 1, 1);
 		panel.add(list);
@@ -148,7 +146,7 @@ public class AjoutCompte extends JPanel {
 				if (solde.getText().length() > 0) {
 					soldeEntre = Double.parseDouble(solde.getText());
 				}
-				Date dateEntre = dateOuverture.getDate();
+				
 				String typeCompte = "";
 				double caracteristique = 0;
 				String numeroCompt = numeroCompte.getText();
@@ -163,7 +161,7 @@ public class AjoutCompte extends JPanel {
 				int idClient = serviceClientImp.rechercherParNumeroClient(numeroClient).getId();
 				System.out.println(idClient);
 
-				if (dateEntre == null || idClient < 0 || solde.getText().length() == 0) {
+				if ( idClient < 0 || solde.getText().length() == 0) {
 					JOptionPane.showMessageDialog(null, "remplire tout les champ");
 
 				} else {
@@ -204,6 +202,22 @@ public class AjoutCompte extends JPanel {
 		btnAnnuler.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnAnnuler.setBounds(402, 369, 128, 30);
 		panel.add(btnAnnuler);
+		
+		     heure=new Heure();
+		
+			try {
+				dateEntre = heure.daterecup();
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+		dateOuverture = new JTextField(dateEntre+"");
+		
+		dateOuverture.setEditable(false);
+		dateOuverture.setBounds(313, 284, 228, 30);
+		panel.add(dateOuverture);
+		dateOuverture.setColumns(10);
 
 	}
 }
