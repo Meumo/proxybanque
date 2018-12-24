@@ -1,5 +1,7 @@
 package sn.proxybanque.service;
 
+import java.util.List;
+
 import sn.proxybanque.dao.DaoTransaction;
 import sn.proxybanque.domaine.Compte;
 import sn.proxybanque.domaine.Transaction;
@@ -28,5 +30,9 @@ public class ServiceTransaction {
 
 	public void virer(Compte compteDebiteur, Compte compteCrediteur, double montant) {
 		daoTransaction.virer(compteDebiteur, compteCrediteur, montant);
+	}
+
+	public List<Transaction> nbreTransaction(int idCompte) {
+		return daoTransaction.nbreTransaction(idCompte);
 	}
 }
