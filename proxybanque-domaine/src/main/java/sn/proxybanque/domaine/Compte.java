@@ -44,9 +44,7 @@ public class Compte {
 	/**
 	 * Constructeur sans arguments
 	 */
-	public Compte() {
-	}
-
+	
 	/**
 	 * Constructeur avec arguments
 	 */
@@ -62,6 +60,12 @@ public class Compte {
 
 	
 	
+	public Compte() {
+		super();
+	}
+
+
+
 	public Compte(int idCompte, String numeroCompte, double soldeCompte, String typeDeCompte, Date dateOuvertureCompte,
 			int idClient, double caracteristique) {
 		super();
