@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -146,9 +145,10 @@ public class DaoTransaction {
 	public List<Transaction> nbreTransaction(int idCompte) {
 		List<Transaction> listTransaction = new ArrayList<Transaction>();
 		try {
-			String sql = "SELECT * FROM transaction WHERE idCompte=idCompte";
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
+			String sql = "SELECT * FROM transaction WHERE idCompte=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, idCompte);
+			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Transaction transaction = new Transaction();
 
