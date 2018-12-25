@@ -2,7 +2,11 @@ package sn.proxybanque.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import sn.proxybanque.domaine.Compte;
 import sn.proxybanque.domaine.Transaction;
@@ -60,13 +64,11 @@ public class DaoTransaction {
 			double nouvoSolde = ancienSolde + montcred + interet;
 			compte.setSoldeCompte(nouvoSolde);
 			compteImp.update(compte);
-			System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
 		} else {
 			double ancienSolde = compte.getSoldeCompte();
 			double nouvoSolde = ancienSolde + montcred;
 			compte.setSoldeCompte(nouvoSolde);
 			compteImp.update(compte);
-			System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
 		}
 
 	}
@@ -91,11 +93,9 @@ public class DaoTransaction {
 				compte.setSoldeCompte(nouvoSolde);
 
 				compteImp.update(compte);
-				System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
 				result = true;
 				System.out.println("-----------------");
 			} else {
-				System.out.println("impossible!! decouvert depassé");
 			}
 		} else {
 			if (compte.getSoldeCompte() > montdb) {
@@ -103,11 +103,9 @@ public class DaoTransaction {
 				double ancienSolde = compte.getSoldeCompte();
 				double nouvoSolde = ancienSolde - montdb;
 				compte.setSoldeCompte(nouvoSolde);
-				System.out.println("Operation reussie! Nouveau solde:" + nouvoSolde);
 				result = true;
 				System.out.println("-----------------");
 			} else {
-				System.out.println("impossible!! Montant a debiter supperieur au solde");
 			}
 		}
 		return result;
@@ -132,11 +130,40 @@ public class DaoTransaction {
 			this.verser(compteCrediteur, montant);
 
 			compteImp.update(compteCrediteur);
-
-			System.out.println("Operation de virement reussie!!");
 		} else {
 			System.out.println("Operation Impossible!!");
 		}
+	}
+
+	/**
+	 * Cette methode recoit l'identifiant d'un compte et renvoie la liste des
+	 * transactions effectuees sur ce compte.
+	 * 
+	 * @param idCompte
+	 *            Idenfiant d'un compte
+	 * @return La liste des transactions
+	 */
+	public List<Transaction> nbreTransaction(int idCompte) {
+		List<Transaction> listTransaction = new ArrayList<Transaction>();
+		try {
+			String sql = "SELECT * FROM transaction WHERE idCompte=idCompte";
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				Transaction transaction = new Transaction();
+
+				transaction.setNumeroTransaction(rs.getString("numeroTransaction"));
+				transaction.setMontantTransaction(rs.getDouble("montantTransaction"));
+				transaction.setDateTransaction(rs.getDate("dateTransaction"));
+				transaction.setTypeTransaction(rs.getString("typeTransactin"));
+				transaction.setIdcompte(rs.getInt("idCompte"));
+				transaction.setIdconseiller(rs.getShort("idConseiller"));
+				listTransaction.add(transaction);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listTransaction;
 	}
 
 }
