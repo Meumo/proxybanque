@@ -121,9 +121,10 @@ public class IDaoCarteImp implements IDaoCarte {
 	public List<Carte> nbreCarte(int idClient) {
 		List<Carte> listCarte = new ArrayList<Carte>();
 		try {
-			String sql = "SELECT * FROM carte WHERE idClient=idClient";
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
+			String sql = "SELECT * FROM carte WHERE idClient=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, idClient);
+			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Carte carte = new Carte();
 
