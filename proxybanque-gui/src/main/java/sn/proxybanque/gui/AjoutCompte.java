@@ -44,7 +44,9 @@ public class AjoutCompte extends JPanel {
 	private JTextField solde;
 	private JTextField dateOuverture;
 	Heure heure;
-	Date dateEntre=null;
+	Date dateEntre = null;
+	Numero numero;
+
 	/**
 	 * Create the panel.
 	 */
@@ -93,23 +95,54 @@ public class AjoutCompte extends JPanel {
 		String num = numero.generateNumeroCompte();
 		numeroCompte.setText(num);
 		final JRadioButton compteEpargne = new JRadioButton("Epargne");
+		compteEpargne.setEnabled(false);
 		compteEpargne.setBounds(314, 116, 109, 30);
 
-		final JRadioButton compteourant = new JRadioButton("Courant");
-		compteourant.setBounds(432, 116, 109, 30);
+		final JRadioButton compteCourant = new JRadioButton("Courant");
+		compteCourant.setEnabled(false);
+		compteCourant.setBounds(432, 116, 109, 30);
 
 		ButtonGroup groupeCarte = new ButtonGroup();
-		groupeCarte.add(compteourant);
+		groupeCarte.add(compteCourant);
 		groupeCarte.add(compteEpargne);
-		panel.add(compteourant);
+		panel.add(compteCourant);
 		panel.add(compteEpargne);
 
 		final JComboBox listeClient = new JComboBox();
+		// listeClient.set
+		listeClient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ServiceCompteImp serviceCompteImp = new ServiceCompteImp();
+				ServiceClientImp serviceClientImp = new ServiceClientImp();
+				String numeroClient = (String) listeClient.getSelectedItem();
+				Client client = serviceClientImp.rechercherParNumeroClient(numeroClient);
+				if (client != null && serviceCompteImp.nbreCompte(client.getId()).size() != 0) {
+					Compte compte = serviceCompteImp.nbreCompte(client.getId()).get(0);
+					if (compte.getTypeDeCompte().equals("Epargne")) {
+						compteCourant.setEnabled(true);
+						compteCourant.setSelected(true);
+					} else {
+						compteEpargne.setEnabled(true);
+						compteEpargne.setSelected(true);
+					}
+				} 
+				if(client != null && serviceCompteImp.nbreCompte(client.getId()).size() == 0)
+				{
+					compteEpargne.setEnabled(true);
+				  compteCourant.setEnabled(true);
+				}
+			}
+		});
 		listeClient.setBounds(313, 220, 228, 30);
 		final ServiceClientImp serviceClientImp = new ServiceClientImp();
+		listeClient.addItem("");
 		for (Iterator iterator = serviceClientImp.lister().iterator(); iterator.hasNext();) {
+			ServiceCompteImp serviceCompteImp = new ServiceCompteImp();
 			Client client = (Client) iterator.next();
-			listeClient.addItem(client.getNumeroClient());
+			int nbcompte = serviceCompteImp.nbreCompte(client.getId()).size();
+			if (nbcompte < 2) {
+				listeClient.addItem(client.getNumeroClient());
+			}
 
 		}
 		panel.add(listeClient);
@@ -146,41 +179,53 @@ public class AjoutCompte extends JPanel {
 				if (solde.getText().length() > 0) {
 					soldeEntre = Double.parseDouble(solde.getText());
 				}
-				
-				String typeCompte = "";
-				double caracteristique = 0;
-				String numeroCompt = numeroCompte.getText();
-				if (compteEpargne.isSelected()) {
-					typeCompte = "Epargne";
-					 caracteristique = 0.03;
-				} else {
-					typeCompte = "Courant";
-					caracteristique = 656510;
-				}
+
 				String numeroClient = (String) listeClient.getSelectedItem();
-				int idClient = serviceClientImp.rechercherParNumeroClient(numeroClient).getId();
-				System.out.println(idClient);
-
-				if ( idClient < 0 || solde.getText().length() == 0) {
-					JOptionPane.showMessageDialog(null, "remplire tout les champ");
-
-				} else {
-					Compte compteCreer = new Compte();
-					compteCreer.setDateOuvertureCompte(dateEntre);
-					compteCreer.setNumeroCompte(numeroCompt);
-					compteCreer.setTypeDeCompte(typeCompte);
-					compteCreer.setSoldeCompte(soldeEntre);
-					compteCreer.setIdClient(idClient);
-					compteCreer.setCaracteristique(caracteristique);
-					ServiceCompteImp serviceCompteImp = new ServiceCompteImp();
-					serviceCompteImp.ajouter(compteCreer);
+				if (numeroClient.equals("")){
+					JOptionPane.showMessageDialog(null, "Choisir un client");
+				}else
+				{
+					String typeCompte = "";
+					int idClient = 0;
+					double caracteristique = 0;
+					String numeroCompt;
+					numeroCompt = numeroCompte.getText();
+					if (compteEpargne.isSelected()) {
+						typeCompte = "Epargne";
+						caracteristique = 0.03;
+						compteEpargne.setEnabled(true);
+					} else {
+						typeCompte = "Courant";
+						compteCourant.setEnabled(true);
+						caracteristique = 656510;
+					}
 					
-					JOptionPane.showMessageDialog(null, "Compte Creer");
-					String newNumer0 = numero.generateNumeroCompte();
-					numeroCompte.setText(newNumer0);
-					solde.setText("");
+					
+					idClient = serviceClientImp.rechercherParNumeroClient(numeroClient).getId();
+					
 
-				}
+					if (idClient < 0 || solde.getText().length() == 0) {
+						JOptionPane.showMessageDialog(null, "remplire tout les champ");
+
+					} else {
+						Compte compteCreer = new Compte();
+						compteCreer.setDateOuvertureCompte(dateEntre);
+						compteCreer.setNumeroCompte(numeroCompt);
+						compteCreer.setTypeDeCompte(typeCompte);
+						compteCreer.setSoldeCompte(soldeEntre);
+						compteCreer.setIdClient(idClient);
+						compteCreer.setCaracteristique(caracteristique);
+						ServiceCompteImp serviceCompteImp = new ServiceCompteImp();
+						serviceCompteImp.ajouter(compteCreer);
+
+						JOptionPane.showMessageDialog(null, "Compte Creer");
+						String newNumer0 = numero.generateNumeroCompte();
+						numeroCompte.setText(newNumer0);
+						solde.setText("");
+						listeClient.setSelectedIndex(1);
+
+					}
+				} 
 			}
 		});
 
@@ -202,18 +247,18 @@ public class AjoutCompte extends JPanel {
 		btnAnnuler.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnAnnuler.setBounds(402, 369, 128, 30);
 		panel.add(btnAnnuler);
-		
-		     heure=new Heure();
-		
-			try {
-				dateEntre = heure.daterecup();
-			} catch (ParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
-		dateOuverture = new JTextField(dateEntre+"");
-		
+
+		heure = new Heure();
+
+		try {
+			dateEntre = heure.daterecup();
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		dateOuverture = new JTextField(dateEntre + "");
+
 		dateOuverture.setEditable(false);
 		dateOuverture.setBounds(313, 284, 228, 30);
 		panel.add(dateOuverture);

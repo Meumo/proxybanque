@@ -122,12 +122,12 @@ public class IDaoCompteImp implements IDaoCompte {
 	public List<Compte> nbreCompte(int idClient) {
 		List<Compte> listCompte = new ArrayList<Compte>();
 		try {
-			String sql = "SELECT * FROM compte WHERE idClient=idClient";
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
+			String sql = "SELECT DISTINCT * FROM compte WHERE idClient=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, idClient);
+			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Compte compte = new Compte();
-
 				compte.setIdCompte(rs.getInt("idCompte"));
 				compte.setNumeroCompte(rs.getString("numeroCompte"));
 				compte.setSoldeCompte(rs.getDouble("soldeCompte"));
