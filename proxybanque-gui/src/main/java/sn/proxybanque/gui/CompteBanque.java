@@ -96,8 +96,21 @@ public class CompteBanque extends JPanel {
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\image\\images (4).jpg"));
-		lblNewLabel.setBounds(0, 278, 209, 175);
+		lblNewLabel.setBounds(0, 332, 209, 121);
 		add(lblNewLabel);
+		
+		JButton releveButton = new JButton("Releve bancaire");
+		releveButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ReleverBancaire releveBancaire = new ReleverBancaire();
+			panelFormulaire.removeAll();
+			releveBancaire.setBounds(209, 0, 745, 453);
+			panelFormulaire.add(releveBancaire);
+			panelFormulaire.validate();
+			}
+		});
+		releveButton.setBounds(0, 278, 209, 48);
+		add(releveButton);
 
 	}
 }

@@ -140,5 +140,29 @@ public class IDaoClientImp implements IDaoClient {
 
 		return clientRecup;
 	}
+	
+	
+	public Client findByIdClient(int numberClient) {
+		Client clientRecup = null;
+		try {
+			String sql = "SELECT * FROM client WHERE idClient=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setLong(1, numberClient);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				clientRecup = new Client(rs.getInt("idClient"), rs.getString("nomClient"), rs.getString("prenomClient"),
+						rs.getString("adresseClient"), rs.getString("telephoneClient"),
+						rs.getDate("dateDenaissanceClient"), rs.getString("emailClient"), rs.getString("sexeClient"),
+						rs.getString("numeroClient"), rs.getString("codePostalClient"), rs.getString("villeClient"),
+						rs.getString("professionClient"), rs.getInt("idConseiller"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return clientRecup;
+	}
+
 
 }

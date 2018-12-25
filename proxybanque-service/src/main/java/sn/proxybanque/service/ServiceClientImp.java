@@ -1,5 +1,8 @@
 package sn.proxybanque.service;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import sn.proxybanque.dao.IDaoClientImp;
@@ -36,5 +39,11 @@ IDaoClientImp clientImp=new IDaoClientImp();
 	public Client rechercherParNumeroClient(String numeroClient) {
 		return clientImp.findByNumberClient(numeroClient);
 	}
+	public Client findByIdClient(int numberClient) {
+		
+
+		return clientImp.findByIdClient(numberClient);
+	}
+
 
 }
