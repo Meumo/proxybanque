@@ -68,36 +68,43 @@ public class ReleverBancaire extends JPanel {
 		remove(panelCentre);
 
 		JLabel lblNomt = new JLabel("Nom");
-		lblNomt.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		lblNomt.setBounds(55, 21, 144, 30);
+		lblNomt.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
+		lblNomt.setBounds(55, 21, 134, 30);
 		panelCentre.add(lblNomt);
 		
 		final JLabel nom = new JLabel("New label");
-		nom.setBounds(178, 21, 134, 30);
+		nom.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+		nom.setBounds(178, 21, 168, 30);
 		panelCentre.add(nom);
 		
 		JLabel lblPrenom = new JLabel("Prenom");
-		lblPrenom.setBounds(55, 73, 46, 14);
+		lblPrenom.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblPrenom.setBounds(55, 57, 134, 30);
 		panelCentre.add(lblPrenom);
 		
 		final JLabel prenom = new JLabel("pp");
-		prenom.setBounds(180, 73, 93, 14);
+		prenom.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+		prenom.setBounds(180, 62, 150, 30);
 		panelCentre.add(prenom);
 		
 		JLabel lblDateDeNaissance = new JLabel("Date de Naissance");
-		lblDateDeNaissance.setBounds(455, 30, 134, 21);
+		lblDateDeNaissance.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblDateDeNaissance.setBounds(421, 21, 150, 30);
 		panelCentre.add(lblDateDeNaissance);
 		
 		final JLabel date = new JLabel("New label");
+		date.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		date.setBounds(609, 21, 113, 30);
 		panelCentre.add(date);
 		
 		final JLabel lblAdresse = new JLabel("Adresse");
-		lblAdresse.setBounds(455, 73, 46, 14);
+		lblAdresse.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblAdresse.setBounds(455, 64, 93, 30);
 		panelCentre.add(lblAdresse);
 		
 		final JLabel adresse = new JLabel("adersse");
-		adresse.setBounds(609, 73, 46, 14);
+		adresse.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+		adresse.setBounds(609, 57, 93, 30);
 		panelCentre.add(adresse);
 		
 		JScrollPane scrollPane = new JScrollPane();

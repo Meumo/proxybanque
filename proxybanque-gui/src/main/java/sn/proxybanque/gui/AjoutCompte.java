@@ -125,11 +125,10 @@ public class AjoutCompte extends JPanel {
 						compteEpargne.setEnabled(true);
 						compteEpargne.setSelected(true);
 					}
-				} 
-				if(client != null && serviceCompteImp.nbreCompte(client.getId()).size() == 0)
-				{
+				}
+				if (client != null && serviceCompteImp.nbreCompte(client.getId()).size() == 0) {
 					compteEpargne.setEnabled(true);
-				  compteCourant.setEnabled(true);
+					compteCourant.setEnabled(true);
 				}
 			}
 		});
@@ -181,10 +180,9 @@ public class AjoutCompte extends JPanel {
 				}
 
 				String numeroClient = (String) listeClient.getSelectedItem();
-				if (numeroClient.equals("")){
+				if (numeroClient.equals("")) {
 					JOptionPane.showMessageDialog(null, "Choisir un client");
-				}else
-				{
+				} else {
 					String typeCompte = "";
 					int idClient = 0;
 					double caracteristique = 0;
@@ -193,21 +191,26 @@ public class AjoutCompte extends JPanel {
 					if (compteEpargne.isSelected()) {
 						typeCompte = "Epargne";
 						caracteristique = 0.03;
-						compteEpargne.setEnabled(true);
+
 					} else {
 						typeCompte = "Courant";
-						compteCourant.setEnabled(true);
+
 						caracteristique = 656510;
 					}
-					
-					
+
 					idClient = serviceClientImp.rechercherParNumeroClient(numeroClient).getId();
-					
 
 					if (idClient < 0 || solde.getText().length() == 0) {
 						JOptionPane.showMessageDialog(null, "remplire tout les champ");
 
 					} else {
+						if (compteEpargne.isSelected()) {
+							compteEpargne.setEnabled(true);
+							compteCourant.setSelected(true);
+						} else {
+							compteCourant.setEnabled(true);
+							compteEpargne.setSelected(true);
+						}
 						Compte compteCreer = new Compte();
 						compteCreer.setDateOuvertureCompte(dateEntre);
 						compteCreer.setNumeroCompte(numeroCompt);
@@ -225,7 +228,7 @@ public class AjoutCompte extends JPanel {
 						listeClient.setSelectedIndex(1);
 
 					}
-				} 
+				}
 			}
 		});
 
