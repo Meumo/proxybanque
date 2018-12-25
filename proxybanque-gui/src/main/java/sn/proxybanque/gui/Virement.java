@@ -108,6 +108,8 @@ public class Virement extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				ServiceTransaction serviceTransaction = new ServiceTransaction();
 				double montantAVirer = 0;
+				String numTransaction = numero.generateNumeroTransaction();
+				System.out.println(numTransaction +"sddddddddd");
 				if (montant.getText().length() > 0) {
 					montantAVirer = Double.parseDouble(montant.getText());
 				}
@@ -117,7 +119,8 @@ public class Virement extends JPanel {
 					if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer le virement", "Confirmation",
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						Transaction transaction;
-						String numTransaction = numero.generateNumeroTransaction();
+						//String numTransaction = numero.generateNumeroTransaction();
+						//System.out.println(numTransaction +"sddddddddd");
 						serviceTransaction.retirer(compteDebiteur, montantAVirer);
 						serviceTransaction.verser(compteCrediteur, montantAVirer);
 						numero = new Numero();
