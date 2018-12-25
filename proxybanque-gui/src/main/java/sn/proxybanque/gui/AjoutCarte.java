@@ -101,8 +101,14 @@ public class AjoutCarte extends JPanel {
 		listeClient.setBounds(313, 220, 228, 30);
 		final ServiceClientImp serviceClientImp = new ServiceClientImp();
 		for (Iterator iterator = serviceClientImp.lister().iterator(); iterator.hasNext();) {
+			
+			
+			ServiceCarteImp serviceCarteImp=new ServiceCarteImp();
 			Client client = (Client) iterator.next();
+			int nbCarte= serviceCarteImp.nbreCarte(client.getId()).size();
+		if (nbCarte < 2) {
 			listeClient.addItem(client.getNumeroClient());
+			}
 
 		}
 		panel.add(listeClient);
