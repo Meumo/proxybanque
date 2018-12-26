@@ -38,7 +38,8 @@ public class ModifierConseilles extends JPanel {
 	private JPasswordField passwordConseiller;
 	Employer employerMiseAjour;
 	final JPanel panelHaut;
-	JDateChooser dateDeNaissance;
+	private JTextField sexe;
+	private JTextField dateDeNaissance;
 	/**
 	 * Create the panel.
 	 */
@@ -69,7 +70,7 @@ public class ModifierConseilles extends JPanel {
 		
 		JLabel lblSexe = new JLabel("Sexe");
 		lblSexe.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		lblSexe.setBounds(574, 156, 36, 30);
+		lblSexe.setBounds(55, 376, 64, 30);
 		panelCentre.add(lblSexe);
 		
 		
@@ -106,11 +107,13 @@ public class ModifierConseilles extends JPanel {
 		String num=numero.generateNumeroEmploye();
 		
 		nomConseiller = new JTextField();
+		nomConseiller.setEditable(false);
 		nomConseiller.setBounds(313, 21, 228, 26);
 		panelCentre.add(nomConseiller);
 		nomConseiller.setColumns(30);
 		
 		prenomConseiller = new JTextField();
+		prenomConseiller.setEditable(false);
 		prenomConseiller.setBounds(313, 55, 228, 30);
 		panelCentre.add(prenomConseiller);
 		prenomConseiller.setColumns(30);
@@ -152,15 +155,6 @@ public class ModifierConseilles extends JPanel {
 		JList list = new JList();
 		list.setBounds(388, 26, 1, 1);
 		panelCentre.add(list);
-		
-		final JComboBox comboBoxSexe = new JComboBox();
-		comboBoxSexe.setModel(new DefaultComboBoxModel(new String[] {"Femme", "Homme"}));
-		//comboBoxSexe.setModel(new DefaultComboBoxModel(new String[] {"Homme"}));
-		comboBoxSexe.addItem("Femme");
-		comboBoxSexe.addItem("Homme");
-		comboBoxSexe.setMaximumRowCount(2);
-		comboBoxSexe.setBounds(627, 156, 94, 30);
-		panelCentre.add(comboBoxSexe);
 
 		
 		JButton buttonUpdate = new JButton("Update");
@@ -179,15 +173,17 @@ public class ModifierConseilles extends JPanel {
 					String passWord=passwordConseiller.getText();
 					String telephone=telConseiller.getText();
 					String type=typeConseiller.getText();
-    				Date date=dateDeNaissance.getDate();
+    				
 					String numero=numeroConseiller.getText();
-					String sexeChoise=(String) comboBoxSexe.getSelectedItem();
 					
-					if(nom.length()==0 || prenom.length()==0 ||adresse.length()==0 || email.length()==0 ||login.length()==0 || passWord.length()==0 ||telephone.length()==0 ||type.length()==0 ||sexeChoise.length()==0 ||numero.length()==0 ||date==null )
+					
+					if(nom.length()==0 || prenom.length()==0 ||adresse.length()==0 || email.length()==0 ||login.length()==0 || passWord.length()==0 ||telephone.length()==0 ||type.length()==0  ||numero.length()==0 )
 					{
 						JOptionPane.showMessageDialog(null,"veuillez remplire tout les champs");
 					}else {
-						Employer employerMiseAjour=new Employer(nom, prenom, adresse, telephone, date, email, sexeChoise, numero,type, login, passWord, idAgence);
+						Date date=employerMiseAjour.getDateDenaissance();
+						
+						Employer employerMiseAjour=new Employer(nom, prenom, adresse, telephone, date, email, sexe.getText(), numero,type, login, passWord, idAgence);
 						serviceEmployerImp.misAJour(employerMiseAjour);
 						nomConseiller.setText("");
 						prenomConseiller.setText("");
@@ -209,7 +205,7 @@ public class ModifierConseilles extends JPanel {
 		buttonUpdate.setIcon(new ImageIcon("C:\\Users\\image\\check.png"));
 		buttonUpdate.setBackground(new Color(51, 204, 51));
 		buttonUpdate.setFont(new Font("Tahoma", Font.BOLD, 11));
-		buttonUpdate.setBounds(272, 378, 124, 30);
+		buttonUpdate.setBounds(276, 422, 124, 30);
 		panelCentre.add(buttonUpdate);
 		
 		JButton buttonAnnuler = new JButton("Annuler");
@@ -224,16 +220,23 @@ public class ModifierConseilles extends JPanel {
 		buttonAnnuler.setIcon(new ImageIcon("C:\\Users\\image\\busy.png"));
 		buttonAnnuler.setBackground(new Color(255, 102, 0));
 		buttonAnnuler.setFont(new Font("Tahoma", Font.BOLD, 11));
-		buttonAnnuler.setBounds(406, 378, 128, 30);
+		buttonAnnuler.setBounds(413, 422, 128, 30);
 		panelCentre.add(buttonAnnuler);
 		
 		passwordConseiller = new JPasswordField();		passwordConseiller.setBounds(313, 260, 228, 30);
 		panelCentre.add(passwordConseiller);
-		 dateDeNaissance = new JDateChooser();
 		
-		 dateDeNaissance.setDateFormatString("yyyy-M-d");
+		sexe = new JTextField();
+		sexe.setEditable(false);
+		sexe.setBounds(313, 376, 228, 30);
+		panelCentre.add(sexe);
+		sexe.setColumns(10);
+		
+		dateDeNaissance = new JTextField();
+		dateDeNaissance.setEditable(false);
 		dateDeNaissance.setBounds(313, 336, 228, 30);
 		panelCentre.add(dateDeNaissance);
+		dateDeNaissance.setColumns(10);
 		
 		  panelHaut = new JPanel();
 		panelHaut.setBackground(new Color(176, 196, 222));
@@ -270,7 +273,8 @@ public class ModifierConseilles extends JPanel {
 						loginConseiller.setText(employerMiseAjour.getLoginEmploye());
 						passwordConseiller.setText(employerMiseAjour.getPasswordEmploye());
 						telConseiller.setText(employerMiseAjour.getTelephone());
-				    
+				        sexe.setText(employerMiseAjour.getSexe());
+				        dateDeNaissance.setText(employerMiseAjour.getDateDenaissance()+"");
 						panelCentre.setBounds(0, 53, 745, 412);
 						remove(panelHaut);
 						add(panelCentre);

@@ -42,10 +42,8 @@ public class AjoutClient extends JPanel {
 		setLayout(null);
 		ButtonGroup groupeSexe=new ButtonGroup();
 		final JRadioButton homme=new JRadioButton("homme");
-		homme.setSelected(true);
 		homme.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
 		final  JRadioButton femme=new JRadioButton("femme");
-		femme.setSelected(true);
 		femme.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
 		femme.setBounds(547, 180, 96, 23);
 		homme.setBounds(656, 180, 83, 23);
@@ -177,12 +175,13 @@ public class AjoutClient extends JPanel {
 		JButton buttonValider = new JButton("Valider");
 		buttonValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String sexeSelection=" ";
+				String sexeSelection=null;
 				if(homme.isSelected())
 				{
 					sexeSelection="Homme";
-				}else 
-				{
+					
+				}
+				if(femme.isSelected()){
 					sexeSelection="Femme";
 				}
 				
@@ -197,7 +196,7 @@ public class AjoutClient extends JPanel {
 				String telephone=telephoneClient.getText();
 				Date date=dateNaissanceClient.getDate();
 				int idConseiller=idConseillerConnecter;
-				if(sexeSelection.length()==0 || nom.length()==0 || prenom.length()==0 ||adresse.length()==0 || email.length()==0 ||ville.length()==0 ||codepost.length()==0 ||professeion.length()==0 ||date==null)
+				if(sexeSelection==null || nom.length()==0 || prenom.length()==0 || adresse.length()==0 || email.length()==0 ||ville.length()==0 ||codepost.length()==0 ||professeion.length()==0 ||date==null)
 				{
 					JOptionPane.showMessageDialog(null,"veuillez remplire tout les champs");
 				}else {
