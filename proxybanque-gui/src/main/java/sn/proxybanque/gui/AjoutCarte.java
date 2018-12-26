@@ -24,10 +24,12 @@ import com.toedter.calendar.JDateChooser;
 
 import sn.proxybanque.domaine.Carte;
 import sn.proxybanque.domaine.Client;
+import sn.proxybanque.domaine.Compte;
 import sn.proxybanque.domaine.Employer;
 import sn.proxybanque.service.Numero;
 import sn.proxybanque.service.ServiceCarteImp;
 import sn.proxybanque.service.ServiceClientImp;
+import sn.proxybanque.service.ServiceCompteImp;
 
 public class AjoutCarte extends JPanel {
 	/**
@@ -86,9 +88,11 @@ public class AjoutCarte extends JPanel {
 		String num = numero.generateNumeroCarte();
 		numeroCarte.setText(num);
 		final JRadioButton visaElectron = new JRadioButton("Electron");
+		visaElectron.setEnabled(false);
 		visaElectron.setBounds(314, 116, 109, 30);
 
 		final JRadioButton visaPremier = new JRadioButton("Premier");
+		visaPremier.setEnabled(false);
 		visaPremier.setBounds(432, 116, 109, 30);
 
 		ButtonGroup groupeCarte = new ButtonGroup();
@@ -98,16 +102,38 @@ public class AjoutCarte extends JPanel {
 		panel.add(visaElectron);
 
 		final JComboBox listeClient = new JComboBox();
+		listeClient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ServiceCarteImp serviceCarteImp = new ServiceCarteImp();
+				ServiceClientImp serviceClientImp = new ServiceClientImp();
+				String numeroClient = (String) listeClient.getSelectedItem();
+				Client client = serviceClientImp.rechercherParNumeroClient(numeroClient);
+				if (client != null && serviceCarteImp.nbreCarte(client.getId()).size() != 0) {
+					Carte carte = serviceCarteImp.nbreCarte(client.getId()).get(0);
+					if (carte.getTypeCarte().equals("Premier")) {
+						visaElectron.setEnabled(true);
+						visaElectron.setSelected(true);
+					} else {
+						visaPremier.setEnabled(true);
+						visaPremier.setSelected(true);
+					}
+				}
+				if (client != null && serviceCarteImp.nbreCarte(client.getId()).size() == 0) {
+					visaElectron.setEnabled(true);
+					visaPremier.setEnabled(true);
+				}
+			}
+		});
 		listeClient.setBounds(313, 220, 228, 30);
 		final ServiceClientImp serviceClientImp = new ServiceClientImp();
+		listeClient.addItem("");
 		for (Iterator iterator = serviceClientImp.lister().iterator(); iterator.hasNext();) {
-			
-			
-			ServiceCarteImp serviceCarteImp=new ServiceCarteImp();
+
+			ServiceCarteImp serviceCarteImp = new ServiceCarteImp();
 			Client client = (Client) iterator.next();
-			int nbCarte= serviceCarteImp.nbreCarte(client.getId()).size();
-		if (nbCarte < 2) {
-			listeClient.addItem(client.getNumeroClient());
+			int nbCarte = serviceCarteImp.nbreCarte(client.getId()).size();
+			if (nbCarte < 2) {
+				listeClient.addItem(client.getNumeroClient());
 			}
 
 		}
@@ -126,30 +152,36 @@ public class AjoutCarte extends JPanel {
 		JButton buttonValider = new JButton("Valider");
 		buttonValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String code = codesecret.getText();
-				Date dateExp = dateExpriation.getDate();
-				String typeCarte;
-				String numcarte = numeroCarte.getText();
-				if (visaElectron.isSelected()) {
-					typeCarte = new String("Electron");
-				} else {
-					typeCarte = new String("Premier");
-				}
 				String numeroClient = (String) listeClient.getSelectedItem();
-				int idClient = serviceClientImp.rechercherParNumeroClient(numeroClient).getId();
-				if (code.length() == 0 || dateExp == null || numeroClient.length() == 0) {
-					JOptionPane.showMessageDialog(null, "remplire tout les champ");
-				} else {
-					Carte carteCreer = new Carte(numcarte, typeCarte, code, dateExp, idClient);
-					ServiceCarteImp serviceCarteImp = new ServiceCarteImp();
-					serviceCarteImp.ajouter(carteCreer);
-					JOptionPane.showMessageDialog(null, "Carte Creer");
-					String newNumer0 = numero.generateNumeroCarte();
-					numeroCarte.setText(newNumer0);
-					codesecret.setText("");
+				if (numeroClient.equals("")) {
+					JOptionPane.showMessageDialog(null, "Choisir un client");
+				}else {
+					String code = codesecret.getText();
+					Date dateExp = dateExpriation.getDate();
+					String typeCarte;
+					String numcarte = numeroCarte.getText();
+					if (visaElectron.isSelected()) {
+						typeCarte = new String("Electron");
+					} else {
+						typeCarte = new String("Premier");
+					}
+					
+					int idClient = serviceClientImp.rechercherParNumeroClient(numeroClient).getId();
+					if (code.length() == 0 || dateExp == null || numeroClient.length() == 0) {
+						JOptionPane.showMessageDialog(null, "remplire tout les champ");
+					} else {
+						Carte carteCreer = new Carte(numcarte, typeCarte, code, dateExp, idClient);
+						ServiceCarteImp serviceCarteImp = new ServiceCarteImp();
+						serviceCarteImp.ajouter(carteCreer);
+						JOptionPane.showMessageDialog(null, "Carte Creer");
+						String newNumer0 = numero.generateNumeroCarte();
+						numeroCarte.setText(newNumer0);
+						codesecret.setText("");
+
+					}
 
 				}
-
+			
 			}
 		});
 		buttonValider.setIcon(new ImageIcon("C:\\Users\\image\\check.png"));

@@ -53,7 +53,7 @@ public class AjoutCompte extends JPanel {
 	public AjoutCompte() {
 		setLayout(null);
 		Employer employer;
-		JPanel panel = new JPanel();
+		final JPanel panel = new JPanel();
 		panel.setBackground(new Color(176, 196, 222));
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Ajout Carte", TitledBorder.CENTER,
 				TitledBorder.TOP, null, new Color(102, 102, 204)));
@@ -181,7 +181,7 @@ public class AjoutCompte extends JPanel {
 
 				String numeroClient = (String) listeClient.getSelectedItem();
 				if (numeroClient.equals("")) {
-					JOptionPane.showMessageDialog(null, "Choisir un client");
+					JOptionPane.showMessageDialog(null, "Choisir un client pour le compte a creer ");
 				} else {
 					String typeCompte = "";
 					int idClient = 0;
@@ -225,8 +225,11 @@ public class AjoutCompte extends JPanel {
 						String newNumer0 = numero.generateNumeroCompte();
 						numeroCompte.setText(newNumer0);
 						solde.setText("");
+						
+						remove(panel);
+						add(panel);
+						validate();
 						listeClient.setSelectedIndex(1);
-
 					}
 				}
 			}
