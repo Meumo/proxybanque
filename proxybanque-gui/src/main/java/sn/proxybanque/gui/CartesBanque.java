@@ -36,7 +36,6 @@ public class CartesBanque extends JPanel {
 				
 				AjoutCarte ajoutCarte=new AjoutCarte();
 				panelFormulaire.removeAll();
-				
 				ajoutCarte.setBounds(209, 0, 745, 453);
 				panelFormulaire.add(ajoutCarte);
 				panelFormulaire.validate();
