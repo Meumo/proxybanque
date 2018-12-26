@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.Iterator;
 
 import javax.swing.ButtonGroup;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,28 +18,17 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
-import org.jdom.adapters.DOMAdapter;
-
-import com.toedter.calendar.JDateChooser;
-
-import sn.proxybanque.domaine.Carte;
 import sn.proxybanque.domaine.Client;
 import sn.proxybanque.domaine.Compte;
 import sn.proxybanque.domaine.Employer;
 import sn.proxybanque.service.Numero;
-import sn.proxybanque.service.ServiceCarteImp;
 import sn.proxybanque.service.ServiceClientImp;
 import sn.proxybanque.service.ServiceCompteImp;
-import sn.proxybanque.service.ServiceEmployerImp;
-import javax.swing.JRadioButton;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.text.ParseException;
 
 public class AjoutCompte extends JPanel {
 	private JTextField numeroCompte;
