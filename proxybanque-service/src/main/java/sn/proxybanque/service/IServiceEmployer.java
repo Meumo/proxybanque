@@ -30,4 +30,14 @@ public interface IServiceEmployer extends IServiceGenerique<Employer> {
 	 * @return Employe
 	 */
 	public Employer authentification(String login,String password);
+	
+	/**
+	 * La methode 'findByNumberEmployer(int idEmployer)' a pour but de
+	 * chercher un employe et de le retourner
+	 * 
+	 * @param idEmploye
+	 *            Parametre de type String
+	 * @return Employer parametre de type Employer
+	 */
+	public Employer findByEmploye(int idEmploye);
 }

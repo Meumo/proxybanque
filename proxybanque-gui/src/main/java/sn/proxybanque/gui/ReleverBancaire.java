@@ -7,36 +7,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
-
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-import javax.swing.UIManager;
-import javax.swing.border.TitledBorder;
-
-import com.toedter.calendar.JDateChooser;
-
-import net.proteanit.sql.DbUtils;
-import sn.proxybanque.domaine.Carte;
-import sn.proxybanque.domaine.Client;
-import sn.proxybanque.domaine.Compte;
-import sn.proxybanque.domaine.Employer;
-import sn.proxybanque.service.Numero;
-import sn.proxybanque.service.ServiceCarteImp;
-import sn.proxybanque.service.ServiceClientImp;
-import sn.proxybanque.service.ServiceCompteImp;
-import sn.proxybanque.service.ServiceEmployerImp;
-import sn.proxybanque.utils.MysqlConnection;
-
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
@@ -46,8 +16,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
+
+import net.proteanit.sql.DbUtils;
+import sn.proxybanque.domaine.Client;
+import sn.proxybanque.domaine.Compte;
+import sn.proxybanque.domaine.Employer;
+import sn.proxybanque.service.ServiceClientImp;
+import sn.proxybanque.service.ServiceCompteImp;
+import sn.proxybanque.service.ServiceEmployerImp;
+import sn.proxybanque.utils.MysqlConnection;
 
 public class ReleverBancaire extends JPanel {
 	private JTextField numeroCompte;

@@ -170,4 +170,25 @@ public class IDaoEmployerImp implements IDaoEmployer {
 		return employerRecup;
 	}
 
+	public Employer findByEmploye(int idEmploye) {
+		Employer employeRecup = null;
+		try {
+			String sql = "SELECT * FROM employe WHERE numeroEmploye=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, idEmploye);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				employeRecup = new Employer(rs.getString("nomEmploye"), rs.getString("prenomEmploye"),
+						rs.getString("adresseEmploye"), rs.getString("TelephoneEmploye"),
+						rs.getDate("dateDenaissanceEmploye"), rs.getString("EmailEmploye"), rs.getString("sexeEmploye"),
+						rs.getString("numeroEmploye"), rs.getString("typeEmploye"), rs.getString("loginEmploye"),
+						rs.getString("passwordEmploye"), rs.getInt("idAgence"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return employeRecup;
+	}
+
 }
