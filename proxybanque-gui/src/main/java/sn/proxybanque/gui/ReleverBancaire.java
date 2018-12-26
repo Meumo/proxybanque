@@ -32,6 +32,7 @@ import sn.proxybanque.service.Numero;
 import sn.proxybanque.service.ServiceCarteImp;
 import sn.proxybanque.service.ServiceClientImp;
 import sn.proxybanque.service.ServiceCompteImp;
+import sn.proxybanque.service.ServiceEmployerImp;
 import sn.proxybanque.utils.MysqlConnection;
 
 import java.awt.event.KeyAdapter;
@@ -59,8 +60,9 @@ public class ReleverBancaire extends JPanel {
 	 */
 	public ReleverBancaire() {
 		Employer employer;
-		setLayout(new BorderLayout(0, 0));
+		setLayout(null);
 		final JPanel panelCentre = new JPanel();
+		panelCentre.setBounds(0, 58, 745, 467);
 		panelCentre.setBackground(new Color(176, 196, 222));
 		panelCentre.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Relever Bancaire", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(102, 102, 204)));
 		add(panelCentre);
@@ -79,7 +81,7 @@ public class ReleverBancaire extends JPanel {
 		
 		JLabel lblPrenom = new JLabel("Prenom");
 		lblPrenom.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblPrenom.setBounds(55, 57, 134, 30);
+		lblPrenom.setBounds(55, 61, 113, 30);
 		panelCentre.add(lblPrenom);
 		
 		final JLabel prenom = new JLabel("pp");
@@ -99,7 +101,7 @@ public class ReleverBancaire extends JPanel {
 		
 		final JLabel lblAdresse = new JLabel("Adresse");
 		lblAdresse.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblAdresse.setBounds(455, 64, 93, 30);
+		lblAdresse.setBounds(421, 64, 127, 30);
 		panelCentre.add(lblAdresse);
 		
 		final JLabel adresse = new JLabel("adersse");
@@ -108,13 +110,14 @@ public class ReleverBancaire extends JPanel {
 		panelCentre.add(adresse);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 119, 725, 253);
+		scrollPane.setBounds(10, 119, 725, 222);
 		panelCentre.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
 		final JButton btnImprimer = new JButton("Imprimer");
+		btnImprimer.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
 		btnImprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PrinterJob printerJob=PrinterJob.getPrinterJob();
@@ -146,13 +149,27 @@ public class ReleverBancaire extends JPanel {
 				}
 			}
 		});
-		btnImprimer.setBounds(324, 383, 89, 23);
+		btnImprimer.setBounds(296, 393, 154, 31);
 		panelCentre.add(btnImprimer);
+		
+		JLabel ss = new JLabel("Employe:");
+		ss.setFont(new Font("Tahoma", Font.BOLD, 15));
+		ss.setBounds(330, 352, 93, 30);
+		panelCentre.add(ss);
+		
+		JLabel nomEmploye = new JLabel("nomEmploye");
+		nomEmploye.setBounds(421, 352, 150, 30);
+		panelCentre.add(nomEmploye);
+		
+		JLabel prenomEmploye = new JLabel("New label");
+		prenomEmploye.setBounds(581, 352, 154, 30);
+		panelCentre.add(prenomEmploye);
 		
 		
 		
 		
 		panelHaut = new JPanel();
+		panelHaut.setBounds(0, 0, 745, 42);
 		panelHaut.setBackground(new Color(176, 196, 222));
 		add(panelHaut);
 		panelHaut.setLayout(null);
@@ -185,6 +202,7 @@ public class ReleverBancaire extends JPanel {
                                prenom.setText(client.getPrenom());
                                date.setText(client.getDateDenaissance()+"");
                                adresse.setText(client.getAdresse());
+                              ServiceEmployerImp serviceEmployerImp=new ServiceEmployerImp();
 						remove(panelHaut);
 						add(panelCentre);
 						update();
