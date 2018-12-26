@@ -38,8 +38,9 @@ public class AjoutCarte extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField numeroCarte;
 	private JTextField codesecret;
+	private JTextField dateExpriation;
 	// private ButtonGroup buttonGroup;
-
+	Heure heure=new Heure();
 	/**
 	 * Create the panel.
 	 */
@@ -144,11 +145,6 @@ public class AjoutCarte extends JPanel {
 		panel.add(codesecret);
 		codesecret.setColumns(10);
 
-		final JDateChooser dateExpriation = new JDateChooser();
-		dateExpriation.setDateFormatString("yyyy-M-d ");
-		dateExpriation.setBounds(313, 284, 228, 30);
-		panel.add(dateExpriation);
-
 		JButton buttonValider = new JButton("Valider");
 		buttonValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -157,7 +153,7 @@ public class AjoutCarte extends JPanel {
 					JOptionPane.showMessageDialog(null, "Choisir un client");
 				}else {
 					String code = codesecret.getText();
-					Date dateExp = dateExpriation.getDate();
+					Date dateExp = heure.datereExpiration();
 					String typeCarte;
 					String numcarte = numeroCarte.getText();
 					if (visaElectron.isSelected()) {
@@ -202,6 +198,14 @@ public class AjoutCarte extends JPanel {
 		btnAnnuler.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnAnnuler.setBounds(402, 369, 128, 30);
 		panel.add(btnAnnuler);
+		
+		
+		dateExpriation = new JTextField();
+		dateExpriation.setEditable(false);
+		dateExpriation.setBounds(313, 274, 228, 40);
+		panel.add(dateExpriation);
+		dateExpriation.setColumns(10);
+		dateExpriation.setText(heure.datereExpiration()+"");
 
 	}
 }

@@ -22,6 +22,7 @@ import com.toedter.calendar.JDateChooser;
 
 import sn.proxybanque.domaine.Carte;
 import sn.proxybanque.service.ServiceCarteImp;
+import sn.proxybanque.service.ServiceClientImp;
 
 public class ModifierCarte extends JPanel {
 	/**
@@ -34,12 +35,12 @@ public class ModifierCarte extends JPanel {
 	Carte cartAModifer;
 	final JPanel panelHaut;
 	String numeroEntre;
+	private JTextField dateExpiration;
 
 	/**
 	 * Create the panel.
 	 */
 	public ModifierCarte() {
-
 		setLayout(new BorderLayout(0, 0));
 		final JPanel panelCentre = new JPanel();
 		panelCentre.setBackground(new Color(176, 196, 222));
@@ -75,9 +76,11 @@ public class ModifierCarte extends JPanel {
 		codeSecret.setColumns(30);
 
 		final JRadioButton visaElectron = new JRadioButton("Electron");
+		visaElectron.setEnabled(false);
 		visaElectron.setBounds(313, 146, 109, 30);
 
 		final JRadioButton visaPremier = new JRadioButton("Premier");
+		visaPremier.setEnabled(false);
 		visaPremier.setBounds(432, 147, 109, 30);
 
 		ButtonGroup groupeCarte = new ButtonGroup();
@@ -87,13 +90,10 @@ public class ModifierCarte extends JPanel {
 		panelCentre.add(visaElectron);
 
 		client = new JTextField();
+		client.setEditable(false);
 		client.setBounds(313, 220, 228, 30);
 		panelCentre.add(client);
 		client.setColumns(30);
-
-		final JDateChooser dateExpiration = new JDateChooser();
-		dateExpiration.setBounds(313, 86, 228, 30);
-		panelCentre.add(dateExpiration);
 
 		JButton buttonModifer = new JButton("Modifer");
 		buttonModifer.addActionListener(new ActionListener() {
@@ -106,15 +106,14 @@ public class ModifierCarte extends JPanel {
 				}
 				String code = codeSecret.getText();
 				int idClient = Integer.parseInt(client.getText());
-				Date dateExp = dateExpiration.getDate();
-				if (code.length() == 0 || dateExp == null || dateExp == null) {
+				if (code.length() == 0 ) {
 					JOptionPane.showMessageDialog(null, "remplire tout les champ");
 				} else {
 					if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer les modifcation du Carte",
 							"Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						String typec = "Carte";
 						ServiceCarteImp serviceCarteImp = new ServiceCarteImp();
-						cartAModifer = new Carte(numeroEntre, type, code, dateExp, idClient);
+						cartAModifer = new Carte(numeroEntre, type, code, cartAModifer.getDateExpirationCarte(), idClient);
 						serviceCarteImp.misAJour(cartAModifer);
 						JOptionPane.showMessageDialog(null, typec + "modifer");
 						panelCentre.setBounds(0, 53, 745, 412);
@@ -147,6 +146,12 @@ public class ModifierCarte extends JPanel {
 		buttonAnnuler.setFont(new Font("Tahoma", Font.BOLD, 11));
 		buttonAnnuler.setBounds(413, 282, 128, 30);
 		panelCentre.add(buttonAnnuler);
+		
+		dateExpiration = new JTextField();
+		dateExpiration.setEditable(false);
+		dateExpiration.setBounds(313, 86, 228, 30);
+		panelCentre.add(dateExpiration);
+		dateExpiration.setColumns(10);
 
 		panelHaut = new JPanel();
 		panelHaut.setBackground(new Color(176, 196, 222));
@@ -181,10 +186,16 @@ public class ModifierCarte extends JPanel {
 						// dateExpiration=new JDateChooser(carteASupprimer.getDateExpirationCarte());
 						if (cartAModifer.getTypeCarte().equals("Electron")) {
 							visaElectron.setSelected(true);
+							visaElectron.setEnabled(false);
 						} else {
 							visaPremier.setSelected(true);
+							visaPremier.setEnabled(false);
 						}
-						client.setText(cartAModifer.getIdClient() + "");
+						dateExpiration.setText(cartAModifer.getDateExpirationCarte()+"");
+						ServiceClientImp serviceClientImp=new ServiceClientImp();
+						sn.proxybanque.domaine.Client clientt=new sn.proxybanque.domaine.Client();
+						clientt=serviceClientImp.findByIdClient(cartAModifer.getIdClient());
+						client.setText(clientt.getNom()+ " "+ clientt.getPrenom());
 						remove(panelHaut);
 						add(panelCentre);
 						validate();

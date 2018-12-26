@@ -40,6 +40,7 @@ public class ModifierCompte extends JPanel {
 	Compte compteAModifier;
 	final JPanel panelHaut;
 	String numeroEntre;
+	private JTextField dateExpiration;
 	/**
 	 * Create the panel.
 	 */
@@ -99,10 +100,12 @@ public class ModifierCompte extends JPanel {
 		solde.setColumns(30);
 
 		final JRadioButton Epargne = new JRadioButton("Epargne");
+		Epargne.setEnabled(false);
 		Epargne.setBounds(313, 146, 109, 30);
 		
 		
 		final JRadioButton Courant = new JRadioButton("Courant");
+		Courant.setEnabled(false);
 		Courant.setBounds(432, 147, 109, 30);
 		
 		ButtonGroup groupeCarte=new ButtonGroup();
@@ -114,13 +117,10 @@ public class ModifierCompte extends JPanel {
 		final JDateChooser dateNaissanceConseiller;
 
 		client = new JTextField();
+		client.setEditable(false);
 		client.setBounds(313, 220, 228, 30);
 		panelCentre.add(client);
 		client.setColumns(30);
-
-		final JDateChooser dateExpiration = new JDateChooser();
-		dateExpiration.setBounds(313, 86, 228, 30);
-		panelCentre.add(dateExpiration);
 
 
 		JButton buttonModifer = new JButton("Modifer");
@@ -136,13 +136,13 @@ public class ModifierCompte extends JPanel {
 				 }
 				String code=solde.getText();
 				int idClient=Integer.parseInt(client.getText());
-				Date dateExp=dateExpiration.getDate();
+				
 				double soldeEntre=0;
 				if(solde.getText().length()>0)
 				{
 					 soldeEntre =Double.parseDouble(solde.getText());
 				}
-				if(code.length()==0 || dateExp==null || soldeEntre<0)
+				if(code.length()==0 || soldeEntre<0)
 			    {
 			    	JOptionPane.showMessageDialog(null,"remplire tout les champ");
 			    }else {
@@ -152,7 +152,6 @@ public class ModifierCompte extends JPanel {
 						ServiceCompteImp serviceCompteImp=new ServiceCompteImp();
 						compteAModifier=new Compte();
 						compteAModifier.setNumeroCompte(numeroCompte.getText());
-						compteAModifier.setDateOuvertureCompte(dateExp);
 						compteAModifier.setSoldeCompte(soldeEntre);
 						compteAModifier.setTypeDeCompte(type);
 						compteAModifier.setIdClient(idClient);
@@ -189,6 +188,12 @@ public class ModifierCompte extends JPanel {
 		buttonAnnuler.setBounds(413, 282, 128, 30);
 		panelCentre.add(buttonAnnuler);
 		
+		dateExpiration = new JTextField();
+		dateExpiration.setEditable(false);
+		dateExpiration.setBounds(313, 86, 228, 30);
+		panelCentre.add(dateExpiration);
+		dateExpiration.setColumns(10);
+		
 		
 		panelHaut = new JPanel();
 		panelHaut.setBackground(new Color(176, 196, 222));
@@ -219,7 +224,7 @@ public class ModifierCompte extends JPanel {
 					} else {
                         
 						solde.setText(compteAModifier.getSoldeCompte()+"");
-						//dateExpiration=new JDateChooser(carteASupprimer.getDateExpirationCarte());
+						dateExpiration.setText(compteAModifier.getDateOuvertureCompte()+"");
 						 if(compteAModifier.getTypeDeCompte().equals("Epargne"))
 						 {
 							Epargne.setSelected(true); 
@@ -227,7 +232,9 @@ public class ModifierCompte extends JPanel {
 						 {
 							 Courant.setSelected(true);
 						 }
-						client.setText(compteAModifier.getIdClient()+"");
+						 ServiceClientImp serviceClientImp=new ServiceClientImp();
+						 Client clientt=serviceClientImp.findByIdClient(compteAModifier.getIdClient());
+						client.setText(clientt.getNom()+" "+ clientt.getPrenom());
 						remove(panelHaut);
 						add(panelCentre);
 						validate();
