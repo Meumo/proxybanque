@@ -166,8 +166,8 @@ public class AjoutConseilles extends JPanel {
 		panel.add(list);
 		
 		final JComboBox comboBoxSexe = new JComboBox();
-		comboBoxSexe.setModel(new DefaultComboBoxModel(new String[] {"Femme", "Homme"}));
 		//comboBoxSexe.setModel(new DefaultComboBoxModel(new String[] {"Homme"}));
+		comboBoxSexe.addItem("");
 		comboBoxSexe.addItem("Femme");
 		comboBoxSexe.addItem("Homme");
 		comboBoxSexe.setMaximumRowCount(2);
@@ -191,7 +191,7 @@ public class AjoutConseilles extends JPanel {
 				String numero=numeroConseiller.getText();
 				String sexeChoise=(String) comboBoxSexe.getSelectedItem();
 				ServiceEmployerImp serviceEmployerImp=new ServiceEmployerImp();
-				if(nom.length()==0 || prenom.length()==0 ||adresse.length()==0 || email.length()==0 ||login.length()==0 || passWord.length()==0 ||telephone.length()==0 ||type.length()==0 ||sexeChoise.length()==0 ||numero.length()==0 ||date==null )
+				if(sexeChoise.length()<2 || nom.length()==0 || prenom.length()==0 ||adresse.length()==0 || email.length()==0 ||login.length()==0 || passWord.length()==0 ||telephone.length()==0 ||type.length()==0 ||sexeChoise.length()==0 ||numero.length()==0 ||date==null )
 				{
 					JOptionPane.showMessageDialog(null,"veuillez remplire tout les champs");
 				}else {
