@@ -155,7 +155,7 @@ public class DaoTransaction {
 				transaction.setNumeroTransaction(rs.getString("numeroTransaction"));
 				transaction.setMontantTransaction(rs.getDouble("montantTransaction"));
 				transaction.setDateTransaction(rs.getDate("dateTransaction"));
-				transaction.setTypeTransaction(rs.getString("typeTransactin"));
+				transaction.setTypeTransaction(rs.getString("typeTransaction"));
 				transaction.setIdcompte(rs.getInt("idCompte"));
 				transaction.setIdconseiller(rs.getShort("idConseiller"));
 				listTransaction.add(transaction);

@@ -54,10 +54,14 @@ public class EspaceGerant extends JFrame {
 	 * Create the frame.
 	 */
 	public EspaceGerant(final Employer employer) {
+		setAutoRequestFocus(false);
+		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 668);
 		setLocationRelativeTo(null);
+		setResizable(false);
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBackground(new Color(102, 153, 255));
 		setJMenuBar(menuBar);
 
 		JMenu mnParamettrage = new JMenu("Paramettrage");
@@ -72,6 +76,11 @@ public class EspaceGerant extends JFrame {
 		menuBar.add(mnApropos);
 
 		JMenuItem mntmHelp = new JMenuItem("Help");
+		mntmHelp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		mntmHelp.setIcon(new ImageIcon("C:\\Users\\image\\word-895582_960_720.png"));
 		mnApropos.add(mntmHelp);
 		contentPane = new JPanel();
@@ -85,6 +94,7 @@ public class EspaceGerant extends JFrame {
 		contentPane.add(toolBar);
 
 		JButton btnAccueille = new JButton("Accueille");
+		btnAccueille.setBackground(new Color(0, 191, 255));
 		btnAccueille.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Accueille accueille = new Accueille();
@@ -101,6 +111,7 @@ public class EspaceGerant extends JFrame {
 		toolBar.add(btnAccueille);
 
 		JButton buttonConseillers = new JButton("Conseillers  ");
+		buttonConseillers.setBackground(new Color(0, 191, 255));
 		buttonConseillers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Conseiller conseiller = new Conseiller();
@@ -119,6 +130,7 @@ public class EspaceGerant extends JFrame {
 		toolBar.add(buttonConseillers);
 
 		JButton buttonClients = new JButton("Clients");
+		buttonClients.setBackground(new Color(0, 191, 255));
 		buttonClients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Clients clients = new Clients(employer);
@@ -138,6 +150,7 @@ public class EspaceGerant extends JFrame {
 		toolBar.add(buttonClients);
 
 		JButton buttonComptes = new JButton("Comptes");
+		buttonComptes.setBackground(new Color(0, 191, 255));
 		buttonComptes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CompteBanque compteBanque = new CompteBanque(employer);
@@ -157,6 +170,7 @@ public class EspaceGerant extends JFrame {
 		toolBar.add(buttonComptes);
 
 		JButton buttonCartesBancaires = new JButton("Cartes  ");
+		buttonCartesBancaires.setBackground(new Color(0, 191, 255));
 		buttonCartesBancaires.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CartesBanque cartesBanque = new CartesBanque(employer);
@@ -176,6 +190,7 @@ public class EspaceGerant extends JFrame {
 		toolBar.add(buttonCartesBancaires);
 
 		JButton buttonTransaction = new JButton("Transactions");
+		buttonTransaction.setBackground(new Color(0, 191, 255));
 		buttonTransaction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Transactions transactions = new Transactions(employer);
@@ -193,6 +208,7 @@ public class EspaceGerant extends JFrame {
 		toolBar.add(buttonTransaction);
 
 		JButton buttonAuditer = new JButton("Auditer");
+		buttonAuditer.setBackground(new Color(0, 191, 255));
 		buttonAuditer.setFont(new Font("Tahoma", Font.BOLD, 11));
 
 		buttonAuditer.setIcon(new ImageIcon("C:\\Users\\image\\images.jpg"));
@@ -200,6 +216,7 @@ public class EspaceGerant extends JFrame {
 		toolBar.add(buttonAuditer);
 
 		JButton buttonSimulationCredit = new JButton("Simulation ");
+		buttonSimulationCredit.setBackground(new Color(0, 191, 255));
 		buttonSimulationCredit.setFont(new Font("Tahoma", Font.BOLD, 11));
 
 		buttonSimulationCredit.setIcon(new ImageIcon("C:\\Users\\image\\simitation.jpg"));
@@ -208,6 +225,7 @@ public class EspaceGerant extends JFrame {
 		toolBar.add(buttonSimulationCredit);
 
 		JButton buttonJournalisation = new JButton("Journalisation");
+		buttonJournalisation.setBackground(new Color(0, 191, 255));
 		buttonJournalisation.setFont(new Font("Tahoma", Font.BOLD, 11));
 
 		buttonJournalisation.setIcon(new ImageIcon("C:\\Users\\image\\images (1).jpg"));
@@ -222,6 +240,7 @@ public class EspaceGerant extends JFrame {
 		panelBody.setLayout(new BorderLayout(0, 0));
 
 		JLabel label = new JLabel("");
+		label.setBackground(new Color(102, 153, 255));
 		label.setIcon(new ImageIcon("C:\\Users\\image\\acc.gif"));
 		panelBody.add(label);
 

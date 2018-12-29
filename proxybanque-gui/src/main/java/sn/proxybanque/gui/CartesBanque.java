@@ -28,9 +28,11 @@ public class CartesBanque extends JPanel {
 		panelFormulaire.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\image\\bannerfans_20208537.jpg"));
 		panelFormulaire.add(lblNewLabel_1, BorderLayout.WEST);
 		
 		JButton buttonCreerUnCarte = new JButton("Creer une Carte");
+		buttonCreerUnCarte.setBackground(new Color(102, 153, 255));
 		buttonCreerUnCarte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -44,11 +46,12 @@ public class CartesBanque extends JPanel {
 			}
 		});
 		buttonCreerUnCarte.setFont(new Font("Tahoma", Font.BOLD, 15));
-		buttonCreerUnCarte.setIcon(new ImageIcon("C:\\Users\\image\\hire-me.png"));
+		buttonCreerUnCarte.setIcon(new ImageIcon("C:\\Users\\image\\carte.jpg"));
 		buttonCreerUnCarte.setBounds(0, 0, 209, 70);
 		add(buttonCreerUnCarte);
 		
 		JButton buttonModifierUneCarte = new JButton("Modifier une Carte");
+		buttonModifierUneCarte.setBackground(new Color(102, 153, 255));
 		buttonModifierUneCarte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ModifierCarte modifierCarte=new ModifierCarte();
@@ -59,11 +62,12 @@ public class CartesBanque extends JPanel {
 			}
 		});
 		buttonModifierUneCarte.setFont(new Font("Tahoma", Font.BOLD, 15));
-		buttonModifierUneCarte.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (2).jpg"));
+		buttonModifierUneCarte.setIcon(new ImageIcon("C:\\Users\\image\\modicart.png"));
 		buttonModifierUneCarte.setBounds(0, 71, 209, 70);
 		add(buttonModifierUneCarte);
 		
 		JButton buttonSupprimerUneCarte = new JButton("Supprimer une Carte");
+		buttonSupprimerUneCarte.setBackground(new Color(102, 153, 255));
 		buttonSupprimerUneCarte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SupprimerCarte supprimerCarte=new SupprimerCarte();
@@ -74,11 +78,12 @@ public class CartesBanque extends JPanel {
 			}
 		});
 		buttonSupprimerUneCarte.setFont(new Font("Tahoma", Font.BOLD, 15));
-		buttonSupprimerUneCarte.setIcon(new ImageIcon("C:\\Users\\image\\téléchargement (3).jpg"));
+		buttonSupprimerUneCarte.setIcon(new ImageIcon("C:\\Users\\image\\supcart.png"));
 		buttonSupprimerUneCarte.setBounds(0, 140, 209, 70);
 		add(buttonSupprimerUneCarte);
 		
 		JButton buttonListerLesCartes = new JButton("lister les Cartes");
+		buttonListerLesCartes.setBackground(new Color(102, 153, 255));
 		buttonListerLesCartes.setToolTipText("lister les Cartes");
 		buttonListerLesCartes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -90,11 +95,12 @@ public class CartesBanque extends JPanel {
 			}
 		});
 		buttonListerLesCartes.setFont(new Font("Tahoma", Font.BOLD, 15));
-		buttonListerLesCartes.setIcon(new ImageIcon("C:\\Users\\image\\customers.png"));
+		buttonListerLesCartes.setIcon(new ImageIcon("C:\\Users\\image\\listecarte.png"));
 		buttonListerLesCartes.setBounds(0, 209, 209, 70);
 		add(buttonListerLesCartes);
 		
 		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBackground(new Color(102, 153, 255));
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\image\\images (4).jpg"));
 		lblNewLabel.setBounds(0, 278, 209, 175);
 		add(lblNewLabel);

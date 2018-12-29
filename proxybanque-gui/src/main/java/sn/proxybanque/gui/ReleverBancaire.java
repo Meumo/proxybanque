@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -31,9 +32,11 @@ import net.proteanit.sql.DbUtils;
 import sn.proxybanque.domaine.Client;
 import sn.proxybanque.domaine.Compte;
 import sn.proxybanque.domaine.Employer;
+import sn.proxybanque.domaine.Transaction;
 import sn.proxybanque.service.ServiceClientImp;
 import sn.proxybanque.service.ServiceCompteImp;
 import sn.proxybanque.service.ServiceEmployerImp;
+import sn.proxybanque.service.ServiceTransaction;
 import sn.proxybanque.utils.MysqlConnection;
 
 public class ReleverBancaire extends JPanel {
@@ -47,9 +50,8 @@ public class ReleverBancaire extends JPanel {
 	 */
 	public ReleverBancaire() {
 		Employer employer;
-		setLayout(null);
+		setLayout(new BorderLayout(0, 0));
 		final JPanel panelCentre = new JPanel();
-		panelCentre.setBounds(0, 58, 745, 467);
 		panelCentre.setBackground(new Color(176, 196, 222));
 		panelCentre.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Relever Bancaire", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(102, 102, 204)));
 		add(panelCentre);
@@ -104,6 +106,7 @@ public class ReleverBancaire extends JPanel {
 		scrollPane.setViewportView(table);
 		
 		final JButton btnImprimer = new JButton("Imprimer");
+		btnImprimer.setIcon(new ImageIcon("C:\\Users\\image\\impress.jpg"));
 		btnImprimer.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
 		btnImprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -144,11 +147,11 @@ public class ReleverBancaire extends JPanel {
 		ss.setBounds(330, 352, 93, 30);
 		panelCentre.add(ss);
 		
-		JLabel nomEmploye = new JLabel("nomEmploye");
+		final JLabel nomEmploye = new JLabel(" ");
 		nomEmploye.setBounds(421, 352, 150, 30);
 		panelCentre.add(nomEmploye);
 		
-		JLabel prenomEmploye = new JLabel("New label");
+		final JLabel prenomEmploye = new JLabel("New label");
 		prenomEmploye.setBounds(581, 352, 154, 30);
 		panelCentre.add(prenomEmploye);
 		
@@ -156,7 +159,6 @@ public class ReleverBancaire extends JPanel {
 		
 		
 		panelHaut = new JPanel();
-		panelHaut.setBounds(0, 0, 745, 42);
 		panelHaut.setBackground(new Color(176, 196, 222));
 		add(panelHaut);
 		panelHaut.setLayout(null);
@@ -170,7 +172,7 @@ public class ReleverBancaire extends JPanel {
 		numeroCompte.setBounds(275, 6, 228, 30);
 		panelHaut.add(numeroCompte);
 		numeroCompte.setColumns(30);
-
+		
 		JButton buttonRechercher = new JButton("Rechercher");
 		buttonRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -183,13 +185,25 @@ public class ReleverBancaire extends JPanel {
 					if (compteARelever == null) {
 						JOptionPane.showMessageDialog(null, "le compte n'existe pas dans la basse de donnee");
 					} else {
+						         ServiceTransaction serviceTransaction=new ServiceTransaction();
                                ServiceClientImp serviceClientImp=new ServiceClientImp();
                                Client client=serviceClientImp.findByIdClient(compteARelever.getIdClient());
                                nom.setText(client.getNom());
                                prenom.setText(client.getPrenom());
                                date.setText(client.getDateDenaissance()+"");
                                adresse.setText(client.getAdresse());
-                              ServiceEmployerImp serviceEmployerImp=new ServiceEmployerImp();
+                               List<Transaction> listTransaction=serviceTransaction.nbreTransaction(compteARelever.getIdCompte());
+                               Employer employer = null;
+                               if(listTransaction.size()>1)
+                               {
+                            	   int idEmployer=listTransaction.get(1).getIdconseiller();
+                            	   ServiceEmployerImp serviceEmployerImp=new ServiceEmployerImp();
+                            	   employer=serviceEmployerImp.findByEmploye(idEmployer);
+                            	
+                               }
+                            //   nomEmploye.setText(employer.getNom());
+                           	//    prenomEmploye.setText(employer.getPrenom());
+                           
 						remove(panelHaut);
 						add(panelCentre);
 						update();
@@ -207,6 +221,7 @@ public class ReleverBancaire extends JPanel {
 
 	}
 	
+
 	public void update() {
 		try {
 			numeroEntre=compteARelever.getNumeroCompte();

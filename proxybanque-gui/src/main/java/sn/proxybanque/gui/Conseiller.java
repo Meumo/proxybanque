@@ -26,10 +26,11 @@ public class Conseiller extends JPanel {
 		panelFormulaire.setLayout(new BorderLayout(0, 0));
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\image\\co.gif"));
+		label.setIcon(new ImageIcon("C:\\Users\\image\\conseiller.png"));
 		panelFormulaire.add(label, BorderLayout.WEST);
 		
 		JButton buttonCreerUnConseiller = new JButton("Creer un Conseiller");
+		buttonCreerUnConseiller.setBackground(new Color(102, 153, 255));
 		buttonCreerUnConseiller.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AjoutConseilles ajoutclient=new AjoutConseilles();
@@ -47,6 +48,7 @@ public class Conseiller extends JPanel {
 		add(buttonCreerUnConseiller);
 		
 		JButton buttonModifierUnConseiller = new JButton("Modifier un Conseiller");
+		buttonModifierUnConseiller.setBackground(new Color(102, 153, 255));
 		buttonModifierUnConseiller.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ModifierConseilles modifierConseilles =new ModifierConseilles ();
@@ -63,6 +65,7 @@ public class Conseiller extends JPanel {
 		add(buttonModifierUnConseiller);
 		
 		JButton buttonSupprimerUnConseiller = new JButton("Supprimer un Conseiller");
+		buttonSupprimerUnConseiller.setBackground(new Color(102, 153, 255));
 		buttonSupprimerUnConseiller.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SupprimerConseilles supprimerConseilles=new SupprimerConseilles();
@@ -78,6 +81,7 @@ public class Conseiller extends JPanel {
 		add(buttonSupprimerUnConseiller);
 		
 		JButton buttonListerLesConseillers = new JButton("lister les Conseillers");
+		buttonListerLesConseillers.setBackground(new Color(102, 153, 255));
 		buttonListerLesConseillers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListeConseiller listeConseiller=new ListeConseiller();
@@ -93,6 +97,7 @@ public class Conseiller extends JPanel {
 		add(buttonListerLesConseillers);
 		
 		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBackground(new Color(102, 153, 255));
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\image\\images (4).jpg"));
 		lblNewLabel.setBounds(0, 278, 209, 175);
 		add(lblNewLabel);
