@@ -23,9 +23,11 @@ import javax.swing.border.TitledBorder;
 import com.toedter.calendar.JDateChooser;
 
 import sn.proxybanque.domaine.Compte;
+import sn.proxybanque.domaine.Log;
 import sn.proxybanque.domaine.Transaction;
 import sn.proxybanque.service.Numero;
 import sn.proxybanque.service.ServiceCompteImp;
+import sn.proxybanque.service.ServiceLog;
 import sn.proxybanque.service.ServiceTransaction;
 
 public class Debiter extends JPanel {
@@ -109,6 +111,7 @@ public class Debiter extends JPanel {
 		buttonDepot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ServiceTransaction serviceTransaction = new ServiceTransaction();
+				ServiceLog serviceLog=new ServiceLog();
 				double montantARetire = 0;
 				if (montant.getText().length() > 0) {
 					montantARetire = Double.parseDouble(montant.getText());
@@ -120,19 +123,31 @@ public class Debiter extends JPanel {
 						//serviceTransaction.retirer(compteARetire, montantARetire);
 						Numero numero = new Numero();
 						transaction = new Transaction();
+						Log log=new Log();
 						try {
 							Heure heure = new Heure();
 							transaction.setDateTransaction(heure.daterecup());
+							log.setDateTransaction(heure.daterecup());
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
+						String numeroTrang=numero.generateNumeroTransaction();
 						transaction.setIdcompte(compteARetire.getIdCompte());
 						transaction.setMontantTransaction(montantARetire);
 						transaction.setIdconseiller(idConseiller);
-						transaction.setNumeroTransaction(numero.generateNumeroTransaction());
+						transaction.setNumeroTransaction(numeroTrang);
 						transaction.setTypeTransaction("Retrait");
+						
+						log.setIdConseiller(idConseiller);
+						log.setNumeroCompte(compteARetire.getNumeroCompte());
+						log.setNumeroTransaction(numeroTrang);
+						log.setMontantTransaction(montantARetire);
+						log.setTypeTransaction("Retrait");
+						
 						serviceTransaction.create(transaction);
+						serviceLog.creer(log);
+						
 						JOptionPane.showMessageDialog(null, "Retrait valider");
 						panelCentre.setBounds(0, 53, 745, 412);
 						remove(panelCentre);

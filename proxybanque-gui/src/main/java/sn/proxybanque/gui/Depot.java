@@ -20,9 +20,11 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import sn.proxybanque.domaine.Compte;
+import sn.proxybanque.domaine.Log;
 import sn.proxybanque.domaine.Transaction;
 import sn.proxybanque.service.Numero;
 import sn.proxybanque.service.ServiceCompteImp;
+import sn.proxybanque.service.ServiceLog;
 import sn.proxybanque.service.ServiceTransaction;
 
 public class Depot extends JPanel {
@@ -72,7 +74,6 @@ public class Depot extends JPanel {
 		Client.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		Client.setBounds(55, 176, 188, 30);
 		panelCentre.add(Client);
-		
 
 		typeTansaction = new JTextField();
 		typeTansaction.setText("Depot");
@@ -93,15 +94,11 @@ public class Depot extends JPanel {
 		panelCentre.add(solde);
 		solde.setColumns(30);
 
-		
-
 		client = new JTextField();
 		client.setEditable(false);
 		client.setBounds(313, 177, 228, 30);
 		panelCentre.add(client);
 		client.setColumns(30);
-
-		
 
 		JButton buttonDepot = new JButton("Valider");
 		buttonDepot.addActionListener(new ActionListener() {
@@ -114,22 +111,34 @@ public class Depot extends JPanel {
 				if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer le Depot", "Confirmation",
 						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 					Transaction transaction;
+					Log log = new Log();
 					serviceTransaction.verser(compteADeposer, montantAdeposer);
 					Numero numero = new Numero();
 					transaction = new Transaction();
 					try {
 						Heure heure = new Heure();
 						transaction.setDateTransaction(heure.daterecup());
+						log.setDateTransaction(heure.daterecup());
 					} catch (ParseException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					String numerotrans = numero.generateNumeroTransaction();
 					transaction.setIdcompte(compteADeposer.getIdCompte());
 					transaction.setMontantTransaction(montantAdeposer);
 					transaction.setIdconseiller(idConseiller);
-					transaction.setNumeroTransaction(numero.generateNumeroTransaction());
+					transaction.setNumeroTransaction(numerotrans);
 					transaction.setTypeTransaction("Depot");
 					serviceTransaction.create(transaction);
+
+					log.setNumeroCompte(compteADeposer.getNumeroCompte());
+					log.setMontantTransaction(montantAdeposer);
+					log.setIdConseiller(idConseiller);
+					log.setNumeroTransaction(numerotrans);
+					log.setTypeTransaction("Depot");
+					ServiceLog serviceLog = new ServiceLog();
+					serviceLog.creer(log);
+
 					JOptionPane.showMessageDialog(null, "depot valider");
 					panelCentre.setBounds(0, 53, 745, 412);
 					remove(panelCentre);
