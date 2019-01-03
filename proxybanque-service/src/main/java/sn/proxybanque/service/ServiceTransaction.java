@@ -35,4 +35,8 @@ public class ServiceTransaction {
 	public List<Transaction> nbreTransaction(int idCompte) {
 		return daoTransaction.nbreTransaction(idCompte);
 	}
+	
+	public void delete(Transaction transaction) {
+		daoTransaction.delete(transaction);
+	}
 }

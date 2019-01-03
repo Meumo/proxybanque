@@ -36,7 +36,7 @@ public class Log {
 	 */
 	private int idConseiller;
 
-	private Log() {
+	public Log() {
 		super();
 	}
 
@@ -56,7 +56,7 @@ public class Log {
 	 * @param idConseiller
 	 *            Identifiant conseiller
 	 */
-	private Log(String numeroTransaction, double montantTransaction, Date dateTransaction, String typeTransaction,
+	public Log(String numeroTransaction, double montantTransaction, Date dateTransaction, String typeTransaction,
 			String numeroCompte, int idConseiller) {
 		super();
 		this.numeroTransaction = numeroTransaction;
