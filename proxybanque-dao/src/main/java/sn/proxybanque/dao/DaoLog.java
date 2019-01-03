@@ -25,7 +25,7 @@ public class DaoLog {
 	 *            De la methode de type 'Log'
 	 */
 	public void create(Log log) {
-		String sql = "INSERT INTO log(numeroTransaction, montantTransaction, dateTransaction, typeTransaction, numeroCompte, idConseiller) VALUES (?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO log(numeroTransaction, montantTransaction, dateTransaction, typeTransaction, numeroCompte, idConseiller) VALUES (?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, log.getNumeroCompte());

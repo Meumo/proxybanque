@@ -20,9 +20,11 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import sn.proxybanque.domaine.Compte;
+import sn.proxybanque.domaine.Log;
 import sn.proxybanque.domaine.Transaction;
 import sn.proxybanque.service.Numero;
 import sn.proxybanque.service.ServiceCompteImp;
+import sn.proxybanque.service.ServiceLog;
 import sn.proxybanque.service.ServiceTransaction;
 
 public class Virement extends JPanel {
@@ -118,30 +120,42 @@ public class Virement extends JPanel {
 					if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer le virement", "Confirmation",
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						Transaction transaction;
-						 
+						 Log log;
 						serviceTransaction.retirer(compteDebiteur, montantAVirer);
 						serviceTransaction.verser(compteCrediteur, montantAVirer);
 						numero = new Numero();
 						transaction = new Transaction();
+					    log=new Log();
 						try {
 							Heure heure = new Heure();
 							transaction.setDateTransaction(heure.daterecup());
+							log.setDateTransaction(heure.daterecup());
 						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
+							
 							e1.printStackTrace();
 						}
+						ServiceLog serviceLog=new ServiceLog();
 						String numTransaction = numero.generateNumeroTransaction();
+						
 						transaction.setIdcompte(compteDebiteur.getIdCompte());
 						transaction.setMontantTransaction(-montantAVirer);
 						transaction.setIdconseiller(idConseiller);
 						transaction.setNumeroTransaction(numTransaction);
 						transaction.setTypeTransaction("Virement");
 						serviceTransaction.create(transaction);
-
+                           
+						log.setNumeroCompte(compteDebiteur.getNumeroCompte());
+						log.setMontantTransaction(-montantAVirer);
+						log.setIdConseiller(idConseiller);
+						log.setTypeTransaction("Virement");
+						log.setNumeroTransaction(numTransaction);
+						serviceLog.creer(log);
+						
 						transaction = new Transaction();
 						try {
 							Heure heure = new Heure();
 							transaction.setDateTransaction(heure.daterecup());
+							log.setDateTransaction(heure.daterecup());
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -152,6 +166,13 @@ public class Virement extends JPanel {
 						transaction.setNumeroTransaction(numTransaction);
 						transaction.setTypeTransaction("Virement");
 						serviceTransaction.create(transaction);
+						
+						log.setNumeroCompte(compteCrediteur.getNumeroCompte());
+						log.setMontantTransaction(montantAVirer);
+						log.setIdConseiller(idConseiller);
+						log.setTypeTransaction("Virement");
+						log.setNumeroTransaction(numTransaction);
+						serviceLog.creer(log);
 
 						JOptionPane.showMessageDialog(null, "virement valider");
 						panelCentre.setBounds(0, 53, 745, 412);

@@ -55,7 +55,7 @@ public class EspaceGerant extends JFrame {
 	 */
 	public EspaceGerant(final Employer employer) {
 		setAutoRequestFocus(false);
-		setAlwaysOnTop(true);
+		//setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 668);
 		setLocationRelativeTo(null);
@@ -208,6 +208,15 @@ public class EspaceGerant extends JFrame {
 		toolBar.add(buttonTransaction);
 
 		JButton buttonAuditer = new JButton("Auditer");
+		buttonAuditer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Auditer auditer=new Auditer(employer);
+				panelBody.removeAll();
+				auditer.setBounds(10, 67, 964, 453);
+				panelBody.add(auditer, BorderLayout.CENTER);
+				getContentPane().validate();
+			}
+		});
 		buttonAuditer.setBackground(new Color(0, 191, 255));
 		buttonAuditer.setFont(new Font("Tahoma", Font.BOLD, 11));
 
