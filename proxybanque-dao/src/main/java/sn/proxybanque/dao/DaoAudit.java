@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import sn.proxybanque.domaine.Log;
 import sn.proxybanque.domaine.Transaction;
 import sn.proxybanque.utils.MysqlConnection;
 
@@ -17,7 +18,7 @@ public class DaoAudit {
 		boolean ok = true;
 
 		try {
-			String sql = "SELECT * FROM log WHERE numeroCompte=? AND typeTransaction=?";
+			String sql = "SELECT * FROM log WHERE montantTransaction >? and typeTransaction LIKE ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, numeroCompte);
 			ps.setString(2, "Retrait");
@@ -36,23 +37,22 @@ public class DaoAudit {
 		return ok;
 	}
 
-	public List<Transaction> listeTransactionNonRecommandee() {
-		List<Transaction> listTransaction = new ArrayList<Transaction>();
+	public List<Log> listeTransactionNonRecommandee() {
+		List<Log> listTransaction = new ArrayList<Log>();
 		try {
-			String sql = "SELECT * FROM transaction WHERE montantTransaction>? AND typeTransaction=?";
+			String sql = "SELECT * FROM log WHERE montantTransaction > ? and typeTransaction LIKE ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setDouble(1, 3000000);
 			ps.setString(2, "Retrait");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Transaction transaction = new Transaction();
-
+				Log transaction = new Log();
 				transaction.setNumeroTransaction(rs.getString("numeroTransaction"));
 				transaction.setMontantTransaction(rs.getDouble("montantTransaction"));
 				transaction.setDateTransaction(rs.getDate("dateTransaction"));
 				transaction.setTypeTransaction(rs.getString("typeTransaction"));
-				transaction.setIdcompte(rs.getInt("idCompte"));
-				transaction.setIdconseiller(rs.getShort("idConseiller"));
+				transaction.setNumeroCompte(rs.getString("numeroCompte"));
+				transaction.setIdConseiller(rs.getShort("idConseiller"));
 				listTransaction.add(transaction);
 			}
 		} catch (SQLException e) {

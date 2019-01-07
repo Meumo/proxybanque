@@ -113,7 +113,7 @@ public class ReleverBancaire extends JPanel {
 				PrinterJob printerJob=PrinterJob.getPrinterJob();
 				printerJob.setJobName("Relever Bancaire");
 				printerJob.setPrintable(new Printable() {
-					 
+					  
 					public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
 						btnImprimer.setVisible(false);
 						 if(pageIndex>0)
@@ -184,7 +184,7 @@ public class ReleverBancaire extends JPanel {
 					compteARelever=serviceCompteImp.rechercherParNumeroCompte(numeroEntre);
 					if (compteARelever == null) {
 						JOptionPane.showMessageDialog(null, "le compte n'existe pas dans la basse de donnee");
-					} else {
+					} else { 
 						         ServiceTransaction serviceTransaction=new ServiceTransaction();
                                ServiceClientImp serviceClientImp=new ServiceClientImp();
                                Client client=serviceClientImp.findByIdClient(compteARelever.getIdClient());

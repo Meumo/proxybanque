@@ -150,7 +150,7 @@ public class Virement extends JPanel {
 						log.setTypeTransaction("Virement");
 						log.setNumeroTransaction(numTransaction);
 						serviceLog.creer(log);
-						
+					 	
 						transaction = new Transaction();
 						try {
 							Heure heure = new Heure();

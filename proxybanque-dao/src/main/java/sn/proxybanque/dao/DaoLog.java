@@ -28,7 +28,7 @@ public class DaoLog {
 		String sql = "INSERT INTO log(numeroTransaction, montantTransaction, dateTransaction, typeTransaction, numeroCompte, idConseiller) VALUES (?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, log.getNumeroCompte());
+			ps.setString(1, log.getNumeroTransaction());
 			ps.setDouble(2, log.getMontantTransaction());
 			java.sql.Date date_sql = new java.sql.Date(log.getDateTransaction().getTime());
 			ps.setDate(3, date_sql);

@@ -33,7 +33,7 @@ public class ListeLog extends JPanel {
 	public void update() {
 		try {
 			Connection con = MysqlConnection.getInstanceConnection();
-			String sql = "SELECT * FROM transaction";
+			String sql = "SELECT * FROM log";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));

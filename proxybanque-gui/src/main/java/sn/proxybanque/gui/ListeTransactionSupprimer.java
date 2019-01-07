@@ -30,11 +30,10 @@ public class ListeTransactionSupprimer extends JPanel {
 		update();
 	}
 	
-	public void update() {
+	public void update() { 
 		try {
 			Connection con = MysqlConnection.getInstanceConnection();
-			String sql = "select * from log  where NOT EXISTS\r\n" + 
-			"			(select * from transaction)";
+			String sql = "select * from log  where NOT EXISTS (select numeroTransaction from transaction)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));

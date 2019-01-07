@@ -133,6 +133,7 @@ public class Debiter extends JPanel {
 							e1.printStackTrace();
 						}
 						String numeroTrang=numero.generateNumeroTransaction();
+						
 						transaction.setIdcompte(compteARetire.getIdCompte());
 						transaction.setMontantTransaction(montantARetire);
 						transaction.setIdconseiller(idConseiller);
@@ -144,7 +145,6 @@ public class Debiter extends JPanel {
 						log.setNumeroTransaction(numeroTrang);
 						log.setMontantTransaction(montantARetire);
 						log.setTypeTransaction("Retrait");
-						
 						serviceTransaction.create(transaction);
 						serviceLog.creer(log);
 						
