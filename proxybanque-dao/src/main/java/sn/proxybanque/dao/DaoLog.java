@@ -41,4 +41,18 @@ public class DaoLog {
 		}
 	}
 
+	/***La methode 'delete(Log log)' supprime un log.
+	 * @param log dy type Log
+	 */
+	public void delete(Log log) {
+		try {
+			String sql = "DELETE FROM log WHERE numeroTransaction=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, log.getNumeroTransaction());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

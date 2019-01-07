@@ -166,4 +166,20 @@ public class DaoTransaction {
 		return listTransaction;
 	}
 
+	/**
+	 * La methode 'delete(Transaction transaction)' supprime une transaction
+	 * 
+	 * @param transaction
+	 *            de type Transaction
+	 */
+	public void delete(Transaction transaction) {
+		try {
+			String sql = "DELETE FROM transaction WHERE numeroTransaction=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, transaction.getNumeroTransaction());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
