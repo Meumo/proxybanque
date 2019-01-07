@@ -36,10 +36,10 @@ public class Auditer extends JPanel {
 		annalyse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				AjoutCompte ajoutCompte = new AjoutCompte();
+				ListeDesTransactionAnormal listeDesTransactionAnormal=new ListeDesTransactionAnormal();
 				panelFormulaire.removeAll();
-				ajoutCompte.setBounds(209, 0, 745, 453);
-				panelFormulaire.add(ajoutCompte);
+				listeDesTransactionAnormal.setBounds(0, 70, 954, 394);
+				panelFormulaire.add(listeDesTransactionAnormal);
 				panelFormulaire.validate();
 
 			}
@@ -58,7 +58,7 @@ public class Auditer extends JPanel {
 				listeTransactionSupprimer.setBounds(0, 70, 954, 394);
 				panelFormulaire.add(listeTransactionSupprimer);
 				panelFormulaire.validate();
-			}
+			} 
 		});
 		transactionSupprimer.setFont(new Font("Tahoma", Font.BOLD, 15));
 		transactionSupprimer.setIcon(new ImageIcon("C:\\Users\\image\\moco.jpg"));

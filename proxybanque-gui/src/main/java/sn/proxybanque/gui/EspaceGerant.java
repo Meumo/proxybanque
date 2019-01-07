@@ -223,7 +223,7 @@ public class EspaceGerant extends JFrame {
 		buttonAuditer.setIcon(new ImageIcon("C:\\Users\\image\\images.jpg"));
 		buttonAuditer.setToolTipText("Gestion de l'audit");
 		toolBar.add(buttonAuditer);
-
+ 
 		JButton buttonSimulationCredit = new JButton("Simulation ");
 		buttonSimulationCredit.setBackground(new Color(0, 191, 255));
 		buttonSimulationCredit.setFont(new Font("Tahoma", Font.BOLD, 11));
