@@ -51,19 +51,14 @@ public class DaoAudit {
 		return ok;
 	}
 
-<<<<<<< HEAD
-	public List<Log> listeTransactionNonRecommandee() {
-		List<Log> listTransaction = new ArrayList<Log>();
-=======
 	/**
 	 * La methode 'listeTransactionNonRecommandee()' retourne la liste des
 	 * transactions non recommandees dans notre systeme.
 	 * 
 	 * @return liste de transaction
 	 */
-	public List<Transaction> listeTransactionNonRecommandee() {
-		List<Transaction> listTransaction = new ArrayList<Transaction>();
->>>>>>> 503fd98936a3446bd531b52b8d5374037ea91f85
+public List<Log> listeTransactionNonRecommandee() { 
+	List<Log> listTransaction = new ArrayList<Log>();
 		try {
 			String sql = "SELECT * FROM log WHERE montantTransaction > ? and typeTransaction LIKE ?";
 			PreparedStatement ps = con.prepareStatement(sql);

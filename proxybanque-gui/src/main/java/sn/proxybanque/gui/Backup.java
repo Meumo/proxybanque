@@ -14,12 +14,12 @@ import javax.swing.JPanel;
 import sn.proxybanque.domaine.Employer;
 import javax.swing.SwingConstants;
 
-public class Auditer extends JPanel {
+public class Backup extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public Auditer(final Employer employerConnect) {
+	public Backup(final Employer employerConnect) {
 		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
 
@@ -31,23 +31,22 @@ public class Auditer extends JPanel {
 		JLabel lblNewLabel_1 = new JLabel("");
 		panelFormulaire.add(lblNewLabel_1, BorderLayout.WEST);
 
-		JButton annalyse = new JButton("Analyse Des Comptes");
-		annalyse.setBackground(new Color(102, 153, 255));
-		annalyse.addActionListener(new ActionListener() {
+		JButton buttonListerLesCompte = new JButton("Liste des transaction  ");
+		buttonListerLesCompte.setBackground(new Color(102, 153, 255));
+		buttonListerLesCompte.setToolTipText("lister les Cartes");
+		buttonListerLesCompte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				ListeDesTransactionAnormal listeDesTransactionAnormal=new ListeDesTransactionAnormal();
+				ListeLog listeLog=new ListeLog();
 				panelFormulaire.removeAll();
-				listeDesTransactionAnormal.setBounds(0, 70, 954, 394);
-				panelFormulaire.add(listeDesTransactionAnormal);
+				listeLog.setBounds(0, 70, 954, 394);
+				panelFormulaire.add(listeLog);
 				panelFormulaire.validate();
-
 			}
 		});
-		annalyse.setFont(new Font("Tahoma", Font.BOLD, 15));
-		annalyse.setIcon(new ImageIcon("C:\\Users\\image\\aa.jpg"));
-		annalyse.setBounds(321, 0, 322, 70);
-		add(annalyse);
+		buttonListerLesCompte.setFont(new Font("Tahoma", Font.BOLD, 15));
+		buttonListerLesCompte.setIcon(new ImageIcon("C:\\Users\\image\\liscomp.jpg"));
+		buttonListerLesCompte.setBounds(326, 0, 313, 70);
+		add(buttonListerLesCompte);
 
 	}
 }

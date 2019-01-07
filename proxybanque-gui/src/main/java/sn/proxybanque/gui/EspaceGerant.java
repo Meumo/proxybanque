@@ -234,6 +234,15 @@ public class EspaceGerant extends JFrame {
 		toolBar.add(buttonSimulationCredit);
 
 		JButton buttonJournalisation = new JButton("Journalisation");
+		buttonJournalisation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Backup backup=new Backup(employer);
+				panelBody.removeAll();
+				backup.setBounds(10, 67, 964, 453);
+				panelBody.add(backup, BorderLayout.CENTER);
+				getContentPane().validate();
+			}
+		});
 		buttonJournalisation.setBackground(new Color(0, 191, 255));
 		buttonJournalisation.setFont(new Font("Tahoma", Font.BOLD, 11));
 
