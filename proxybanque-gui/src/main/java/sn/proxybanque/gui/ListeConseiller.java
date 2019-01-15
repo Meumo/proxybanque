@@ -34,8 +34,9 @@ public class ListeConseiller extends JPanel {
 		String type="Conseiller";
 		try {
 			Connection con = MysqlConnection.getInstanceConnection();
-			String sql = "SELECT * FROM employe where typeEmploye LIKE Conseiller";
+			String sql = "SELECT * FROM employe where typeEmploye LIKE ?";
 			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, type);
 			ResultSet rs = ps.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 		} catch (SQLException e) {

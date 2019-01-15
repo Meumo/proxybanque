@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import sn.proxybanque.domaine.Transaction;
+import sn.proxybanque.domaine.Log;
 
 /**
  * Date Janvier 01-2018 # La classe 'TestServiceAudit' est connue pour tester
@@ -34,7 +34,7 @@ public class TestServiceAudit {
 
 	@Test
 	public void testListeTransactionNonRecommandee() {
-		List<Transaction> list = new ArrayList<Transaction>();
+		List<Log> list = new ArrayList<Log>();
 		list = serviceAudit.listeTransactionNonRecommandee();
 		Assert.assertNotNull(list);
 	}

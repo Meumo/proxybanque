@@ -39,4 +39,8 @@ public class ServiceTransaction {
 	public void delete(Transaction transaction) {
 		daoTransaction.delete(transaction);
 	}
+	
+	public double simulateur(double montantEmprunt, double tauxAnnuel, double dureeEmpruntMois) {
+		return daoTransaction.simulateur(montantEmprunt, tauxAnnuel, dureeEmpruntMois);
+	}
 }

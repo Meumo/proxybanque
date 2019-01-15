@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sn.proxybanque.domaine.Log;
-import sn.proxybanque.domaine.Transaction;
 import sn.proxybanque.utils.MysqlConnection;
 
 /**
