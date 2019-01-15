@@ -41,6 +41,6 @@ public class ServiceTransaction {
 	}
 	
 	public double simulateur(double montantEmprunt, double tauxAnnuel, double dureeEmpruntMois) {
-		return daoTransaction.simulateur(montantEmprunt, tauxAnnuel, dureeEmpruntMois);
+		return daoTransaction.simulateur(montantEmprunt, dureeEmpruntMois);
 	}
 }
