@@ -182,4 +182,23 @@ public class DaoTransaction {
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * https://www.bhs.sn/simulateur la methode 'simulateur(double montantEmprunt,
+	 * double tauxAnnuel, double dureeEmpruntMois)' permet de calculer la
+	 * mensualited'un credit a taux fixe.
+	 * 
+	 * @param montantEmprunt
+	 *            Le montant a emprunter
+	 * @param tauxAnnuel
+	 *            Le taux annuel
+	 * @param dureeEmpruntMois
+	 *            La duree emprunt en mois
+	 * @return La mensualite
+	 */
+	public double simulateur(double montantEmprunt, double tauxAnnuel, double dureeEmpruntMois) {
+		double douze = 12, un = 12;
+		return (montantEmprunt * tauxAnnuel / douze) /( 1 - Math.pow(un + (tauxAnnuel / douze), -dureeEmpruntMois));
+	}
+
 }
