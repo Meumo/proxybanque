@@ -184,8 +184,9 @@ public class DaoTransaction {
 	}
 
 	/**
-	 * https://www.bhs.sn/simulateur la methode 'simulateur(double montantEmprunt,double dureeEmpruntMois)' permet de calculer la
-	 * mensualited'un credit a taux fixe.
+	 * https://www.bhs.sn/simulateur la methode 'simulateur(double
+	 * montantEmprunt,double dureeEmpruntMois)' permet de calculer la mensualited'un
+	 * credit a taux fixe.
 	 * 
 	 * @param montantEmprunt
 	 *            Le montant a emprunter
@@ -194,9 +195,11 @@ public class DaoTransaction {
 	 * @return La mensualite
 	 */
 	public double simulateur(double montantEmprunt, double dureeEmpruntMois) {
-		int taux=10;
-		double interet=montantEmprunt*taux;
-		return (montantEmprunt+interet)/dureeEmpruntMois;
-
-}
+		/**
+		 * taux 0.1=10%
+		 */
+		double taux = 0.1;
+		double interet = montantEmprunt * taux;
+		return (montantEmprunt + interet) / dureeEmpruntMois;
+	}
 }
