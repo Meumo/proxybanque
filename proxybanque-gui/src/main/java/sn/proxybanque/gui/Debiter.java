@@ -13,14 +13,11 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
-
-import com.toedter.calendar.JDateChooser;
 
 import sn.proxybanque.domaine.Compte;
 import sn.proxybanque.domaine.Log;
@@ -77,7 +74,6 @@ public class Debiter extends JPanel {
 		Client.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		Client.setBounds(55, 176, 188, 30);
 		panelCentre.add(Client);
-		 
 
 		typeTansaction = new JTextField();
 		typeTansaction.setText("Retrait");
@@ -98,9 +94,6 @@ public class Debiter extends JPanel {
 		panelCentre.add(solde);
 		solde.setColumns(30);
 
-	
-		
-
 		client = new JTextField();
 		client.setEditable(false);
 		client.setBounds(313, 177, 228, 30);
@@ -111,7 +104,7 @@ public class Debiter extends JPanel {
 		buttonDepot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ServiceTransaction serviceTransaction = new ServiceTransaction();
-				ServiceLog serviceLog=new ServiceLog();
+				ServiceLog serviceLog = new ServiceLog();
 				double montantARetire = 0;
 				if (montant.getText().length() > 0) {
 					montantARetire = Double.parseDouble(montant.getText());
@@ -120,10 +113,10 @@ public class Debiter extends JPanel {
 					if (JOptionPane.showConfirmDialog(null, "voulez vous confirmer le Retrait", "Confirmation",
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						Transaction transaction;
-						//serviceTransaction.retirer(compteARetire, montantARetire);
+						// serviceTransaction.retirer(compteARetire, montantARetire);
 						Numero numero = new Numero();
 						transaction = new Transaction();
-						Log log=new Log();
+						Log log = new Log();
 						try {
 							Heure heure = new Heure();
 							transaction.setDateTransaction(heure.daterecup());
@@ -132,14 +125,14 @@ public class Debiter extends JPanel {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						String numeroTrang=numero.generateNumeroTransaction();
-						
+						String numeroTrang = numero.generateNumeroTransaction();
+
 						transaction.setIdcompte(compteARetire.getIdCompte());
 						transaction.setMontantTransaction(montantARetire);
 						transaction.setIdconseiller(idConseiller);
 						transaction.setNumeroTransaction(numeroTrang);
 						transaction.setTypeTransaction("Retrait");
-						
+
 						log.setIdConseiller(idConseiller);
 						log.setNumeroCompte(compteARetire.getNumeroCompte());
 						log.setNumeroTransaction(numeroTrang);
@@ -147,7 +140,7 @@ public class Debiter extends JPanel {
 						log.setTypeTransaction("Retrait");
 						serviceTransaction.create(transaction);
 						serviceLog.creer(log);
-						
+
 						JOptionPane.showMessageDialog(null, "Retrait valider");
 						panelCentre.setBounds(0, 53, 745, 412);
 						remove(panelCentre);
@@ -181,10 +174,7 @@ public class Debiter extends JPanel {
 		buttonAnnuler.setBounds(413, 282, 128, 30);
 		panelCentre.add(buttonAnnuler);
 
-
-		JLabel lblMontantADepose = new JLabel("Montant a Deposer");
-
-		
+		JLabel lblMontantADepose = new JLabel("Montant à Debiter");
 
 		lblMontantADepose.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblMontantADepose.setBounds(55, 232, 188, 30);

@@ -54,8 +54,8 @@ public class EspaceConseiller extends JFrame {
 	 * Create the frame.
 	 */
 	public EspaceConseiller(final Employer employer) {
-		setAutoRequestFocus(false);
-		//setAlwaysOnTop(true);
+		requestFocus(false);
+		// setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 668);
 		setLocationRelativeTo(null);
@@ -78,7 +78,7 @@ public class EspaceConseiller extends JFrame {
 		JMenuItem mntmHelp = new JMenuItem("Help");
 		mntmHelp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
 		mntmHelp.setIcon(new ImageIcon("C:\\Users\\image\\word-895582_960_720.png"));
@@ -187,7 +187,7 @@ public class EspaceConseiller extends JFrame {
 		buttonTransaction.setIcon(new ImageIcon("C:\\Users\\image\\images (2).jpg"));
 		buttonTransaction.setToolTipText("Gestion des Transactions");
 		toolBar.add(buttonTransaction);
- 
+
 		JButton buttonSimulationCredit = new JButton("Simulation ");
 		buttonSimulationCredit.setBackground(new Color(0, 191, 255));
 		buttonSimulationCredit.setFont(new Font("Tahoma", Font.BOLD, 15));

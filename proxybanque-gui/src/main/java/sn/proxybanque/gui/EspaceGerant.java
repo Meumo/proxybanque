@@ -54,8 +54,8 @@ public class EspaceGerant extends JFrame {
 	 * Create the frame.
 	 */
 	public EspaceGerant(final Employer employer) {
-		setAutoRequestFocus(false);
-		//setAlwaysOnTop(true);
+		requestFocus(false);
+		// setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 668);
 		setLocationRelativeTo(null);
@@ -78,7 +78,7 @@ public class EspaceGerant extends JFrame {
 		JMenuItem mntmHelp = new JMenuItem("Help");
 		mntmHelp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
 		mntmHelp.setIcon(new ImageIcon("C:\\Users\\image\\word-895582_960_720.png"));
@@ -210,7 +210,7 @@ public class EspaceGerant extends JFrame {
 		JButton buttonAuditer = new JButton("Auditer");
 		buttonAuditer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Auditer auditer=new Auditer(employer);
+				Auditer auditer = new Auditer(employer);
 				panelBody.removeAll();
 				auditer.setBounds(10, 67, 964, 453);
 				panelBody.add(auditer, BorderLayout.CENTER);
@@ -223,7 +223,7 @@ public class EspaceGerant extends JFrame {
 		buttonAuditer.setIcon(new ImageIcon("C:\\Users\\image\\images.jpg"));
 		buttonAuditer.setToolTipText("Gestion de l'audit");
 		toolBar.add(buttonAuditer);
- 
+
 		JButton buttonSimulationCredit = new JButton("Simulation ");
 		buttonSimulationCredit.setBackground(new Color(0, 191, 255));
 		buttonSimulationCredit.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -236,7 +236,7 @@ public class EspaceGerant extends JFrame {
 		JButton buttonJournalisation = new JButton("Journalisation");
 		buttonJournalisation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Backup backup=new Backup(employer);
+				Backup backup = new Backup(employer);
 				panelBody.removeAll();
 				backup.setBounds(10, 67, 964, 453);
 				panelBody.add(backup, BorderLayout.CENTER);
